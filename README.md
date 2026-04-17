@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nexus Dashboard
 
-## Getting Started
+A premium, open-source admin dashboard template built with **Next.js 14**, **Tailwind CSS**, and **Framer Motion**. Designed to be fast, beautiful, and developer-friendly.
 
-First, run the development server:
+![Dashboard Preview](./public/preview.png)
+
+## ✨ Features
+
+- 🌑 **Dark Mode First** — Deep Zinc dark theme with Indigo accent colors
+- ⚡ **Next.js 14 App Router** — Modern, production-ready architecture
+- 🎨 **Tailwind CSS** — Utility-first styling with zero bloat
+- 🤖 **AI Assistant UI** — Floating chatbot panel with secure Human-in-the-Loop design
+- 📊 **5 Chart Types** — Area, Bar, Line, Pie/Donut, and Radar (powered by Recharts)
+- 🧩 **Full UI Component Kit** — Buttons, Forms, Badges, Tables, Charts
+- 🔐 **Auth Pages** — Login, Register, and Forgot Password
+- 🚨 **404 Error Page** — Custom animated not-found page
+- 💫 **Framer Motion Animations** — Smooth entrance animations and hover effects
+- 📱 **Responsive Layout** — Works on all screen sizes
+
+## 📦 Pages Included (Free)
+
+| Section | Pages |
+|---|---|
+| **Dashboard** | Overview with Stats, Revenue Chart, Recent Transactions, Top Users |
+| **UI Kit** | Buttons, Forms, Badges, Tables, Charts |
+| **Auth** | Login, Register, Forgot Password |
+| **Errors** | 404 Not Found |
+| **App Pages** | Analytics, Users, Products, Transactions, Settings (Pro placeholders) |
+
+## 🚀 Quick Start
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/Pinky057/nexus-dashboard.git
+
+# 2. Navigate into the project
+cd nexus-dashboard
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Technology | Version | Purpose |
+|---|---|---|
+| Next.js | 14 (App Router) | Core framework |
+| TypeScript | 5 | Type safety |
+| Tailwind CSS | 4 | Styling |
+| Framer Motion | Latest | Animations |
+| Recharts | Latest | Data visualization |
+| Lucide React | Latest | Icons |
 
-## Learn More
+## 🔒 AI Security Design
 
-To learn more about Next.js, take a look at the following resources:
+The included AI Assistant panel follows strict **Human-in-the-Loop** principles:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ✅ AI can **read** and **analyze** data freely
+- 🚫 AI **cannot execute** destructive actions (DELETE, bulk updates) without explicit user confirmation
+- 🔔 All sensitive AI actions require a **confirmation dialog** before execution
+- 📝 Designed to be extended with a real backend (Node.js, Python) and real AI (Gemini, OpenAI)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💎 Pro Version (Coming Soon)
 
-## Deploy on Vercel
+The free version is a fully functional starting point. The **Pro version** will include:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Advanced data tables with export (CSV, PDF)
+- Kanban board and Calendar
+- CRM and Invoice management
+- E-commerce product management
+- Multi-language (i18n) support
+- Light/Dark mode toggle
+- Authentication with NextAuth.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
+
+---
+
+Built with ❤️ by [Pinky057](https://github.com/Pinky057)
+
+If this template helped you, please consider giving it a ⭐ star on GitHub!
