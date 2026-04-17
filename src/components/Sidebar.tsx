@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Users, Settings, BarChart3, CreditCard, Box } from "lucide-react"
+import { LayoutDashboard, Users, Settings, BarChart3, CreditCard, Box, Palette, LogIn } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navigation = [
@@ -11,6 +11,8 @@ const navigation = [
   { name: "Users", href: "/users", icon: Users },
   { name: "Products", href: "/products", icon: Box },
   { name: "Transactions", href: "/transactions", icon: CreditCard },
+  { name: "UI Components", href: "/components-ui", icon: Palette },
+  { name: "Login Page", href: "/login", icon: LogIn },
   { name: "Settings", href: "/settings", icon: Settings },
 ]
 
