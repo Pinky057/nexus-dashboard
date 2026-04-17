@@ -2,6 +2,8 @@
 
 A premium, open-source admin dashboard template built with **Next.js 14**, **Tailwind CSS**, and **Framer Motion**. Designed to be fast, beautiful, and developer-friendly.
 
+[Live demo ](https://nexus-dashboard-phi-five.vercel.app/)
+
 ![Dashboard Preview](./public/preview.png)
 
 ## ✨ Features
