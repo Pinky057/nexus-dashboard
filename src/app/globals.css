@@ -7,13 +7,47 @@
   --color-zinc-950: #09090b;
 }
 
+/* ─── Dark Mode (default) ─── */
 :root {
-  --background: #09090b; /* zinc-950 */
-  --foreground: #fafafa; /* zinc-50 */
+  --background: #09090b;
+  --foreground: #fafafa;
+  --surface: #18181b;
+  --border: #27272a;
+  --muted: #71717a;
+}
+
+/* ─── Light Mode ─── */
+.light {
+  --background: #f4f4f5;
+  --foreground: #09090b;
+  --surface: #ffffff;
+  --border: #e4e4e7;
+  --muted: #71717a;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ─── Light mode overrides for key elements ─── */
+.light .bg-zinc-950 { background-color: #ffffff !important; }
+.light .bg-zinc-900 { background-color: #f4f4f5 !important; }
+.light .border-zinc-800 { border-color: #e4e4e7 !important; }
+.light .text-zinc-100 { color: #18181b !important; }
+.light .text-zinc-400 { color: #52525b !important; }
+.light .text-zinc-500 { color: #71717a !important; }
+.light .bg-zinc-800 { background-color: #e4e4e7 !important; }
+.light .hover\:bg-zinc-900:hover { background-color: #e4e4e7 !important; }
+.light .hover\:bg-zinc-800:hover { background-color: #d4d4d8 !important; }
+
+/* ─── Hide scrollbars globally ─── */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
