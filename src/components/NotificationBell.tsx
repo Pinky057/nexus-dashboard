@@ -1,65 +1,13 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Bell, ShieldAlert, UserPlus, CreditCard, Star, CheckCheck, X } from "lucide-react"
+import { Bell, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-
-const notifications = [
-  {
-    id: 1,
-    icon: ShieldAlert,
-    iconColor: "text-rose-400",
-    iconBg: "bg-rose-500/10",
-    title: "Security Alert",
-    message: "Unusual login detected from IP 192.168.1.42",
-    time: "2 min ago",
-    unread: true,
-  },
-  {
-    id: 2,
-    icon: UserPlus,
-    iconColor: "text-indigo-400",
-    iconBg: "bg-indigo-500/10",
-    title: "New User Registered",
-    message: "Sarah Connor just signed up for a Pro account",
-    time: "14 min ago",
-    unread: true,
-  },
-  {
-    id: 3,
-    icon: CreditCard,
-    iconColor: "text-emerald-400",
-    iconBg: "bg-emerald-500/10",
-    title: "Payment Received",
-    message: "Invoice #1042 for $249.00 was paid successfully",
-    time: "1 hr ago",
-    unread: true,
-  },
-  {
-    id: 4,
-    icon: Star,
-    iconColor: "text-amber-400",
-    iconBg: "bg-amber-500/10",
-    title: "New 5-Star Review",
-    message: "James K. left a review: \"Absolutely love this!\"",
-    time: "3 hr ago",
-    unread: false,
-  },
-  {
-    id: 5,
-    icon: CheckCheck,
-    iconColor: "text-zinc-400",
-    iconBg: "bg-zinc-500/10",
-    title: "Backup Completed",
-    message: "Scheduled database backup finished successfully",
-    time: "6 hr ago",
-    unread: false,
-  },
-]
+import { NOTIFICATIONS } from "@/data/mock"
 
 export function NotificationBell() {
   const [open, setOpen] = useState(false)
-  const [items, setItems] = useState(notifications)
+  const [items, setItems] = useState(NOTIFICATIONS)
   const ref = useRef<HTMLDivElement>(null)
 
   const unreadCount = items.filter((n) => n.unread).length

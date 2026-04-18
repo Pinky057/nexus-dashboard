@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
+import { Card } from "@/components/ui/Card"
 
 interface StatCardProps {
   title: string
@@ -18,27 +19,28 @@ export function StatCard({ title, value, trend, isPositive, icon: Icon, delay = 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
-      className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgb(99,102,241,0.12)]"
     >
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-zinc-400">{title}</p>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-100">{value}</p>
+      <Card className="p-6 hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgb(99,102,241,0.12)]">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-zinc-400">{title}</p>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-100">{value}</p>
+          </div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-500/10">
+            <Icon className="h-6 w-6 text-indigo-500" />
+          </div>
         </div>
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-500/10">
-          <Icon className="h-6 w-6 text-indigo-500" />
+        <div className="mt-4 flex items-center">
+          <span
+            className={`text-sm font-medium ${
+              isPositive ? "text-emerald-500" : "text-rose-500"
+            }`}
+          >
+            {trend}
+          </span>
+          <span className="ml-2 text-sm text-zinc-500">vs last month</span>
         </div>
-      </div>
-      <div className="mt-4 flex items-center">
-        <span
-          className={`text-sm font-medium ${
-            isPositive ? "text-emerald-500" : "text-rose-500"
-          }`}
-        >
-          {trend}
-        </span>
-        <span className="ml-2 text-sm text-zinc-500">vs last month</span>
-      </div>
+      </Card>
     </motion.div>
   )
 }

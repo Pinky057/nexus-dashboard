@@ -1,0 +1,155 @@
+import { ShieldAlert, UserPlus, CreditCard, Star, CheckCheck, DollarSign, Users, Activity } from "lucide-react"
+
+export const REVENUE_DATA = [
+  { name: "Jan", total: 1200 },
+  { name: "Feb", total: 2100 },
+  { name: "Mar", total: 1800 },
+  { name: "Apr", total: 2400 },
+  { name: "May", total: 2800 },
+  { name: "Jun", total: 3200 },
+  { name: "Jul", total: 2900 },
+  { name: "Aug", total: 3800 },
+  { name: "Sep", total: 4200 },
+  { name: "Oct", total: 3900 },
+  { name: "Nov", total: 5100 },
+  { name: "Dec", total: 6000 },
+]
+
+export const TRANSACTIONS = [
+  {
+    id: "TRX-8291",
+    user: "Ummey Habiba Pinky",
+    email: "pinky@example.com",
+    amount: "$350.00",
+    status: "Completed",
+    date: "Today, 10:23 AM",
+  },
+  {
+    id: "TRX-8290",
+    user: "John Doe",
+    email: "john@acme.com",
+    amount: "$1,200.00",
+    status: "Completed",
+    date: "Today, 09:12 AM",
+  },
+  {
+    id: "TRX-8289",
+    user: "Sarah Smith",
+    email: "sarah.s@design.co",
+    amount: "$85.00",
+    status: "Pending",
+    date: "Yesterday, 04:45 PM",
+  },
+  {
+    id: "TRX-8288",
+    user: "Alex Johnson",
+    email: "alex@startup.io",
+    amount: "$15.00",
+    status: "Failed",
+    date: "Yesterday, 02:10 PM",
+  },
+  {
+    id: "TRX-8287",
+    user: "Emma Williams",
+    email: "emmaw@gmail.com",
+    amount: "$450.00",
+    status: "Completed",
+    date: "Oct 12, 11:30 AM",
+  },
+]
+
+export const TOP_USERS = [
+  { name: "Moshiour Rahman", role: "CEO", revenue: "$4,500" },
+  { name: "John Doe", role: "Developer", revenue: "$2,100" },
+  { name: "Sarah Smith", role: "Designer", revenue: "$1,850" },
+  { name: "Alex Johnson", role: "Marketing", revenue: "$950" },
+]
+
+export const NOTIFICATIONS = [
+  {
+    id: 1,
+    type: "alert",
+    icon: ShieldAlert,
+    iconColor: "text-rose-400",
+    iconBg: "bg-rose-500/10",
+    title: "Security Alert",
+    message: "Unusual login detected from IP 192.168.1.42",
+    time: "2 min ago",
+    unread: true,
+  },
+  {
+    id: 2,
+    type: "user",
+    icon: UserPlus,
+    iconColor: "text-indigo-400",
+    iconBg: "bg-indigo-500/10",
+    title: "New User Registered",
+    message: "Sarah Connor just signed up for a Pro account",
+    time: "14 min ago",
+    unread: true,
+  },
+  {
+    id: 3,
+    type: "payment",
+    icon: CreditCard,
+    iconColor: "text-emerald-400",
+    iconBg: "bg-emerald-500/10",
+    title: "Payment Received",
+    message: "Invoice #1042 for $249.00 was paid successfully",
+    time: "1 hr ago",
+    unread: true,
+  },
+  {
+    id: 4,
+    type: "review",
+    icon: Star,
+    iconColor: "text-amber-400",
+    iconBg: "bg-amber-500/10",
+    title: "New 5-Star Review",
+    message: "James K. left a review: \"Absolutely love this!\"",
+    time: "3 hr ago",
+    unread: false,
+  },
+  {
+    id: 5,
+    type: "system",
+    icon: CheckCheck,
+    iconColor: "text-zinc-400",
+    iconBg: "bg-zinc-500/10",
+    title: "Backup Completed",
+    message: "Scheduled database backup finished successfully",
+    time: "6 hr ago",
+    unread: false,
+  },
+]
+
+export const STATS = [
+  {
+    title: "Total Revenue",
+    value: "$45,231.89",
+    trend: "+20.1%",
+    isPositive: true,
+    icon: DollarSign,
+  },
+  {
+    title: "Active Users",
+    value: "+2350",
+    trend: "+180.1%",
+    isPositive: true,
+    icon: Users,
+  },
+  {
+    title: "Sales",
+    value: "+12,234",
+    trend: "+19%",
+    isPositive: true,
+    icon: CreditCard,
+  },
+  {
+    title: "Active Now",
+    value: "+573",
+    trend: "-201",
+    isPositive: false,
+    icon: Activity,
+  },
+]
