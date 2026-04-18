@@ -5,6 +5,7 @@ import { StatCard } from "@/components/StatCard"
 import { RevenueChart } from "@/components/RevenueChart"
 import { RecentTransactions } from "@/components/RecentTransactions"
 import { TopUsers } from "@/components/TopUsers"
+import { NotificationList } from "@/components/NotificationList"
 
 export default function Home() {
   return (
@@ -56,6 +57,10 @@ export default function Home() {
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-4">
         <RecentTransactions />
         <TopUsers />
+      </div>
+
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-4">
+        <NotificationList />
       </div>
     </div>
   );
