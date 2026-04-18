@@ -20,17 +20,17 @@ const statusStyle: Record<string, string> = {
 }
 
 const roleStyle: Record<string, string> = {
-  Admin: "bg-indigo-600 text-white",
-  Developer: "bg-blue-600 text-white",
-  Designer: "bg-purple-600 text-white",
-  Manager: "bg-teal-600 text-white",
+  Admin: "bg-indigo-600 text-zinc-100",
+  Developer: "bg-blue-600 text-zinc-100",
+  Designer: "bg-purple-600 text-zinc-100",
+  Manager: "bg-teal-600 text-zinc-100",
 }
 
 export default function TablesPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Tables</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Tables</h1>
         <p className="text-sm text-zinc-400 mt-1">Data table components with sorting, filtering, and selection.</p>
       </div>
 
@@ -43,16 +43,16 @@ export default function TablesPage() {
         {/* Table Header */}
         <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-4">
           <div>
-            <h2 className="text-base font-semibold text-white">User Management Table</h2>
+            <h2 className="text-base font-semibold text-zinc-100">User Management Table</h2>
             <p className="text-xs text-zinc-500 mt-0.5">{users.length} users found</p>
           </div>
           <div className="flex items-center gap-3">
             <input
               type="text"
               placeholder="Search users..."
-              className="rounded-md border-0 bg-zinc-950 py-1.5 px-3 text-sm text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 outline-none transition-all w-48"
+              className="rounded-md border-0 bg-zinc-950 py-1.5 px-3 text-sm text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 outline-none transition-all w-48"
             />
-            <button className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors">
+            <button className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors">
               + Add User
             </button>
           </div>
@@ -128,11 +128,11 @@ export default function TablesPage() {
         <div className="flex items-center justify-between border-t border-zinc-800 px-6 py-4">
           <p className="text-sm text-zinc-500">Showing <span className="font-medium text-zinc-300">1–7</span> of <span className="font-medium text-zinc-300">24</span> users</p>
           <div className="flex items-center gap-1">
-            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">Previous</button>
-            <button className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white">1</button>
-            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">2</button>
-            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">3</button>
-            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">Next</button>
+            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition-colors">Previous</button>
+            <button className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-medium text-zinc-100">1</button>
+            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition-colors">2</button>
+            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition-colors">3</button>
+            <button className="rounded px-3 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition-colors">Next</button>
           </div>
         </div>
       </motion.div>
@@ -145,7 +145,7 @@ export default function TablesPage() {
         className="rounded-xl border border-zinc-800 bg-zinc-900/50"
       >
         <div className="border-b border-zinc-800 px-6 py-4">
-          <h2 className="text-base font-semibold text-white">Simple Read-only Table</h2>
+          <h2 className="text-base font-semibold text-zinc-100">Simple Read-only Table</h2>
           <p className="text-xs text-zinc-500 mt-0.5">For displaying static data and reports.</p>
         </div>
         <div className="overflow-x-auto">

@@ -43,6 +43,18 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+/* ─── Keep white text on colored backgrounds in light mode ─── */
+.light [class*="bg-indigo-"].text-zinc-100,
+.light [class*="bg-indigo-"] .text-zinc-100,
+.light [class*="bg-emerald-"].text-zinc-100,
+.light [class*="bg-rose-"].text-zinc-100,
+.light [class*="bg-amber-"].text-zinc-100,
+.light [class*="bg-blue-"].text-zinc-100,
+.light [class*="bg-teal-"].text-zinc-100,
+.light [class*="bg-purple-"].text-zinc-100 {
+  color: #ffffff !important;
+}
+
 /* ─── Hide scrollbars globally ─── */
 * {
   scrollbar-width: none;

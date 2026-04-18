@@ -43,7 +43,7 @@ export default function ChartsPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Charts</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Charts</h1>
         <p className="text-sm text-zinc-400 mt-1">Recharts data visualization components with custom dark styling.</p>
       </div>
 
@@ -51,7 +51,7 @@ export default function ChartsPage() {
         {/* Area Chart */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
           className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-          <h2 className="text-base font-semibold text-white mb-1">Area Chart</h2>
+          <h2 className="text-base font-semibold text-zinc-100 mb-1">Area Chart</h2>
           <p className="text-xs text-zinc-500 mb-5">Revenue over last 8 months</p>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={monthlyData}>
@@ -72,7 +72,7 @@ export default function ChartsPage() {
         {/* Bar Chart */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
           className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-          <h2 className="text-base font-semibold text-white mb-1">Bar Chart</h2>
+          <h2 className="text-base font-semibold text-zinc-100 mb-1">Bar Chart</h2>
           <p className="text-xs text-zinc-500 mb-5">Monthly user sign-ups</p>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={monthlyData} barSize={24}>
@@ -88,7 +88,7 @@ export default function ChartsPage() {
         {/* Line Chart */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
           className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-          <h2 className="text-base font-semibold text-white mb-1">Multi-Line Chart</h2>
+          <h2 className="text-base font-semibold text-zinc-100 mb-1">Multi-Line Chart</h2>
           <p className="text-xs text-zinc-500 mb-5">Revenue vs Users comparison</p>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={monthlyData}>
@@ -106,7 +106,7 @@ export default function ChartsPage() {
         {/* Pie Chart */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
           className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-          <h2 className="text-base font-semibold text-white mb-1">Pie / Donut Chart</h2>
+          <h2 className="text-base font-semibold text-zinc-100 mb-1">Pie / Donut Chart</h2>
           <p className="text-xs text-zinc-500 mb-5">Traffic source breakdown</p>
           <div className="flex items-center gap-6">
             <ResponsiveContainer width="50%" height={200}>
@@ -134,7 +134,7 @@ export default function ChartsPage() {
         {/* Radar Chart */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 lg:col-span-2">
-          <h2 className="text-base font-semibold text-white mb-1">Radar Chart</h2>
+          <h2 className="text-base font-semibold text-zinc-100 mb-1">Radar Chart</h2>
           <p className="text-xs text-zinc-500 mb-5">Team performance comparison across departments</p>
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData}>

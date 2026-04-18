@@ -7,7 +7,7 @@ export default function BadgesPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Badges & Indicators</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Badges & Indicators</h1>
         <p className="text-sm text-zinc-400 mt-1">A full collection of status indicators, labels, and tags.</p>
       </div>
 
@@ -15,7 +15,7 @@ export default function BadgesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
         className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 space-y-4">
         <div>
-          <h2 className="text-base font-semibold text-white">Status Badges</h2>
+          <h2 className="text-base font-semibold text-zinc-100">Status Badges</h2>
           <p className="text-xs text-zinc-500 mt-1">Use in tables and lists to indicate record status.</p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -50,7 +50,7 @@ export default function BadgesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
         className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 space-y-4">
         <div>
-          <h2 className="text-base font-semibold text-white">Icon Badges</h2>
+          <h2 className="text-base font-semibold text-zinc-100">Icon Badges</h2>
           <p className="text-xs text-zinc-500 mt-1">Badges with leading icons for contextual meaning.</p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -85,7 +85,7 @@ export default function BadgesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
         className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 space-y-4">
         <div>
-          <h2 className="text-base font-semibold text-white">Notification Dots</h2>
+          <h2 className="text-base font-semibold text-zinc-100">Notification Dots</h2>
           <p className="text-xs text-zinc-500 mt-1">Count indicators and notification dots for icons and avatars.</p>
         </div>
         <div className="flex flex-wrap items-center gap-8">
@@ -93,7 +93,7 @@ export default function BadgesPage() {
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-300">
               <Bell className="h-5 w-5" />
             </div>
-            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white">3</span>
+            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-zinc-100">3</span>
           </div>
           <div className="relative">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-300">
@@ -121,19 +121,19 @@ export default function BadgesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
         className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 space-y-4">
         <div>
-          <h2 className="text-base font-semibold text-white">Label Tags</h2>
+          <h2 className="text-base font-semibold text-zinc-100">Label Tags</h2>
           <p className="text-xs text-zinc-500 mt-1">Flat tags for categories, roles, and labels.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {[
-            { label: "Admin", color: "bg-indigo-600 text-white" },
-            { label: "Developer", color: "bg-blue-600 text-white" },
-            { label: "Designer", color: "bg-purple-600 text-white" },
-            { label: "Manager", color: "bg-teal-600 text-white" },
+            { label: "Admin", color: "bg-indigo-600 text-zinc-100" },
+            { label: "Developer", color: "bg-blue-600 text-zinc-100" },
+            { label: "Designer", color: "bg-purple-600 text-zinc-100" },
+            { label: "Manager", color: "bg-teal-600 text-zinc-100" },
             { label: "Free Tier", color: "bg-zinc-700 text-zinc-200" },
-            { label: "Pro Tier", color: "bg-indigo-600 text-white" },
-            { label: "Enterprise", color: "bg-amber-600 text-white" },
-            { label: "Deprecated", color: "bg-rose-700 text-white" },
+            { label: "Pro Tier", color: "bg-indigo-600 text-zinc-100" },
+            { label: "Enterprise", color: "bg-amber-600 text-zinc-100" },
+            { label: "Deprecated", color: "bg-rose-700 text-zinc-100" },
           ].map((tag) => (
             <span key={tag.label} className={`inline-flex items-center rounded px-2 py-0.5 text-xs font-medium ${tag.color}`}>
               {tag.label}
@@ -146,7 +146,7 @@ export default function BadgesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
         className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 space-y-4">
         <div>
-          <h2 className="text-base font-semibold text-white">Alert Banners</h2>
+          <h2 className="text-base font-semibold text-zinc-100">Alert Banners</h2>
           <p className="text-xs text-zinc-500 mt-1">Inline alerts for system messages and user feedback.</p>
         </div>
         <div className="space-y-3">

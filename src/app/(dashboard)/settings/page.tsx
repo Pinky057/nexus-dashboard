@@ -5,7 +5,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Settings</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Settings</h1>
         <p className="text-sm text-zinc-400 mt-1">Configure your workspace, team, and billing preferences.</p>
       </div>
       <ProGate

@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="space-y-6 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Dashboard Overview</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Dashboard Overview</h1>
         <p className="text-sm text-zinc-400 mt-1">Welcome back. Here is what is happening today.</p>
       </div>
       

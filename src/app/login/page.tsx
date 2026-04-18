@@ -14,9 +14,9 @@ export default function LoginPage() {
         className="sm:mx-auto sm:w-full sm:max-w-sm"
       >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600">
-          <Bot className="h-8 w-8 text-white" />
+          <Bot className="h-8 w-8 text-zinc-100" />
         </div>
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-zinc-100">
           Sign in to your account
         </h2>
       </motion.div>
@@ -40,7 +40,7 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 bg-zinc-950 py-1.5 text-white shadow-sm ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                  className="block w-full rounded-md border-0 bg-zinc-950 py-1.5 text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                 />
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 bg-zinc-950 py-1.5 text-white shadow-sm ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                  className="block w-full rounded-md border-0 bg-zinc-950 py-1.5 text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                 />
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function LoginPage() {
               <Link href="/">
                 <button
                   type="button"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-zinc-100 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
                 >
                   Sign in
                 </button>

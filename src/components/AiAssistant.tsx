@@ -16,7 +16,7 @@ export function AiAssistant() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
         className={cn(
-          "fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 transition-all hover:bg-indigo-500 z-50",
+          "fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 text-zinc-100 shadow-lg shadow-indigo-500/20 transition-all hover:bg-indigo-500 z-50",
           isOpen && "scale-0 opacity-0 pointer-events-none"
         )}
       >
@@ -40,13 +40,13 @@ export function AiAssistant() {
                   <Sparkles className="h-4 w-4 text-indigo-400" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-white">Synthex AI</h3>
+                  <h3 className="text-sm font-semibold text-zinc-100">Synthex AI</h3>
                   <p className="text-xs text-zinc-400">Secure Admin Assistant</p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="rounded-md p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors"
+                className="rounded-md p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -56,7 +56,7 @@ export function AiAssistant() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {/* User Message */}
               <div className="flex justify-end">
-                <div className="rounded-2xl rounded-tr-sm bg-indigo-600 px-4 py-2 text-sm text-white max-w-[85%]">
+                <div className="rounded-2xl rounded-tr-sm bg-indigo-600 px-4 py-2 text-sm text-zinc-100 max-w-[85%]">
                   Can you delete all user accounts that haven't logged in for 90 days?
                 </div>
               </div>
@@ -78,7 +78,7 @@ export function AiAssistant() {
                       <button className="flex-1 rounded bg-rose-500/10 px-3 py-1.5 text-xs font-semibold text-rose-500 hover:bg-rose-500/20 transition-colors">
                         Confirm Deletion
                       </button>
-                      <button className="flex-1 rounded bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-zinc-700 transition-colors">
+                      <button className="flex-1 rounded bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-100 hover:bg-zinc-700 transition-colors">
                         Cancel
                       </button>
                     </div>
@@ -93,11 +93,11 @@ export function AiAssistant() {
                 <input
                   type="text"
                   placeholder="Ask the AI assistant..."
-                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-500 outline-none"
+                  className="flex-1 bg-transparent text-sm text-zinc-100 placeholder-zinc-500 outline-none"
                 />
                 <button
                   type="button"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-500 transition-colors"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-zinc-100 hover:bg-indigo-500 transition-colors"
                 >
                   <Send className="h-4 w-4 ml-0.5" />
                 </button>

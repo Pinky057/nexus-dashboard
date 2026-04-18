@@ -5,7 +5,7 @@ export default function ProductsPage() {
   return (
     <div className="space-y-6 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">Products</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Products</h1>
         <p className="text-sm text-zinc-400 mt-1">Manage your product catalogue and inventory.</p>
       </div>
       <ProGate

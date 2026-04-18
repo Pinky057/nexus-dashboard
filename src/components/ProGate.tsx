@@ -18,12 +18,12 @@ export function ProGate({ title, description, icon, features }: ProGateProps) {
       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-600/10 ring-1 ring-inset ring-indigo-500/20 mb-6">
         <div className="text-indigo-400">{icon}</div>
         <div className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 ring-2 ring-zinc-950">
-          <Lock className="h-2.5 w-2.5 text-white" />
+          <Lock className="h-2.5 w-2.5 text-zinc-100" />
         </div>
       </div>
 
       {/* Title */}
-      <h2 className="text-xl font-bold text-white">{title}</h2>
+      <h2 className="text-xl font-bold text-zinc-100">{title}</h2>
       <p className="mt-2 max-w-sm text-sm text-zinc-400 leading-relaxed">{description}</p>
 
       {/* Feature list */}
@@ -42,7 +42,7 @@ export function ProGate({ title, description, icon, features }: ProGateProps) {
           href="https://buymeacoffee.com/ishratjahag"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors"
+          className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors"
         >
           <Zap className="h-4 w-4" /> Unlock Pro Version
         </a>

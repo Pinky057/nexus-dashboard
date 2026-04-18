@@ -15,7 +15,7 @@ export function Header({ onMenuClick }: HeaderProps) {
       <button
         type="button"
         onClick={onMenuClick}
-        className="lg:hidden -m-2.5 p-2.5 text-zinc-400 hover:text-white transition-colors"
+        className="lg:hidden -m-2.5 p-2.5 text-zinc-400 hover:text-zinc-100 transition-colors"
         aria-label="Open sidebar"
       >
         <Menu className="h-6 w-6" />

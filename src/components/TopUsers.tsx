@@ -18,7 +18,7 @@ export function TopUsers() {
       className="col-span-4 lg:col-span-2 rounded-xl border border-zinc-800 bg-zinc-900/50"
     >
       <div className="border-b border-zinc-800 p-6">
-        <h2 className="text-lg font-semibold text-white">Top Performing Users</h2>
+        <h2 className="text-lg font-semibold text-zinc-100">Top Performing Users</h2>
         <p className="text-sm text-zinc-400">Users generating the most revenue this month.</p>
       </div>
       
@@ -27,7 +27,7 @@ export function TopUsers() {
           {topUsers.map((user, index) => (
             <li key={index} className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 border border-zinc-700 text-sm font-medium text-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 border border-zinc-700 text-sm font-medium text-zinc-100">
                   {user.name.charAt(0)}
                 </div>
                 <div>

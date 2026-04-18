@@ -51,7 +51,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
       {/* Logo + close button on mobile */}
       <div className="mb-8 flex items-center justify-between px-3 shrink-0">
         <div className="flex items-center">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 font-bold text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 font-bold text-zinc-100">
             S
           </div>
           <span className="ml-3 text-lg font-semibold text-zinc-100 tracking-tight">Synthex UI</span>
@@ -59,7 +59,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         {onClose && (
           <button
             onClick={onClose}
-            className="lg:hidden -mr-1 p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+            className="lg:hidden -mr-1 p-1.5 rounded-md text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition-colors"
             aria-label="Close sidebar"
           >
             <X className="h-5 w-5" />
@@ -108,7 +108,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4">
           <p className="text-sm font-medium text-zinc-100">Upgrade to Pro</p>
           <p className="mt-1 text-xs text-zinc-400">Get access to all premium features.</p>
-          <button className="mt-3 w-full rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors">
+          <button className="mt-3 w-full rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors">
             Upgrade Now
           </button>
         </div>

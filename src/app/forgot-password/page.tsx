@@ -14,9 +14,9 @@ export default function ForgotPasswordPage() {
         className="sm:mx-auto sm:w-full sm:max-w-sm"
       >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600">
-          <Bot className="h-8 w-8 text-white" />
+          <Bot className="h-8 w-8 text-zinc-100" />
         </div>
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-zinc-100">
           Forgot your password?
         </h2>
         <p className="mt-2 text-center text-sm text-zinc-400">
@@ -37,20 +37,20 @@ export default function ForgotPasswordPage() {
               <input
                 type="email"
                 placeholder="Enter your registered email"
-                className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all"
+                className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all"
               />
             </div>
 
             <button
               type="button"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors"
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors"
             >
               Send reset instructions
             </button>
           </form>
 
           <div className="mt-8 text-center">
-            <Link href="/login" className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 hover:text-white transition-colors">
+            <Link href="/login" className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 hover:text-zinc-100 transition-colors">
               <ArrowLeft className="h-4 w-4" /> Back to sign in
             </Link>
           </div>

@@ -27,7 +27,7 @@ export function RevenueChart() {
       className="col-span-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6"
     >
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-white">Revenue Overview</h2>
+        <h2 className="text-lg font-semibold text-zinc-100">Revenue Overview</h2>
         <p className="text-sm text-zinc-400">Total revenue generated over the last 12 months.</p>
       </div>
       

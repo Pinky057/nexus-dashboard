@@ -14,9 +14,9 @@ export default function RegisterPage() {
         className="sm:mx-auto sm:w-full sm:max-w-sm"
       >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600">
-          <Bot className="h-8 w-8 text-white" />
+          <Bot className="h-8 w-8 text-zinc-100" />
         </div>
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-zinc-100">
           Create your account
         </h2>
         <p className="mt-2 text-center text-sm text-zinc-400">
@@ -35,27 +35,27 @@ export default function RegisterPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-zinc-300 mb-1.5">First name</label>
-                <input type="text" placeholder="Jane" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
+                <input type="text" placeholder="Jane" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-zinc-300 mb-1.5">Last name</label>
-                <input type="text" placeholder="Doe" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
+                <input type="text" placeholder="Doe" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-zinc-300 mb-1.5">Email address</label>
-              <input type="email" placeholder="jane@company.com" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
+              <input type="email" placeholder="jane@company.com" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-zinc-300 mb-1.5">Password</label>
-              <input type="password" placeholder="Min. 8 characters" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
+              <input type="password" placeholder="Min. 8 characters" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-zinc-300 mb-1.5">Confirm password</label>
-              <input type="password" placeholder="Repeat your password" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-white placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
+              <input type="password" placeholder="Repeat your password" className="block w-full rounded-md border-0 bg-zinc-950 py-2 px-3 text-zinc-100 placeholder-zinc-600 ring-1 ring-inset ring-zinc-800 focus:ring-2 focus:ring-indigo-600 sm:text-sm outline-none transition-all" />
             </div>
 
             <div className="flex items-start gap-3 pt-1">
@@ -69,7 +69,7 @@ export default function RegisterPage() {
             </div>
 
             <Link href="/">
-              <button type="button" className="mt-2 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors">
+              <button type="button" className="mt-2 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors">
                 Create account
               </button>
             </Link>

@@ -54,7 +54,7 @@ export function RecentTransactions() {
       className="col-span-4 lg:col-span-2 rounded-xl border border-zinc-800 bg-zinc-900/50"
     >
       <div className="border-b border-zinc-800 p-6">
-        <h2 className="text-lg font-semibold text-white">Recent Transactions</h2>
+        <h2 className="text-lg font-semibold text-zinc-100">Recent Transactions</h2>
         <p className="text-sm text-zinc-400">Latest payments processed through your platform.</p>
       </div>
       

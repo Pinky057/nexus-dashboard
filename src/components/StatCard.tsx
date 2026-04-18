@@ -23,7 +23,7 @@ export function StatCard({ title, value, trend, isPositive, icon: Icon, delay = 
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium text-zinc-400">{title}</p>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-white">{value}</p>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-100">{value}</p>
         </div>
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-500/10">
           <Icon className="h-6 w-6 text-indigo-500" />

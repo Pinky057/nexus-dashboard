@@ -18,7 +18,7 @@ export default function NotFound() {
         </p>
         <div className="mt-4 h-px w-48 mx-auto bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
 
-        <h1 className="mt-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h1 className="mt-6 text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl">
           Page not found
         </h1>
         <p className="mt-4 max-w-sm text-base text-zinc-400">
@@ -28,14 +28,14 @@ export default function NotFound() {
         <div className="mt-10 flex items-center justify-center gap-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors"
+            className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors"
           >
             <Home className="h-4 w-4" />
             Go to Dashboard
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center gap-2 rounded-md bg-zinc-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-zinc-700 transition-colors"
+            className="inline-flex items-center gap-2 rounded-md bg-zinc-800 px-5 py-2.5 text-sm font-semibold text-zinc-100 hover:bg-zinc-700 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Go Back
