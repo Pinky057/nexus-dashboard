@@ -1,7 +1,8 @@
 "use client"
 
-import { Search, Bell, Menu } from "lucide-react"
+import { Search, Menu } from "lucide-react"
 import { ThemeToggle } from "@/components/ThemeToggle"
+import { NotificationBell } from "@/components/NotificationBell"
 
 interface HeaderProps {
   onMenuClick: () => void
@@ -10,7 +11,7 @@ interface HeaderProps {
 export function Header({ onMenuClick }: HeaderProps) {
   return (
     <header className="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-800 bg-zinc-950 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      
+
       {/* Hamburger — only visible on mobile */}
       <button
         type="button"
@@ -40,14 +41,9 @@ export function Header({ onMenuClick }: HeaderProps) {
           />
         </form>
 
-        <div className="flex items-center gap-x-2 lg:gap-x-4">
+        <div className="flex items-center gap-x-2 lg:gap-x-3">
           <ThemeToggle />
-
-          <button type="button" className="-m-2.5 p-2.5 text-zinc-400 hover:text-zinc-300 transition-colors relative">
-            <span className="sr-only">View notifications</span>
-            <Bell className="h-5 w-5" aria-hidden="true" />
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-indigo-500" />
-          </button>
+          <NotificationBell />
 
           <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-zinc-800" aria-hidden="true" />
 
@@ -61,7 +57,7 @@ export function Header({ onMenuClick }: HeaderProps) {
               />
             </div>
             <span className="hidden lg:flex lg:items-center">
-              <span className="text-sm font-semibold leading-6 text-zinc-100 dark:text-zinc-100" aria-hidden="true">
+              <span className="text-sm font-semibold leading-6 text-zinc-100" aria-hidden="true">
                 Admin User
               </span>
             </span>
