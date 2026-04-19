@@ -15,7 +15,7 @@ import {
 } from "lucide-react"
 import { Badge } from "@/components/ui/Badge"
 import { Button } from "@/components/ui/Button"
-import { USERS as INITIAL_USERS } from "@/data/mock"
+import { USERS_TABLE_DATA as INITIAL_USERS } from "@/data/mock"
 import { cn } from "@/lib/utils"
 
 export function UserManagement() {
@@ -42,7 +42,9 @@ export function UserManagement() {
       email: "new@example.com",
       role: "Member",
       status: "Active",
-      avatar: "https://ui-avatars.com/api/?name=New+User"
+      avatar: "https://ui-avatars.com/api/?name=New+User",
+      joined: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      revenue: "$0"
     }
     setUsers([newUser, ...users])
   }

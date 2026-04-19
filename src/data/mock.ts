@@ -159,13 +159,13 @@ export const STATS = [
 ]
 
 export const USERS_TABLE_DATA = [
-  { id: "#USR-001", name: "Ummey Habiba Pinky", email: "pinky@synthex.io", role: "Admin", status: "Active", joined: "Jan 12, 2025", revenue: "$4,500" },
-  { id: "#USR-002", name: "John Doe", email: "john@acme.com", role: "Developer", status: "Active", joined: "Feb 3, 2025", revenue: "$2,100" },
-  { id: "#USR-003", name: "Sarah Smith", email: "sarah@design.co", role: "Designer", status: "Pending", joined: "Mar 18, 2025", revenue: "$1,850" },
-  { id: "#USR-004", name: "Alex Johnson", email: "alex@startup.io", role: "Manager", status: "Active", joined: "Apr 1, 2025", revenue: "$3,200" },
-  { id: "#USR-005", name: "Emma Williams", email: "emma@gmail.com", role: "Developer", status: "Inactive", joined: "Apr 10, 2025", revenue: "$980" },
-  { id: "#USR-006", name: "Carlos Rivera", email: "carlos@corp.com", role: "Manager", status: "Active", joined: "May 5, 2025", revenue: "$5,100" },
-  { id: "#USR-007", name: "Aisha Patel", email: "aisha@venture.io", role: "Designer", status: "Pending", joined: "Jun 22, 2025", revenue: "$760" },
+  { id: "#USR-001", name: "Ummey Habiba Pinky", email: "pinky@synthex.io", role: "Admin", status: "Active", joined: "Jan 12, 2025", revenue: "$4,500", avatar: "https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky&background=6366f1&color=fff" },
+  { id: "#USR-002", name: "John Doe", email: "john@acme.com", role: "Developer", status: "Active", joined: "Feb 3, 2025", revenue: "$2,100", avatar: "https://ui-avatars.com/api/?name=John+Doe&background=818cf8&color=fff" },
+  { id: "#USR-003", name: "Sarah Smith", email: "sarah@design.co", role: "Designer", status: "Pending", joined: "Mar 18, 2025", revenue: "$1,850", avatar: "https://ui-avatars.com/api/?name=Sarah+Smith&background=a5b4fc&color=fff" },
+  { id: "#USR-004", name: "Alex Johnson", email: "alex@startup.io", role: "Manager", status: "Active", joined: "Apr 1, 2025", revenue: "$3,200", avatar: "https://ui-avatars.com/api/?name=Alex+Johnson&background=6366f1&color=fff" },
+  { id: "#USR-005", name: "Emma Williams", email: "emma@gmail.com", role: "Developer", status: "Inactive", joined: "Apr 10, 2025", revenue: "$980", avatar: "https://ui-avatars.com/api/?name=Emma+Williams&background=818cf8&color=fff" },
+  { id: "#USR-006", name: "Carlos Rivera", email: "carlos@corp.com", role: "Manager", status: "Active", joined: "May 5, 2025", revenue: "$5,100", avatar: "https://ui-avatars.com/api/?name=Carlos+Rivera&background=a5b4fc&color=fff" },
+  { id: "#USR-007", name: "Aisha Patel", email: "aisha@venture.io", role: "Designer", status: "Pending", joined: "Jun 22, 2025", revenue: "$760", avatar: "https://ui-avatars.com/api/?name=Aisha+Patel&background=6366f1&color=fff" },
 ]
 
 export const SIMPLE_REPORTS_DATA = [

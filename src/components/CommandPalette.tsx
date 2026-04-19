@@ -14,7 +14,8 @@ import {
   Zap,
   ArrowRight,
   Command as CommandIcon,
-  X
+  X,
+  Sparkles
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
