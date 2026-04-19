@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Users, Settings, BarChart3, CreditCard, Box, LogIn, MousePointerClick, FileText, Tags, Table2, LineChart, UserPlus, KeyRound, X } from "lucide-react"
+import { LayoutDashboard, Users, Settings, BarChart3, CreditCard, Box, LogIn, MousePointerClick, FileText, Tags, Table2, LineChart, UserPlus, KeyRound, X, Layout } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -12,6 +12,7 @@ const navigationGroups = [
     items: [
       { name: "Dashboard", href: "/", icon: LayoutDashboard },
       { name: "Analytics", href: "/analytics", icon: BarChart3 },
+      { name: "Kanban Board", href: "/kanban", icon: Layout },
       { name: "Users", href: "/users", icon: Users },
       { name: "Products", href: "/products", icon: Box },
       { name: "Transactions", href: "/transactions", icon: CreditCard },

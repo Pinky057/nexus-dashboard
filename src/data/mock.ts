@@ -243,3 +243,49 @@ export const ANALYTIC_STATS = [
     insight: "Upsell campaigns in Q1 were highly effective."
   },
 ]
+
+export const KANBAN_COLUMNS = [
+  { id: "todo", title: "To Do", color: "bg-zinc-800" },
+  { id: "inprogress", title: "In Progress", color: "bg-indigo-500" },
+  { id: "review", title: "In Review", color: "bg-amber-500" },
+  { id: "done", title: "Completed", color: "bg-emerald-500" },
+]
+
+export const KANBAN_TASKS = [
+  {
+    id: "TASK-101",
+    title: "Integrate OpenAI API",
+    description: "Connect the primary analytics engine to GPT-4o for real-time insights.",
+    status: "inprogress",
+    priority: "High",
+    label: "Backend",
+    aiInsight: "Likely to exceed token limit. Recommend caching layer."
+  },
+  {
+    id: "TASK-102",
+    title: "Refactor StatCards",
+    description: "Implement Bento Grid layout for the main overview dashboard.",
+    status: "done",
+    priority: "Medium",
+    label: "Frontend",
+    aiInsight: "UI polish completed. Performance improved by 14%."
+  },
+  {
+    id: "TASK-103",
+    title: "User Interview Analysis",
+    description: "Summarize the last 10 user feedback sessions for the product team.",
+    status: "todo",
+    priority: "Low",
+    label: "Research",
+    aiInsight: "Urgent feedback found in Session #8 regarding billing."
+  },
+  {
+    id: "TASK-104",
+    title: "Mobile App Wireframes",
+    description: "Create initial sketches for the iOS and Android companion apps.",
+    status: "todo",
+    priority: "High",
+    label: "Design",
+    aiInsight: "Competitor 'Tailux' just updated their mobile UI."
+  },
+]
