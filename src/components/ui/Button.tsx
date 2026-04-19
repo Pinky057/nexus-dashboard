@@ -11,7 +11,7 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", asChild = false, ...props }, ref) => {
-    const Comp = asChild ? "span" : "button" // Simplified asChild logic since radix-ui/react-slot might not be installed
+    const Comp = asChild ? Slot : "button"
 
     const variants = {
       primary: "bg-indigo-600 text-zinc-100 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20",
@@ -31,7 +31,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button
+      <Comp
         className={cn(
           "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 disabled:pointer-events-none disabled:opacity-50",
           variants[variant],

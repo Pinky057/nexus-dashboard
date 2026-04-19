@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 1500)
+    }, 1200)
     return () => clearTimeout(timer)
   }, [])
 
@@ -39,9 +39,9 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className={i === 2 || i === 5 || i === 6 ? "md:col-span-2" : ""}>
-                <div className="h-48 w-full animate-pulse rounded-xl bg-zinc-900/50 border border-zinc-800 flex items-center justify-center">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className={i === 2 ? "lg:col-span-2 lg:row-span-2" : ""}>
+                <div className={i === 2 ? "h-[450px]" : "h-[200px]" + " w-full animate-pulse rounded-xl bg-zinc-900/50 border border-zinc-800 flex items-center justify-center"}>
                   <Loader2 className="h-6 w-6 animate-spin text-zinc-800" />
                 </div>
               </div>
@@ -50,41 +50,41 @@ export default function Home() {
         ) : (
           <motion.div 
             key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-fr"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {/* Row 1: Stats & Major Chart */}
-            <div className="lg:col-span-1 space-y-6">
+            {/* Column 1 & 2: Stats */}
+            <div className="space-y-6">
               <StatCard {...STATS[0]} delay={0.1} />
               <StatCard {...STATS[2]} delay={0.2} />
             </div>
             
-            <div className="lg:col-span-1 space-y-6">
+            <div className="space-y-6">
               <StatCard {...STATS[1]} delay={0.15} />
               <StatCard {...STATS[3]} delay={0.25} />
             </div>
 
-            <div className="md:col-span-2 lg:col-span-2 h-full">
+            {/* Column 3 & 4: Main Chart (Spans 2 columns) */}
+            <div className="md:col-span-2">
               <RevenueChart />
             </div>
 
-            {/* Row 2: Assistant & Transactions */}
-            <div className="md:col-span-2 lg:col-span-1 h-full">
+            {/* Bottom Row: Varied Widths */}
+            <div className="lg:col-span-1">
               <TopUsers />
             </div>
 
-            <div className="md:col-span-2 lg:col-span-3 h-full">
+            <div className="md:col-span-2 lg:col-span-3">
               <RecentTransactions />
             </div>
 
-            {/* Row 3: Full-width / Bottom Widgets */}
-            <div className="md:col-span-2 lg:col-span-2 h-full">
+            <div className="md:col-span-2">
               <AiAssistantCard />
             </div>
 
-            <div className="md:col-span-2 lg:col-span-2 h-full">
-              <div className="rounded-xl border border-dashed border-zinc-800 bg-zinc-950/20 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors h-full">
+            <div className="md:col-span-2">
+              <div className="rounded-xl border border-dashed border-zinc-800 bg-zinc-950/20 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors h-full min-h-[220px]">
                 <div className="h-12 w-12 rounded-full bg-zinc-900 flex items-center justify-center ring-1 ring-zinc-800 group-hover:ring-indigo-500/50 transition-all">
                   <Sparkles className="h-5 w-5 text-zinc-600 group-hover:text-indigo-400" />
                 </div>
