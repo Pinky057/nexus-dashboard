@@ -200,3 +200,46 @@ export const RADAR_DATA = [
   { subject: "Support", A: 99, B: 100 },
   { subject: "Design", A: 85, B: 90 },
 ]
+
+export const CHURN_DATA = [
+  { month: "Jan", rate: 2.1 },
+  { month: "Feb", rate: 2.4 },
+  { month: "Mar", rate: 1.8 },
+  { month: "Apr", rate: 2.2 },
+  { month: "May", rate: 1.9 },
+  { month: "Jun", rate: 1.5 },
+]
+
+export const TRAFFIC_SOURCES = [
+  { name: "Direct", value: 45, color: "#6366f1" },
+  { name: "Organic", value: 25, color: "#818cf8" },
+  { name: "Referral", value: 20, color: "#a5b4fc" },
+  { name: "Social", value: 10, color: "#c7d2fe" },
+]
+
+export const ANALYTIC_STATS = [
+  {
+    title: "Avg. Session Duration",
+    value: "4m 32s",
+    trend: "+12%",
+    isPositive: true,
+    icon: Activity,
+    insight: "Users are spending more time in the 'Insights' tab."
+  },
+  {
+    title: "Bounce Rate",
+    value: "32.4%",
+    trend: "-4.2%",
+    isPositive: true,
+    icon: Zap,
+    insight: "Improved landing page speed reduced bounce."
+  },
+  {
+    title: "Customer LTV",
+    value: "$1,240",
+    trend: "+8.5%",
+    isPositive: true,
+    icon: DollarSign,
+    insight: "Upsell campaigns in Q1 were highly effective."
+  },
+]
