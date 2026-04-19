@@ -121,7 +121,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           width: isCollapsed ? 90 : 280,
           x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 35 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 200, 
+          damping: 30,
+          mass: 1,
+          restDelta: 0.001
+        }}
         className={cn(
           "fixed inset-y-0 left-0 z-50 flex flex-col p-4 lg:static lg:translate-x-0 h-full scrollbar-hide",
           !isOpen && "max-lg:-translate-x-full"
@@ -162,7 +168,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               )}
             </div>
 
-            {/* Navigation (Fixed overflow for flyouts) */}
+            {/* Navigation */}
             <div className={cn(
               "flex-1 px-3 space-y-8 scrollbar-hide",
               isCollapsed ? "overflow-visible" : "overflow-y-auto"
@@ -191,7 +197,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                   isActive 
                                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                    : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
+                                    : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100"
                                 )}
                               >
                                 <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-white" : "text-zinc-500 group-hover/item:text-indigo-400")} />
@@ -207,7 +213,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                               {isCollapsed && (
                                 <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
                                   <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-[0_30px_70px_rgba(0,0,0,0.8)]">
-                                    {/* Flyout Header (Solid Block like 'Inbox' reference) */}
+                                    {/* Flyout Header */}
                                     <div className={cn(
                                       "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2",
                                       isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-800/50 text-zinc-100"
@@ -216,7 +222,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                       <span className="text-sm font-bold">{item.name}</span>
                                     </div>
 
-                                    {/* Sub Items */}
+                                    {/* Sub Items (Removed Dots) */}
                                     <div className="space-y-1">
                                       {item.subItems.map((sub) => {
                                         const isSubActive = pathname === sub.href
@@ -225,13 +231,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                             key={sub.name}
                                             href={sub.href}
                                             className={cn(
-                                              "flex items-center gap-3 px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
+                                              "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
                                               isSubActive 
                                                 ? "text-indigo-400 bg-indigo-400/5" 
                                                 : "text-zinc-500 hover:bg-zinc-800/60 hover:text-white"
                                             )}
                                           >
-                                            <div className={cn("h-1.5 w-1.5 rounded-full", isSubActive ? "bg-indigo-500" : "bg-zinc-800")} />
                                             {sub.name}
                                           </Link>
                                         )
