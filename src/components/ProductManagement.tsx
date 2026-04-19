@@ -83,7 +83,7 @@ export function ProductManagement() {
               <div className="h-12 w-12 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-indigo-400">
                 <Package className="h-6 w-6" />
               </div>
-              <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex gap-1">
                 <button className="p-1.5 rounded-lg bg-zinc-800 text-zinc-400 hover:text-indigo-400 transition-colors">
                   <Edit2 className="h-3.5 w-3.5" />
                 </button>

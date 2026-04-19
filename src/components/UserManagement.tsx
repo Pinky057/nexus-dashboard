@@ -96,7 +96,12 @@ export function UserManagement() {
                 </div>
               </th>
               <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">Role</th>
-              <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">Status</th>
+              <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">
+                <div className="flex items-center gap-2 group cursor-pointer hover:text-zinc-300 transition-colors">
+                  Status
+                  <Filter className="h-3 w-3 text-zinc-600 group-hover:text-indigo-400" />
+                </div>
+              </th>
               <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest text-right">Actions</th>
             </tr>
           </thead>
@@ -145,7 +150,7 @@ export function UserManagement() {
                     </button>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center justify-end gap-1">
                       <button className="p-2 rounded-lg text-zinc-500 hover:text-indigo-400 hover:bg-indigo-500/10 transition-all">
                         <Edit2 className="h-4 w-4" />
                       </button>
@@ -154,9 +159,6 @@ export function UserManagement() {
                         className="p-2 rounded-lg text-zinc-500 hover:text-rose-500 hover:bg-rose-500/10 transition-all"
                       >
                         <Trash2 className="h-4 w-4" />
-                      </button>
-                      <button className="p-2 rounded-lg text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800 transition-all">
-                        <MoreHorizontal className="h-4 w-4" />
                       </button>
                     </div>
                   </td>
