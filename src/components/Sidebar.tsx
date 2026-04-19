@@ -88,19 +88,17 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(false)
-  const [expandedMenus, setExpandedMenus] = React.useState<string[]>([])
+  const [expandedMenu, setExpandedMenu] = React.useState<string | null>(null)
   const pathname = usePathname()
 
   const toggleMenu = (name: string) => {
     if (isCollapsed) return
-    setExpandedMenus(prev => 
-      prev.includes(name) ? prev.filter(m => m !== name) : [...prev, name]
-    )
+    setExpandedMenu(prev => prev === name ? null : name)
   }
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed)
-    setExpandedMenus([])
+    setExpandedMenu(null)
   }
 
   return (
@@ -123,7 +121,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           width: isCollapsed ? 90 : 280,
           x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
         }}
-        transition={{ type: "spring", stiffness: 250, damping: 32 }}
+        transition={{ type: "spring", stiffness: 300, damping: 35 }}
         className={cn(
           "fixed inset-y-0 left-0 z-50 flex flex-col p-4 lg:static lg:translate-x-0 h-full scrollbar-hide",
           !isOpen && "max-lg:-translate-x-full"
@@ -131,7 +129,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         <div className="flex h-full flex-col relative scrollbar-hide">
           
-          {/* Outward Toggle Tab (Aligned with Main group) */}
+          {/* Outward Toggle Tab */}
           <button 
             onClick={toggleCollapse}
             className={cn(
@@ -145,7 +143,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* Sidebar Panel */}
           <div className="flex h-full flex-col rounded-[2.5rem] border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-visible scrollbar-hide">
             
-            {/* Logo Section (Compact & Pro) */}
+            {/* Logo Section */}
             <div className={cn(
               "flex items-center transition-all",
               isCollapsed ? "justify-center py-8" : "px-8 py-10 gap-3"
@@ -164,7 +162,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               )}
             </div>
 
-            {/* Navigation (Reduced Spacing) */}
+            {/* Navigation */}
             <div className="flex-1 overflow-y-auto px-3 space-y-8 scrollbar-hide">
               {navigationGroups.map((group) => (
                 <div key={group.title} className="space-y-4">
@@ -176,7 +174,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   <div className="space-y-2">
                     {group.items.map((item) => {
                       const hasSubItems = item.subItems && item.subItems.length > 0
-                      const isExpanded = expandedMenus.includes(item.name)
+                      const isExpanded = expandedMenu === item.name
                       const isActive = pathname === item.href || (item.subItems?.some(s => s.href === pathname))
                       
                       return (
@@ -190,7 +188,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   isCollapsed ? "justify-center" : "px-4",
                                   isActive && !isExpanded 
                                     ? "bg-indigo-600/10 text-indigo-400" 
-                                    : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100 hover:bg-zinc-800/40"
+                                    : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100"
                                 )}
                               >
                                 <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-indigo-400" : "text-zinc-500 group-hover/item:text-indigo-400")} />
@@ -202,28 +200,31 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 )}
                               </button>
 
-                              {/* Flyout (Fixed Z-Index and Position) */}
+                              {/* Flyout (Pixel-Perfect Doclines style) */}
                               {isCollapsed && (
                                 <div className="absolute left-[calc(100%+1.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-2xl rounded-2xl p-2 w-48 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                                    <div className="px-3 py-2 text-[10px] font-black tracking-widest text-zinc-500 uppercase border-b border-zinc-800/50 mb-2">
+                                  <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-3xl p-3 w-52 shadow-[0_30px_70px_rgba(0,0,0,0.7)]">
+                                    <div className="px-4 py-2.5 text-[10px] font-black tracking-widest text-zinc-500 uppercase border-b border-zinc-800/30 mb-3">
                                       {item.name}
                                     </div>
-                                    <div className="space-y-1">
-                                      {item.subItems.map((sub) => (
-                                        <Link
-                                          key={sub.name}
-                                          href={sub.href}
-                                          className={cn(
-                                            "block px-4 py-2.5 rounded-xl text-xs font-bold transition-all",
-                                            pathname === sub.href 
-                                              ? "bg-indigo-600 text-white shadow-lg" 
-                                              : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
-                                          )}
-                                        >
-                                          {sub.name}
-                                        </Link>
-                                      ))}
+                                    <div className="space-y-1.5">
+                                      {item.subItems.map((sub) => {
+                                        const isSubActive = pathname === sub.href
+                                        return (
+                                          <Link
+                                            key={sub.name}
+                                            href={sub.href}
+                                            className={cn(
+                                              "block px-5 py-3 rounded-2xl text-[13px] font-bold transition-all",
+                                              isSubActive 
+                                                ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20" 
+                                                : "text-zinc-400 hover:bg-zinc-800/60 hover:text-white"
+                                            )}
+                                          >
+                                            {sub.name}
+                                          </Link>
+                                        )
+                                      })}
                                     </div>
                                   </div>
                                 </div>
@@ -246,7 +247,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                               {/* Tooltip */}
                               {isCollapsed && (
                                 <div className="absolute left-[calc(100%+1.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
+                                  <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-2xl whitespace-nowrap shadow-2xl">
                                     {item.name}
                                   </div>
                                 </div>
@@ -254,7 +255,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                             </Link>
                           )}
 
-                          {/* Expanded sub-items (INLINE MODE with Connection Line) */}
                           <AnimatePresence>
                             {hasSubItems && isExpanded && !isCollapsed && (
                               <motion.div
@@ -263,9 +263,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 exit={{ height: 0, opacity: 0 }}
                                 className="overflow-hidden relative ml-7 pl-6 space-y-1 mt-1"
                               >
-                                {/* Vertical Connection Line */}
                                 <div className="absolute left-0 top-0 bottom-2 w-px bg-zinc-800/60" />
-                                
                                 {item.subItems.map((sub) => {
                                   const isSubActive = pathname === sub.href
                                   return (
@@ -279,7 +277,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                           : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/30"
                                       )}
                                     >
-                                      {/* Horizontal Indicator Line for Sub-items */}
                                       <div className={cn(
                                         "absolute -left-6 top-1/2 -translate-y-1/2 h-px w-3 transition-colors",
                                         isSubActive ? "bg-indigo-500" : "bg-zinc-800/60 group-hover/sub:bg-zinc-700"
