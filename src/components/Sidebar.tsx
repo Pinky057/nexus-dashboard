@@ -145,19 +145,19 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* Sidebar Panel */}
           <div className="flex h-full flex-col rounded-[2.5rem] border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-visible scrollbar-hide">
             
-            {/* Logo Section (More Compact) */}
+            {/* Logo Section (Compact & Pro) */}
             <div className={cn(
-              "flex flex-col items-center py-10 transition-all",
-              isCollapsed ? "px-0" : "px-8"
+              "flex items-center transition-all",
+              isCollapsed ? "justify-center py-8" : "px-8 py-10 gap-3"
             )}>
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 shadow-[0_0_30px_rgba(79,70,229,0.3)]">
-                <Sparkles className="h-7 w-7 text-white" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+                <Sparkles className="h-6 w-6 text-white" />
               </div>
               {!isCollapsed && (
                 <motion.span 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-xl font-black text-white tracking-tighter mt-3"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-lg font-bold text-white tracking-tight"
                 >
                   Synthex
                 </motion.span>
