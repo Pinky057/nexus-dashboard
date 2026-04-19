@@ -30,7 +30,7 @@ export default function ForgotPasswordPage() {
             <Sparkles className="h-7 w-7 text-white" />
           </motion.div>
           <h1 className="mt-4 text-2xl font-bold tracking-tight text-zinc-100">Recovery Center</h1>
-          <p className="text-sm text-zinc-500 mt-1">We'll help you regain access to your dashboard.</p>
+          <p className="text-sm text-zinc-500 mt-1">We&apos;ll help you regain access to your dashboard.</p>
         </div>
 
         {/* Card */}

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronUp, ChevronDown, Plus, Search, Edit2, Trash2, Check, X } from "lucide-react"
-import { USERS_TABLE_DATA as INITIAL_DATA, SIMPLE_REPORTS_DATA } from "@/data/mock"
+import { USERS_TABLE_DATA as INITIAL_DATA, SIMPLE_REPORTS_DATA, type User } from "@/data/mock"
 import { Card, CardTitle, CardDescription, CardHeader } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
@@ -25,7 +25,7 @@ export default function TablesPage() {
     setUsers(users.filter(u => u.id !== id))
   }
 
-  const handleEditStart = (user: any) => {
+  const handleEditStart = (user: User) => {
     setEditingId(user.id)
     setEditName(user.name)
   }

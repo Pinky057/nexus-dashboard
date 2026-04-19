@@ -66,7 +66,7 @@ export function CommandPalette() {
     item.name.toLowerCase().includes(query.toLowerCase())
   )
 
-  const handleSelect = (item: any) => {
+  const handleSelect = (item: { href?: string, action?: () => void }) => {
     if (!item) return
     if (item.href) {
       router.push(item.href)
@@ -135,7 +135,7 @@ export function CommandPalette() {
               <div className="max-h-[400px] overflow-y-auto p-2 scrollbar-hide">
                 {filteredItems.length === 0 ? (
                   <div className="p-8 text-center">
-                    <p className="text-sm text-zinc-500">No results found for "{query}"</p>
+                    <p className="text-sm text-zinc-500">No results found for &quot;{query}&quot;</p>
                   </div>
                 ) : (
                   <div className="space-y-4 pb-2">

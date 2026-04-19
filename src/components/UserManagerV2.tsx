@@ -12,7 +12,7 @@ import {
   UserPlus,
   Mail
 } from "lucide-react"
-import { USERS_TABLE_DATA as INITIAL_USERS } from "@/data/mock"
+import { USERS_TABLE_DATA as INITIAL_USERS, type User } from "@/data/mock"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/Button"
 import { cn } from "@/lib/utils"
@@ -27,7 +27,7 @@ export function UserManagerV2() {
     setUsers(prev => prev.filter(u => u.id !== id))
   }
 
-  const startEdit = (user: any) => {
+  const startEdit = (user: User) => {
     setEditingId(user.id)
     setEditName(user.name)
   }
@@ -89,7 +89,7 @@ export function UserManagerV2() {
               className="bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl hover:border-indigo-500/30 transition-all flex flex-col group relative"
             >
               <div className="flex items-center gap-3 mb-4">
-                <img src={user.avatar} className="h-10 w-10 rounded-lg border border-zinc-700 shadow-sm" />
+                <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-lg border border-zinc-700 shadow-sm" />
                 <div className="min-w-0 flex-1">
                   {editingId === user.id ? (
                     <div className="flex items-center gap-1">

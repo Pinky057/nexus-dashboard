@@ -16,6 +16,7 @@ export function Header({ onMenuClick }: HeaderProps) {
   const [isProModalOpen, setIsProModalOpen] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
   }, [])
 

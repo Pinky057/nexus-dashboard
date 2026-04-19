@@ -22,7 +22,7 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mt-4 max-w-sm text-base text-zinc-400">
-          The page you are looking for doesn't exist, has been moved, or is temporarily unavailable.
+          The page you are looking for doesn&apos;t exist, has been moved, or is temporarily unavailable.
         </p>
 
         <div className="mt-10 flex items-center justify-center gap-4">

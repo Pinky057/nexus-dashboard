@@ -13,7 +13,7 @@ import {
   Check
 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
-import { USERS_TABLE_DATA as INITIAL_USERS } from "@/data/mock"
+import { USERS_TABLE_DATA as INITIAL_USERS, type User } from "@/data/mock"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -35,7 +35,7 @@ export function UserManagement() {
     console.log("Deleted user:", id);
   }
 
-  const handleEditStart = (user: any) => {
+  const handleEditStart = (user: User) => {
     setEditingId(user.id)
     setEditName(user.name)
   }
@@ -97,7 +97,7 @@ export function UserManagement() {
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <img src={user.avatar} className="h-10 w-10 rounded-full" />
+                      <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full" />
                       <div>
                         {editingId === user.id ? (
                           <div className="flex items-center gap-2">

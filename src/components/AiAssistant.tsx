@@ -63,7 +63,7 @@ export function AiAssistant() {
                 {/* User Message */}
                 <div className="flex justify-end">
                   <div className="rounded-2xl rounded-tr-sm bg-indigo-600 px-4 py-2 text-sm text-zinc-100 max-w-[85%]">
-                    Can you delete all user accounts that haven't logged in for 90 days?
+                    Can you delete all user accounts that haven&apos;t logged in for 90 days?
                   </div>
                 </div>
 

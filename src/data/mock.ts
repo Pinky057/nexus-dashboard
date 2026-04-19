@@ -158,7 +158,18 @@ export const STATS = [
   },
 ]
 
-export const USERS_TABLE_DATA = [
+export interface User {
+  id: string
+  name: string
+  email: string
+  role: string
+  status: string
+  joined: string
+  revenue: string
+  avatar: string
+}
+
+export const USERS_TABLE_DATA: User[] = [
   { id: "#USR-001", name: "Ummey Habiba Pinky", email: "pinky@synthex.io", role: "Admin", status: "Active", joined: "Jan 12, 2025", revenue: "$4,500", avatar: "https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky&background=6366f1&color=fff" },
   { id: "#USR-002", name: "John Doe", email: "john@acme.com", role: "Developer", status: "Active", joined: "Feb 3, 2025", revenue: "$2,100", avatar: "https://ui-avatars.com/api/?name=John+Doe&background=818cf8&color=fff" },
   { id: "#USR-003", name: "Sarah Smith", email: "sarah@design.co", role: "Designer", status: "Pending", joined: "Mar 18, 2025", revenue: "$1,850", avatar: "https://ui-avatars.com/api/?name=Sarah+Smith&background=a5b4fc&color=fff" },

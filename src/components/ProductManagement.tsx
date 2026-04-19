@@ -14,6 +14,15 @@ import { Button } from "@/components/ui/Button"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
+export interface Product {
+  id: string
+  name: string
+  price: string
+  category: string
+  stock: string
+  status: string
+}
+
 const INITIAL_PRODUCTS = [
   { id: "PROD-1", name: "Premium Subscription", price: "$49.00", category: "Software", stock: "Unlimited", status: "Active" },
   { id: "PROD-2", name: "API Access Key", price: "$99.00", category: "Service", stock: "Unlimited", status: "Active" },
@@ -22,7 +31,7 @@ const INITIAL_PRODUCTS = [
 ]
 
 export function ProductManagement() {
-  const [products, setProducts] = React.useState(INITIAL_PRODUCTS)
+  const [products, setProducts] = React.useState<Product[]>(INITIAL_PRODUCTS)
   const [searchQuery, setSearchQuery] = React.useState("")
   const [editingId, setEditingId] = React.useState<string | null>(null)
   const [editName, setEditName] = React.useState("")
@@ -36,7 +45,7 @@ export function ProductManagement() {
     setProducts(products.filter(p => p.id !== id))
   }
 
-  const handleEditStart = (prod: any) => {
+  const handleEditStart = (prod: Product) => {
     setEditingId(prod.id)
     setEditName(prod.name)
   }
