@@ -186,12 +186,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 className={cn(
                                   "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300",
                                   isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                  isActive && !isExpanded 
+                                  isActive 
                                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
                                     : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
                                 )}
                               >
-                                <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive && !isExpanded ? "text-white" : "text-zinc-500 group-hover/item:text-indigo-400")} />
+                                <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-white" : "text-zinc-500 group-hover/item:text-indigo-400")} />
                                 {!isCollapsed && (
                                   <>
                                     <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
@@ -200,14 +200,21 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 )}
                               </button>
 
-                              {/* Flyout (Pixel-Perfect Doclines style) */}
+                              {/* Flyout (Doclines Pixel-Perfect Style) */}
                               {isCollapsed && (
                                 <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-3xl p-3 w-52 shadow-[0_30px_70px_rgba(0,0,0,0.7)]">
-                                    <div className="px-4 py-2.5 text-[10px] font-black tracking-widest text-zinc-500 uppercase border-b border-zinc-800/30 mb-3">
-                                      {item.name}
+                                  <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-[0_30px_70px_rgba(0,0,0,0.8)]">
+                                    {/* Flyout Header (Solid Block like 'Inbox' reference) */}
+                                    <div className={cn(
+                                      "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2",
+                                      isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-800/50 text-zinc-100"
+                                    )}>
+                                      <item.icon className="h-5 w-5 shrink-0" />
+                                      <span className="text-sm font-bold">{item.name}</span>
                                     </div>
-                                    <div className="space-y-1.5">
+
+                                    {/* Sub Items */}
+                                    <div className="space-y-1">
                                       {item.subItems.map((sub) => {
                                         const isSubActive = pathname === sub.href
                                         return (
@@ -215,12 +222,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                             key={sub.name}
                                             href={sub.href}
                                             className={cn(
-                                              "block px-5 py-3 rounded-2xl text-[13px] font-bold transition-all",
+                                              "flex items-center gap-3 px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
                                               isSubActive 
-                                                ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20" 
-                                                : "text-zinc-400 hover:bg-zinc-800/60 hover:text-white"
+                                                ? "text-indigo-400 bg-indigo-400/5" 
+                                                : "text-zinc-500 hover:bg-zinc-800/60 hover:text-white"
                                             )}
                                           >
+                                            <div className={cn("h-1.5 w-1.5 rounded-full", isSubActive ? "bg-indigo-500" : "bg-zinc-800")} />
                                             {sub.name}
                                           </Link>
                                         )
@@ -255,6 +263,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                             </Link>
                           )}
 
+                          {/* Expanded inline sub-items (Strictly hidden when collapsed) */}
                           <AnimatePresence>
                             {hasSubItems && isExpanded && !isCollapsed && (
                               <motion.div
@@ -304,7 +313,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               )}>
                 <div className="relative group/avatar cursor-pointer">
                   <img 
-                    src="https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky&background=6366f1&color=fff" 
+                    src="https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky+UI&background=6366f1&color=fff" 
                     alt="Profile"
                     className="h-10 w-10 rounded-full border-2 border-zinc-800/50 shrink-0 transition-transform group-hover/avatar:scale-110"
                   />
