@@ -2,36 +2,24 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { 
-  LayoutDashboard, Users, Settings, BarChart3, CreditCard, 
-  Box, LogIn, MousePointerClick, FileText, Tags, 
-  Table2, LineChart, UserPlus, KeyRound, X, 
-  ChevronDown, Zap, Search, Bell, Menu
-} from "lucide-react"
+import { LayoutDashboard, Users, Settings, BarChart3, CreditCard, Box, LogIn, MousePointerClick, FileText, Tags, Table2, LineChart, UserPlus, KeyRound, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/Button"
 
 const navigationGroups = [
   {
-    title: "Intelligence",
+    title: "MAIN",
     items: [
-      { name: "Command Center", href: "/", icon: LayoutDashboard },
-      { name: "Live Analytics", href: "/analytics", icon: BarChart3 },
-      { name: "AI Insights", href: "/insights", icon: Zap, pro: true },
-    ]
-  },
-  {
-    title: "Management",
-    items: [
-      { name: "Active Users", href: "/users", icon: Users },
-      { name: "Token Usage", href: "/products", icon: Box },
+      { name: "Dashboard", href: "/", icon: LayoutDashboard },
+      { name: "Analytics", href: "/analytics", icon: BarChart3 },
+      { name: "Users", href: "/users", icon: Users },
+      { name: "Products", href: "/products", icon: Box },
       { name: "Transactions", href: "/transactions", icon: CreditCard },
       { name: "Settings", href: "/settings", icon: Settings },
     ]
   },
   {
-    title: "UI System",
+    title: "UI KIT",
     items: [
       { name: "Buttons", href: "/components/buttons", icon: MousePointerClick },
       { name: "Forms", href: "/components/forms", icon: FileText },
@@ -41,7 +29,7 @@ const navigationGroups = [
     ]
   },
   {
-    title: "Authentication",
+    title: "AUTH",
     items: [
       { name: "Login", href: "/login", icon: LogIn },
       { name: "Register", href: "/register", icon: UserPlus },
@@ -59,28 +47,30 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-[260px] flex-col overflow-hidden bg-zinc-950/50 backdrop-blur-xl border border-zinc-800/50 rounded-2xl lg:m-4 lg:shadow-2xl lg:shadow-indigo-500/10 transition-all duration-300">
-      {/* Workspace Switcher */}
-      <div className="p-4 shrink-0 border-b border-zinc-800/50">
-        <button className="flex items-center justify-between w-full p-2 rounded-xl bg-zinc-900/50 hover:bg-zinc-800/50 border border-zinc-800 transition-all group">
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 font-bold text-white shadow-lg shadow-indigo-500/20">
-              N
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-semibold text-zinc-100 tracking-tight leading-none mb-0.5">Nexus AI</p>
-              <p className="text-[10px] text-zinc-500 font-medium">Free Workspace</p>
-            </div>
+    <div className="flex h-full w-64 flex-col border-r border-zinc-800 bg-zinc-950 px-3 py-4 overflow-y-auto">
+      {/* Logo + close button on mobile */}
+      <div className="mb-8 flex items-center justify-between px-3 shrink-0">
+        <div className="flex items-center">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 font-bold text-zinc-100">
+            S
           </div>
-          <ChevronDown className="h-4 w-4 text-zinc-500 group-hover:text-zinc-300 transition-colors" />
-        </button>
+          <span className="ml-3 text-lg font-semibold text-zinc-100 tracking-tight">Synthex UI</span>
+        </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="lg:hidden -mr-1 p-1.5 rounded-md text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition-colors"
+            aria-label="Close sidebar"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        )}
       </div>
 
-      {/* Navigation */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-6 mt-2">
+      <nav className="flex-1 space-y-6">
         {navigationGroups.map((group) => (
           <div key={group.title}>
-            <p className="px-3 text-[10px] font-bold uppercase tracking-[0.1em] text-zinc-500/80 mb-3">
+            <p className="px-3 text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               {group.title}
             </p>
             <div className="space-y-1">
@@ -92,59 +82,35 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                     href={item.href}
                     onClick={onClose}
                     className={cn(
-                      "group relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-300",
+                      "group flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-all duration-200",
                       isActive
-                        ? "text-zinc-100 bg-white/5 shadow-[0_0_20px_-12px_rgba(255,255,255,0.2)]"
-                        : "text-zinc-400 hover:text-zinc-200 hover:bg-white/5"
+                        ? "bg-indigo-600/10 text-indigo-500"
+                        : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100"
                     )}
                   >
-                    {/* Active Glow Indicator */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="active-pill"
-                        className="absolute left-0 w-1 h-5 bg-indigo-500 rounded-full shadow-[0_0_12px_rgba(99,102,241,0.6)]"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                    
                     <item.icon
                       className={cn(
-                        "h-5 w-5 flex-shrink-0 transition-all duration-300",
-                        isActive ? "text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]" : "text-zinc-500 group-hover:text-zinc-300"
+                        "mr-3 h-5 w-5 flex-shrink-0 transition-colors",
+                        isActive ? "text-indigo-500" : "text-zinc-500 group-hover:text-zinc-300"
                       )}
+                      aria-hidden="true"
                     />
-                    <span className="flex-1">{item.name}</span>
-                    
-                    {item.pro && (
-                      <span className="text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/20 tracking-tighter">
-                        PRO
-                      </span>
-                    )}
+                    {item.name}
                   </Link>
                 )
               })}
             </div>
           </div>
         ))}
-      </div>
+      </nav>
 
-      {/* Profile Card */}
-      <div className="p-3 shrink-0 border-t border-zinc-800/50 bg-zinc-950/30">
-        <div className="group flex items-center justify-between p-2 rounded-xl hover:bg-white/5 transition-all cursor-pointer">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white shadow-lg ring-2 ring-zinc-950">
-                IP
-              </div>
-              <div className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-500 border-2 border-zinc-950 shadow-sm" />
-            </div>
-            <div className="text-left overflow-hidden">
-              <p className="text-xs font-semibold text-zinc-100 truncate">Ishrat Pinky</p>
-              <p className="text-[10px] text-zinc-500 truncate">Pro Plan Admin</p>
-            </div>
-          </div>
-          <Settings className="h-4 w-4 text-zinc-500 group-hover:text-zinc-300 group-hover:rotate-45 transition-all" />
+      <div className="mt-auto px-3 py-4">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4">
+          <p className="text-sm font-medium text-zinc-100">Upgrade to Pro</p>
+          <p className="mt-1 text-xs text-zinc-400">Get access to all premium features.</p>
+          <button className="mt-3 w-full rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-zinc-100 hover:bg-indigo-500 transition-colors">
+            Upgrade Now
+          </button>
         </div>
       </div>
     </div>
@@ -154,30 +120,34 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:flex lg:shrink-0 h-screen sticky top-0 py-2">
+      {/* Desktop sidebar — always visible */}
+      <div className="hidden lg:flex lg:shrink-0">
         <SidebarContent />
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile sidebar — slide in from left */}
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Backdrop overlay */}
             <motion.div
               key="overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm lg:hidden"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
               onClick={onClose}
+              aria-hidden="true"
             />
+            {/* Slide-in panel */}
             <motion.div
               key="panel"
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ type: "spring", stiffness: 400, damping: 40 }}
-              className="fixed inset-y-0 left-0 z-50 p-4 w-[300px] lg:hidden"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed inset-y-0 left-0 z-50 lg:hidden"
             >
               <SidebarContent onClose={onClose} />
             </motion.div>

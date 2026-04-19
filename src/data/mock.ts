@@ -1,4 +1,4 @@
-import { ShieldAlert, UserPlus, CreditCard, Star, CheckCheck, DollarSign, Users, Activity } from "lucide-react"
+import { ShieldAlert, UserPlus, CreditCard, Star, CheckCheck, DollarSign, Users, Activity, Zap } from "lucide-react"
 
 export const REVENUE_DATA = [
   { name: "Jan", total: 1200 },
@@ -125,36 +125,36 @@ export const NOTIFICATIONS = [
 
 export const STATS = [
   {
-    title: "Monthly Recurring Revenue",
-    value: "$124,500",
+    title: "Monthly Revenue (MRR)",
+    value: "$12,450",
     trend: "+12.5%",
     isPositive: true,
     icon: DollarSign,
-    insight: "Growth driven by Enterprise plan upgrades",
+    insight: "On track to hit $15k by next month."
   },
   {
-    title: "Active AI Agents",
-    value: "1,284",
-    trend: "+18.2%",
+    title: "New Subscriptions",
+    value: "+156",
+    trend: "+18%",
     isPositive: true,
     icon: Users,
-    insight: "12% increase in multi-agent deployments",
+    insight: "Increased 23% from mobile traffic."
   },
   {
-    title: "API Tokens Consumed",
-    value: "84.2M",
-    trend: "-4.1%",
-    isPositive: false,
-    icon: CreditCard,
-    insight: "Optimization reduce waste by 1.2M tokens",
-  },
-  {
-    title: "System Performance",
-    value: "99.98%",
-    trend: "+0.02%",
+    title: "Active API Tokens",
+    value: "2,840",
+    trend: "+5.2%",
     isPositive: true,
+    icon: Zap,
+    insight: "Usage spike detected in Asia-Pacific."
+  },
+  {
+    title: "System Uptime",
+    value: "99.99%",
+    trend: "-0.01%",
+    isPositive: false,
     icon: Activity,
-    insight: "All nodes operational across 4 regions",
+    insight: "Minor latency in secondary DB node."
   },
 ]
 

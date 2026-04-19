@@ -55,48 +55,11 @@ body {
   color: #ffffff !important;
 }
 
-/* ─── Custom Scrollbar ─── */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-zinc-800) transparent;
+/* ─── Hide scrollbars globally ─── */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--color-zinc-800);
-  border-radius: 20px;
-  border: 3px solid transparent;
-}
-
-/* ─── Utilities ─── */
-.glass {
-  background: rgba(9, 9, 11, 0.5);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(39, 39, 42, 0.5);
-}
-
-.glow-border {
-  position: relative;
-}
-
-.glow-border::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(to right, var(--color-indigo-500), var(--color-purple-500));
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.glow-border:hover::after {
-  opacity: 0.5;
+*::-webkit-scrollbar {
+  display: none;
 }

@@ -1,60 +1,78 @@
 "use client"
 
-import { Search, Menu, Command, Sparkles, Plus } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Search, Menu, Command, Sparkles } from "lucide-react"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { NotificationBell } from "@/components/NotificationBell"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/Button"
+import { cn } from "@/lib/utils"
 
 interface HeaderProps {
   onMenuClick: () => void
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
-  return (
-    <header className="flex h-20 shrink-0 items-center px-4 lg:px-8 bg-transparent pointer-events-none sticky top-0 z-30">
-      <div className="flex flex-1 items-center justify-between bg-zinc-950/50 backdrop-blur-xl border border-zinc-800/50 rounded-2xl h-14 px-4 shadow-xl shadow-black/20 pointer-events-auto">
-        
-        {/* Mobile Hamburger */}
-        <button
-          type="button"
-          onClick={onMenuClick}
-          className="lg:hidden -ml-1 p-2 text-zinc-400 hover:text-zinc-100 transition-colors"
-          aria-label="Open sidebar"
-        >
-          <Menu className="h-5 w-5" />
-        </button>
+  const [isMac, setIsMac] = useState(false)
 
-        {/* AI Command Bar (The "WOW" Factor) */}
-        <div className="flex-1 flex justify-center max-w-xl mx-auto px-4 group">
-          <div className="relative w-full">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-              <Command className="h-4 w-4 text-zinc-500 group-focus-within:text-indigo-400 transition-colors" />
-            </div>
+  useEffect(() => {
+    setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
+  }, [])
+
+  return (
+    <header className="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-800 bg-zinc-950 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 sticky top-0 z-40">
+
+      {/* Hamburger — only visible on mobile */}
+      <button
+        type="button"
+        onClick={onMenuClick}
+        className="lg:hidden -m-2.5 p-2.5 text-zinc-400 hover:text-zinc-100 transition-colors"
+        aria-label="Open sidebar"
+      >
+        <Menu className="h-6 w-6" />
+      </button>
+
+      {/* Divider */}
+      <div className="lg:hidden h-6 w-px bg-zinc-800" aria-hidden="true" />
+
+      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+        <div className="relative flex flex-1 items-center">
+          <div className="group relative flex h-9 w-full max-w-md items-center gap-2 rounded-lg bg-zinc-900 px-3 ring-1 ring-zinc-800 transition-all hover:ring-indigo-500/50">
+            <Search className="h-4 w-4 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
             <input
+              className="flex-1 bg-transparent text-sm text-zinc-100 placeholder:text-zinc-500 outline-none"
+              placeholder="Ask AI or search..."
               type="text"
-              placeholder="Ask Nexus AI... (Cmd + K)"
-              className="w-full bg-zinc-900/50 border border-zinc-800/50 rounded-xl py-2 pl-10 pr-12 text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all group-hover:border-zinc-700"
             />
-            <div className="absolute inset-y-0 right-3 flex items-center gap-1.5 pointer-events-none">
-              <Sparkles className="h-3.5 w-3.5 text-indigo-400 animate-pulse" />
-              <span className="hidden sm:inline-block text-[10px] font-bold text-zinc-600 bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">K</span>
+            <div className="hidden sm:flex items-center gap-1 rounded bg-zinc-950 px-1.5 py-0.5 text-[10px] font-bold text-zinc-500 border border-zinc-800 group-hover:border-indigo-500/30 transition-colors">
+              <span className="text-[12px]">{isMac ? '⌘' : 'Ctrl'}</span>
+              <span>K</span>
             </div>
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-x-2 lg:gap-x-4">
-          <div className="hidden md:flex items-center gap-2 mr-2">
-            <Button variant="secondary" size="sm" className="h-9 px-3 gap-2 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 hover:bg-indigo-500/20">
-              <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">New Action</span>
-            </Button>
+        <div className="flex items-center gap-x-2 lg:gap-x-3">
+          <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 mr-2">
+            <Sparkles className="h-3 w-3 text-indigo-400" />
+            <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">AI Live</span>
           </div>
           
-          <div className="flex items-center gap-1 bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-1">
-            <ThemeToggle />
-            <NotificationBell />
+          <ThemeToggle />
+          <NotificationBell />
+
+          <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-zinc-800" aria-hidden="true" />
+
+          <div className="flex items-center gap-x-3 group cursor-pointer">
+            <div className="h-8 w-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center overflow-hidden ring-0 ring-indigo-500/0 transition-all group-hover:ring-2 group-hover:ring-indigo-500/50">
+              <img
+                src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff"
+                alt="User Avatar"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <span className="hidden lg:flex lg:items-center">
+              <span className="text-sm font-semibold leading-6 text-zinc-100 group-hover:text-indigo-300 transition-colors" aria-hidden="true">
+                Admin User
+              </span>
+            </span>
           </div>
         </div>
       </div>
