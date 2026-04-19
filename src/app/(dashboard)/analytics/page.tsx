@@ -7,11 +7,14 @@ import { RevenueChart } from "@/components/RevenueChart"
 import { ChurnChart } from "@/components/analytics/ChurnChart"
 import { TrafficChart } from "@/components/analytics/TrafficChart"
 import { ANALYTIC_STATS } from "@/data/mock"
-import { BarChart3, Sparkles, Loader2, TrendingUp, Calendar } from "lucide-react"
+import { BarChart3, Sparkles, Loader2, TrendingUp, Calendar, Download } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { ProModal } from "@/components/ui/ProModal"
 
 export default function AnalyticsPage() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isProModalOpen, setIsProModalOpen] = useState(false)
+  const [selectedFeature, setSelectedFeature] = useState("")
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,8 +23,19 @@ export default function AnalyticsPage() {
     return () => clearTimeout(timer)
   }, [])
 
+  const handleProClick = (feature: string) => {
+    setSelectedFeature(feature)
+    setIsProModalOpen(true)
+  }
+
   return (
     <div className="space-y-6 pb-8">
+      <ProModal 
+        isOpen={isProModalOpen} 
+        onClose={() => setIsProModalOpen(false)} 
+        featureName={selectedFeature}
+      />
+
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
@@ -31,11 +45,22 @@ export default function AnalyticsPage() {
           <p className="text-sm text-zinc-400">Granular breakdown of user behavior and revenue retention.</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="h-9 gap-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="h-9 gap-2 border-zinc-800"
+            onClick={() => handleProClick("Custom Date Ranges")}
+          >
             <Calendar className="h-4 w-4" />
             Last 30 Days
           </Button>
-          <Button variant="primary" size="sm" className="h-9 gap-2">
+          <Button 
+            variant="primary" 
+            size="sm" 
+            className="h-9 gap-2"
+            onClick={() => handleProClick("Report Exports")}
+          >
+            <Download className="h-4 w-4" />
             Download Report
           </Button>
         </div>
@@ -71,7 +96,10 @@ export default function AnalyticsPage() {
             ))}
 
             <div className="lg:col-span-1">
-              <div className="h-full rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-6 flex flex-col justify-between group hover:border-indigo-500/40 transition-all">
+              <div 
+                className="h-full rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-6 flex flex-col justify-between group hover:border-indigo-500/40 transition-all cursor-pointer"
+                onClick={() => handleProClick("Predictive Forecasting")}
+              >
                 <div className="flex items-center justify-between">
                   <div className="p-2 rounded-lg bg-indigo-500/10">
                     <TrendingUp className="h-5 w-5 text-indigo-400" />
@@ -80,7 +108,7 @@ export default function AnalyticsPage() {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-1">Predictive</p>
-                  <h3 className="text-lg font-bold text-zinc-100">LTV Forecast</h3>
+                  <h3 className="text-lg font-bold text-zinc-100 group-hover:text-indigo-300 transition-colors">LTV Forecast</h3>
                   <p className="text-xs text-zinc-500 mt-1">Projected lifetime value to increase by 14% based on current cohort trends.</p>
                 </div>
               </div>
@@ -114,7 +142,11 @@ export default function AnalyticsPage() {
                     Create custom event funnels to track conversion drops at every stage of your user journey.
                   </p>
                 </div>
-                <Button variant="secondary" className="mt-4 ring-1 ring-zinc-700">
+                <Button 
+                  variant="secondary" 
+                  className="mt-4 ring-1 ring-zinc-700"
+                  onClick={() => handleProClick("Custom Funnel Builder")}
+                >
                   Build Custom Funnel
                 </Button>
               </div>

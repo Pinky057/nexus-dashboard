@@ -7,11 +7,13 @@ import { RevenueChart } from "@/components/RevenueChart"
 import { RecentTransactions } from "@/components/RecentTransactions"
 import { TopUsers } from "@/components/TopUsers"
 import { AiAssistantCard } from "@/components/AiAssistantCard"
+import { ProModal } from "@/components/ui/ProModal"
 import { STATS } from "@/data/mock"
 import { Sparkles, Loader2 } from "lucide-react"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isProModalOpen, setIsProModalOpen] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,6 +24,12 @@ export default function Home() {
 
   return (
     <div className="space-y-6 pb-8">
+      <ProModal 
+        isOpen={isProModalOpen} 
+        onClose={() => setIsProModalOpen(false)} 
+        featureName="Pro Dashboard Analytics"
+      />
+
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-indigo-400" />
@@ -84,7 +92,10 @@ export default function Home() {
             </div>
 
             <div className="md:col-span-2">
-              <div className="rounded-xl border border-dashed border-zinc-800 bg-zinc-950/20 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors h-full min-h-[220px]">
+              <div 
+                className="rounded-xl border border-dashed border-zinc-800 bg-zinc-950/20 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors h-full min-h-[220px] cursor-pointer"
+                onClick={() => setIsProModalOpen(true)}
+              >
                 <div className="h-12 w-12 rounded-full bg-zinc-900 flex items-center justify-center ring-1 ring-zinc-800 group-hover:ring-indigo-500/50 transition-all">
                   <Sparkles className="h-5 w-5 text-zinc-600 group-hover:text-indigo-400" />
                 </div>
