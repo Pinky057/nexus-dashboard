@@ -135,46 +135,49 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* The Floating Panel */}
         <div className="flex h-full flex-col rounded-[2.5rem] border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative group">
           
-          {/* Collapse Toggle Button (Improved) */}
+          {/* Collapse Toggle Button (Improved Positioning) */}
           <button 
             onClick={toggleCollapse}
-            className="absolute -right-3 top-32 hidden lg:flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 border border-zinc-700 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all z-20"
+            className={cn(
+              "absolute top-28 hidden lg:flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 border border-zinc-700 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all z-20 shadow-xl",
+              isCollapsed ? "-right-4" : "right-3"
+            )}
           >
             {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
           </button>
 
           {/* Header/Logo */}
           <div className={cn(
-            "flex items-center gap-4 py-12 transition-all",
-            isCollapsed ? "px-0 justify-center" : "px-7"
+            "flex flex-col items-center gap-4 py-16 transition-all",
+            isCollapsed ? "px-0" : "px-7"
           )}>
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 shadow-[0_0_25px_rgba(79,70,229,0.5)]">
-              <Sparkles className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 shadow-[0_0_30px_rgba(79,70,229,0.5)]">
+              <Sparkles className="h-7 w-7 text-white" />
             </div>
             {!isCollapsed && (
               <motion.span 
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
                 className="text-2xl font-black text-white tracking-tighter"
               >
                 Synthex
               </motion.span>
             )}
-            <button onClick={onClose} className="ml-auto lg:hidden text-zinc-500 hover:text-white px-4">
+            <button onClick={onClose} className="ml-auto lg:hidden text-zinc-500 hover:text-white absolute right-6 top-6">
               <X className="h-5 w-5" />
             </button>
           </div>
 
           {/* Navigation */}
-          <div className="flex-1 overflow-y-auto px-3 py-2 space-y-10 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto px-4 py-2 space-y-12 scrollbar-hide">
             {navigationGroups.map((group) => (
-              <div key={group.title} className="space-y-4">
+              <div key={group.title} className="space-y-5">
                 {!isCollapsed && (
-                  <p className="px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500/60">
+                  <p className="px-4 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500/40">
                     {group.title}
                   </p>
                 )}
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   {group.items.map((item) => {
                     const hasSubItems = item.subItems && item.subItems.length > 0
                     const isExpanded = expandedMenus.includes(item.name)
@@ -207,7 +210,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                               "group flex items-center gap-3 rounded-2xl py-3.5 text-sm font-semibold transition-all duration-200 relative",
                               isCollapsed ? "justify-center px-0" : "px-4",
                               isActive 
-                                ? "bg-indigo-600 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)]" 
+                                ? "bg-indigo-600 text-white shadow-[0_10px_25px_-5px_rgba(79,70,229,0.4)]" 
                                 : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-100"
                             )}
                           >
@@ -215,8 +218,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                             {!isCollapsed && <span>{item.name}</span>}
                             {/* Hover Tooltip for Collapsed State */}
                             {isCollapsed && (
-                              <div className="absolute left-full ml-4 hidden group-hover:block z-50">
-                                <div className="bg-zinc-800 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg border border-zinc-700 whitespace-nowrap shadow-xl">
+                              <div className="absolute left-full ml-6 hidden group-hover:block z-50">
+                                <div className="bg-zinc-900 text-white text-[10px] font-bold uppercase tracking-widest px-3.5 py-2 rounded-xl border border-zinc-800 whitespace-nowrap shadow-2xl">
                                   {item.name}
                                 </div>
                               </div>
