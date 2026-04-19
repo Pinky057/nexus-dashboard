@@ -39,6 +39,14 @@ const navigationGroups = [
       { name: "Tables", href: "/components/tables", icon: Table2 },
       { name: "Charts", href: "/components/charts", icon: LineChart },
     ]
+  },
+  {
+    title: "Authentication",
+    items: [
+      { name: "Login", href: "/login", icon: LogIn },
+      { name: "Register", href: "/register", icon: UserPlus },
+      { name: "Forgot Password", href: "/forgot-password", icon: KeyRound },
+    ]
   }
 ]
 
