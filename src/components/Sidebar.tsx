@@ -131,11 +131,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         <div className="flex h-full flex-col relative scrollbar-hide">
           
-          {/* Outward Toggle Tab */}
+          {/* Outward Toggle Tab (Moved down to avoid logo overlap) */}
           <button 
             onClick={toggleCollapse}
             className={cn(
-              "absolute top-8 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 transition-all z-[60] shadow-2xl",
+              "absolute top-40 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 transition-all z-[70] shadow-2xl",
               isCollapsed ? "-right-4" : "right-4"
             )}
           >
@@ -190,7 +190,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   isCollapsed ? "justify-center" : "px-4",
                                   isActive && !isExpanded 
                                     ? "bg-indigo-600/10 text-indigo-400" 
-                                    : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
+                                    : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100 hover:bg-zinc-800/40"
                                 )}
                               >
                                 <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-indigo-400" : "text-zinc-500 group-hover/item:text-indigo-400")} />
@@ -202,11 +202,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 )}
                               </button>
 
-                              {/* Flyout */}
+                              {/* Flyout (Fixed Z-Index and Position) */}
                               {isCollapsed && (
                                 <div className="absolute left-[calc(100%+1.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800 backdrop-blur-2xl rounded-2xl p-2 w-48 shadow-2xl">
-                                    <div className="px-3 py-2 text-[10px] font-black tracking-widest text-zinc-500 uppercase">
+                                  <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-2xl rounded-2xl p-2 w-48 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                                    <div className="px-3 py-2 text-[10px] font-black tracking-widest text-zinc-500 uppercase border-b border-zinc-800/50 mb-2">
                                       {item.name}
                                     </div>
                                     <div className="space-y-1">
@@ -215,7 +215,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                           key={sub.name}
                                           href={sub.href}
                                           className={cn(
-                                            "block px-4 py-2 rounded-xl text-xs font-bold transition-all",
+                                            "block px-4 py-2.5 rounded-xl text-xs font-bold transition-all",
                                             pathname === sub.href 
                                               ? "bg-indigo-600 text-white shadow-lg" 
                                               : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
@@ -246,7 +246,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                               {/* Tooltip */}
                               {isCollapsed && (
                                 <div className="absolute left-[calc(100%+1.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl whitespace-nowrap shadow-2xl">
+                                  <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
                                     {item.name}
                                   </div>
                                 </div>
@@ -285,7 +285,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               ))}
             </div>
 
-            {/* Profile Section (More Compact) */}
+            {/* Profile Section */}
             <div className="mt-auto p-6">
               <div className={cn(
                 "flex items-center gap-3 transition-all",
