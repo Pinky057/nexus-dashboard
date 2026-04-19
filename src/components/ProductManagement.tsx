@@ -49,10 +49,10 @@ export function ProductManagement() {
   const handleAddMockProduct = () => {
     const newProd = {
       id: `PROD-${Math.floor(100 + Math.random() * 900)}`,
-      name: "New AI Module",
-      price: "$29.00",
+      name: "New Product",
+      price: "$1.00",
       category: "Software",
-      stock: "100",
+      stock: "10",
       status: "Active"
     }
     setProducts([newProd, ...products])
@@ -60,89 +60,72 @@ export function ProductManagement() {
 
   return (
     <div className="space-y-4">
-      {/* Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 shadow-xl">
-        <div className="relative flex-1 max-w-sm">
+      {/* Header */}
+      <div className="flex items-center justify-between bg-zinc-900 p-4 border border-zinc-800 rounded-xl">
+        <div className="relative flex-1 max-w-xs">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
           <input 
-            type="text" 
-            placeholder="Search catalogue..." 
-            className="w-full h-11 bg-zinc-950 border border-zinc-800 rounded-xl pl-10 pr-4 text-sm text-zinc-100 outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all"
+            className="w-full bg-black border border-zinc-800 rounded-lg pl-10 pr-4 py-2 text-white text-sm"
+            placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button variant="primary" className="h-11 gap-2" onClick={handleAddMockProduct}>
-          <Plus className="h-4 w-4" />
-          Add Product
-        </Button>
+        <Button onClick={handleAddMockProduct}>Add Product</Button>
       </div>
 
-      {/* Product Grid */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence>
           {filteredProducts.map((product) => (
             <motion.div 
-              key={product.id} 
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 hover:border-indigo-500/50 transition-all shadow-lg"
+              key={product.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-zinc-900 border border-zinc-800 p-5 rounded-2xl relative"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-indigo-400">
-                  <Package className="h-6 w-6" />
+              <div className="flex justify-between items-start mb-4">
+                <div className="h-10 w-10 bg-indigo-500/10 border border-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-500">
+                  <Package className="h-5 w-5" />
                 </div>
-                <div className="flex gap-1.5">
+                <div className="flex flex-col gap-2">
+                  {/* HIGH CONTRAST BUTTONS */}
                   <button 
                     onClick={() => handleEditStart(product)}
-                    className="h-8 w-8 flex items-center justify-center rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-indigo-400 transition-all"
+                    className="bg-zinc-800 hover:bg-zinc-700 text-white px-2 py-1 rounded text-[10px] font-bold border border-zinc-700"
                   >
-                    <Edit2 className="h-3.5 w-3.5" />
+                    EDIT
                   </button>
                   <button 
                     onClick={() => handleDelete(product.id)}
-                    className="h-8 w-8 flex items-center justify-center rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-rose-400 transition-all"
+                    className="bg-rose-600 hover:bg-rose-500 text-white px-2 py-1 rounded text-[10px] font-bold border border-rose-500"
                   >
-                    <Trash2 className="h-3.5 w-3.5" />
+                    DELETE
                   </button>
                 </div>
               </div>
 
               <div>
-                <p className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1">{product.category}</p>
+                <p className="text-[10px] text-indigo-400 font-bold uppercase mb-1">{product.category}</p>
                 {editingId === product.id ? (
-                  <div className="flex items-center gap-1 mb-2">
+                  <div className="flex gap-2">
                     <input 
-                      autoFocus
-                      className="w-full bg-zinc-950 border border-indigo-500/50 rounded px-2 py-0.5 text-xs text-zinc-100"
+                      className="bg-black border border-indigo-500 text-white text-xs px-1 w-full"
                       value={editName}
                       onChange={(e) => setEditName(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleEditSave()}
                     />
-                    <button onClick={handleEditSave} className="text-emerald-500 p-0.5"><Check className="h-3.5 w-3.5" /></button>
+                    <button onClick={handleEditSave} className="text-green-500"><Check className="h-4 w-4" /></button>
                   </div>
                 ) : (
-                  <h3 className="text-sm font-bold text-zinc-100 mb-1 truncate">{product.name}</h3>
+                  <h3 className="text-white font-bold text-sm truncate">{product.name}</h3>
                 )}
-                <p className="text-xs text-zinc-500 mb-4 font-mono">{product.id}</p>
+                <p className="text-zinc-500 text-[10px] mt-1">{product.id}</p>
               </div>
 
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-800/50">
-                <div>
-                  <p className="text-[10px] text-zinc-500 uppercase tracking-tighter font-bold">Price</p>
-                  <p className="text-sm font-bold text-zinc-100">{product.price}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[10px] text-zinc-500 uppercase tracking-tighter font-bold">Stock</p>
-                  <p className={cn(
-                    "text-[10px] font-bold uppercase",
-                    product.status === "Active" ? "text-emerald-500" : "text-rose-500"
-                  )}>
-                    {product.stock}
-                  </p>
-                </div>
+              <div className="flex justify-between mt-4 pt-4 border-t border-zinc-800">
+                <span className="text-white font-bold">{product.price}</span>
+                <span className="text-zinc-500 text-[10px] font-bold uppercase">{product.stock}</span>
               </div>
             </motion.div>
           ))}
