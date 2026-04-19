@@ -131,11 +131,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         <div className="flex h-full flex-col relative scrollbar-hide">
           
-          {/* Outward Toggle Tab (Moved down to avoid logo overlap) */}
+          {/* Outward Toggle Tab (Aligned with Main group) */}
           <button 
             onClick={toggleCollapse}
             className={cn(
-              "absolute top-40 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 transition-all z-[70] shadow-2xl",
+              "absolute top-28 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 transition-all z-[70] shadow-2xl",
               isCollapsed ? "-right-4" : "right-4"
             )}
           >
@@ -286,7 +286,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
 
             {/* Profile Section */}
-            <div className="mt-auto p-6">
+            <div className={cn("mt-auto transition-all", isCollapsed ? "p-0 py-8" : "p-6")}>
               <div className={cn(
                 "flex items-center gap-3 transition-all",
                 isCollapsed ? "justify-center" : "px-2"
