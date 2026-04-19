@@ -1,8 +1,10 @@
 "use client"
 
-import { Search, Menu } from "lucide-react"
+import { Search, Menu, Command, Sparkles, Plus } from "lucide-react"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { NotificationBell } from "@/components/NotificationBell"
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/Button"
 
 interface HeaderProps {
   onMenuClick: () => void
@@ -10,57 +12,49 @@ interface HeaderProps {
 
 export function Header({ onMenuClick }: HeaderProps) {
   return (
-    <header className="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-800 bg-zinc-950 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+    <header className="flex h-20 shrink-0 items-center px-4 lg:px-8 bg-transparent pointer-events-none sticky top-0 z-30">
+      <div className="flex flex-1 items-center justify-between bg-zinc-950/50 backdrop-blur-xl border border-zinc-800/50 rounded-2xl h-14 px-4 shadow-xl shadow-black/20 pointer-events-auto">
+        
+        {/* Mobile Hamburger */}
+        <button
+          type="button"
+          onClick={onMenuClick}
+          className="lg:hidden -ml-1 p-2 text-zinc-400 hover:text-zinc-100 transition-colors"
+          aria-label="Open sidebar"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
 
-      {/* Hamburger — only visible on mobile */}
-      <button
-        type="button"
-        onClick={onMenuClick}
-        className="lg:hidden -m-2.5 p-2.5 text-zinc-400 hover:text-zinc-100 transition-colors"
-        aria-label="Open sidebar"
-      >
-        <Menu className="h-6 w-6" />
-      </button>
-
-      {/* Divider */}
-      <div className="lg:hidden h-6 w-px bg-zinc-800" aria-hidden="true" />
-
-      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-        <form className="relative flex flex-1" action="#" method="GET">
-          <label htmlFor="search-field" className="sr-only">Search</label>
-          <Search
-            className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-zinc-500"
-            aria-hidden="true"
-          />
-          <input
-            id="search-field"
-            className="block h-full w-full border-0 bg-transparent py-0 pl-8 pr-0 text-zinc-100 placeholder:text-zinc-500 focus:ring-0 sm:text-sm outline-none"
-            placeholder="Search transactions, users, or data..."
-            type="search"
-            name="search"
-          />
-        </form>
-
-        <div className="flex items-center gap-x-2 lg:gap-x-3">
-          <ThemeToggle />
-          <NotificationBell />
-
-          <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-zinc-800" aria-hidden="true" />
-
-          <div className="flex items-center gap-x-3">
-            <div className="h-8 w-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff"
-                alt="User Avatar"
-                className="h-full w-full object-cover"
-              />
+        {/* AI Command Bar (The "WOW" Factor) */}
+        <div className="flex-1 flex justify-center max-w-xl mx-auto px-4 group">
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+              <Command className="h-4 w-4 text-zinc-500 group-focus-within:text-indigo-400 transition-colors" />
             </div>
-            <span className="hidden lg:flex lg:items-center">
-              <span className="text-sm font-semibold leading-6 text-zinc-100" aria-hidden="true">
-                Admin User
-              </span>
-            </span>
+            <input
+              type="text"
+              placeholder="Ask Nexus AI... (Cmd + K)"
+              className="w-full bg-zinc-900/50 border border-zinc-800/50 rounded-xl py-2 pl-10 pr-12 text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all group-hover:border-zinc-700"
+            />
+            <div className="absolute inset-y-0 right-3 flex items-center gap-1.5 pointer-events-none">
+              <Sparkles className="h-3.5 w-3.5 text-indigo-400 animate-pulse" />
+              <span className="hidden sm:inline-block text-[10px] font-bold text-zinc-600 bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">K</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center gap-x-2 lg:gap-x-4">
+          <div className="hidden md:flex items-center gap-2 mr-2">
+            <Button variant="secondary" size="sm" className="h-9 px-3 gap-2 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 hover:bg-indigo-500/20">
+              <Plus className="h-4 w-4" />
+              <span className="hidden sm:inline">New Action</span>
+            </Button>
+          </div>
+          
+          <div className="flex items-center gap-1 bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-1">
+            <ThemeToggle />
+            <NotificationBell />
           </div>
         </div>
       </div>

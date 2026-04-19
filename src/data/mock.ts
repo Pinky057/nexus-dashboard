@@ -125,32 +125,36 @@ export const NOTIFICATIONS = [
 
 export const STATS = [
   {
-    title: "Total Revenue",
-    value: "$45,231.89",
-    trend: "+20.1%",
+    title: "Monthly Recurring Revenue",
+    value: "$124,500",
+    trend: "+12.5%",
     isPositive: true,
     icon: DollarSign,
+    insight: "Growth driven by Enterprise plan upgrades",
   },
   {
-    title: "Active Users",
-    value: "+2350",
-    trend: "+180.1%",
+    title: "Active AI Agents",
+    value: "1,284",
+    trend: "+18.2%",
     isPositive: true,
     icon: Users,
+    insight: "12% increase in multi-agent deployments",
   },
   {
-    title: "Sales",
-    value: "+12,234",
-    trend: "+19%",
-    isPositive: true,
-    icon: CreditCard,
-  },
-  {
-    title: "Active Now",
-    value: "+573",
-    trend: "-201",
+    title: "API Tokens Consumed",
+    value: "84.2M",
+    trend: "-4.1%",
     isPositive: false,
+    icon: CreditCard,
+    insight: "Optimization reduce waste by 1.2M tokens",
+  },
+  {
+    title: "System Performance",
+    value: "99.98%",
+    trend: "+0.02%",
+    isPositive: true,
     icon: Activity,
+    insight: "All nodes operational across 4 regions",
   },
 ]
 
