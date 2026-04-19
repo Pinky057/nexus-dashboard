@@ -17,7 +17,7 @@ export default function DashboardLayout({
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         <Header onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 overflow-y-auto px-4 pb-8 scrollbar-hide relative">
+        <main className="flex-1 overflow-y-auto px-8 pb-10 scrollbar-hide relative">
           {children}
           <AiAssistant />
         </main>

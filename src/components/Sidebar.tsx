@@ -93,7 +93,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname()
 
   const toggleMenu = (name: string) => {
-    if (isCollapsed) setIsCollapsed(false) // Expand sidebar if a menu is clicked
+    if (isCollapsed) setIsCollapsed(false) 
     setExpandedMenus(prev => 
       prev.includes(name) ? prev.filter(m => m !== name) : [...prev, name]
     )
@@ -101,7 +101,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed)
-    setExpandedMenus([]) // Close all submenus when collapsing
+    setExpandedMenus([])
   }
 
   return (
@@ -123,35 +123,35 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <motion.aside
         initial={false}
         animate={{ 
-          width: isCollapsed ? 80 : 260,
+          width: isCollapsed ? 96 : 280,
           x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
         }}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex flex-col p-4 transition-all duration-300 ease-in-out lg:static lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 flex flex-col p-5 transition-all duration-300 ease-in-out lg:static lg:translate-x-0",
           !isOpen && "max-lg:-translate-x-full"
         )}
       >
         {/* The Floating Panel */}
-        <div className="flex h-full flex-col rounded-[2rem] border border-zinc-800 bg-zinc-900/40 backdrop-blur-xl shadow-2xl overflow-hidden relative group">
+        <div className="flex h-full flex-col rounded-[2.5rem] border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative group">
           
-          {/* Collapse Toggle Button (Desktop only) */}
+          {/* Collapse Toggle Button (Improved) */}
           <button 
             onClick={toggleCollapse}
-            className="absolute -right-3 top-24 hidden lg:flex h-6 w-6 items-center justify-center rounded-full bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-lg"
+            className="absolute -right-3 top-32 hidden lg:flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 border border-zinc-700 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all z-20"
           >
-            {isCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
+            {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
           </button>
 
           {/* Header/Logo */}
-          <div className="flex items-center gap-3 px-6 py-10">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+          <div className="flex items-center gap-4 px-7 py-12">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 shadow-[0_0_25px_rgba(79,70,229,0.5)]">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             {!isCollapsed && (
               <motion.span 
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="text-xl font-black text-white tracking-tighter"
+                className="text-2xl font-black text-white tracking-tighter"
               >
                 Synthex
               </motion.span>
