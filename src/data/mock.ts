@@ -153,3 +153,46 @@ export const STATS = [
     icon: Activity,
   },
 ]
+
+export const USERS_TABLE_DATA = [
+  { id: "#USR-001", name: "Ummey Habiba Pinky", email: "pinky@synthex.io", role: "Admin", status: "Active", joined: "Jan 12, 2025", revenue: "$4,500" },
+  { id: "#USR-002", name: "John Doe", email: "john@acme.com", role: "Developer", status: "Active", joined: "Feb 3, 2025", revenue: "$2,100" },
+  { id: "#USR-003", name: "Sarah Smith", email: "sarah@design.co", role: "Designer", status: "Pending", joined: "Mar 18, 2025", revenue: "$1,850" },
+  { id: "#USR-004", name: "Alex Johnson", email: "alex@startup.io", role: "Manager", status: "Active", joined: "Apr 1, 2025", revenue: "$3,200" },
+  { id: "#USR-005", name: "Emma Williams", email: "emma@gmail.com", role: "Developer", status: "Inactive", joined: "Apr 10, 2025", revenue: "$980" },
+  { id: "#USR-006", name: "Carlos Rivera", email: "carlos@corp.com", role: "Manager", status: "Active", joined: "May 5, 2025", revenue: "$5,100" },
+  { id: "#USR-007", name: "Aisha Patel", email: "aisha@venture.io", role: "Designer", status: "Pending", joined: "Jun 22, 2025", revenue: "$760" },
+]
+
+export const SIMPLE_REPORTS_DATA = [
+  { month: "January", revenue: "$12,000", orders: 142, growth: "+12%", positive: true },
+  { month: "February", revenue: "$18,500", orders: 198, growth: "+54%", positive: true },
+  { month: "March", revenue: "$15,200", orders: 165, growth: "-18%", positive: false },
+  { month: "April", revenue: "$22,800", orders: 241, growth: "+50%", positive: true },
+]
+
+export const MONTHLY_DATA = [
+  { name: "Jan", revenue: 4000, users: 240 },
+  { name: "Feb", revenue: 3000, users: 139 },
+  { name: "Mar", revenue: 5000, users: 380 },
+  { name: "Apr", revenue: 4780, users: 390 },
+  { name: "May", revenue: 5890, users: 480 },
+  { name: "Jun", revenue: 4390, users: 380 },
+  { name: "Jul", revenue: 6490, users: 430 },
+  { name: "Aug", revenue: 7000, users: 510 },
+]
+
+export const PIE_DATA = [
+  { name: "Direct", value: 400 },
+  { name: "Social", value: 300 },
+  { name: "Referral", value: 200 },
+  { name: "Organic", value: 100 },
+]
+
+export const RADAR_DATA = [
+  { subject: "Marketing", A: 120, B: 110 },
+  { subject: "Sales", A: 98, B: 130 },
+  { subject: "Dev", A: 86, B: 130 },
+  { subject: "Support", A: 99, B: 100 },
+  { subject: "Design", A: 85, B: 90 },
+]
