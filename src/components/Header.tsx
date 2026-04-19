@@ -1,11 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, Menu, Command, Sparkles } from "lucide-react"
-import { ThemeToggle } from "@/components/ThemeToggle"
-import { NotificationBell } from "@/components/NotificationBell"
-import { ProModal } from "@/components/ui/ProModal"
-import { cn } from "@/lib/utils"
+import { Search, Menu, Sparkles } from "lucide-react"
+import { ThemeToggle } from "./ThemeToggle"
+import { NotificationBell } from "./NotificationBell"
+import { ProModal } from "./ui/ProModal"
 
 interface HeaderProps {
   onMenuClick: () => void
@@ -21,32 +20,20 @@ export function Header({ onMenuClick }: HeaderProps) {
   }, [])
 
   const handleSearchClick = () => {
-    window.dispatchEvent(new CustomEvent("toggle-command-palette"))
+    window.dispatchEvent(new CustomEvent('toggle-command-palette'))
   }
 
   return (
-    <header className="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-800 bg-zinc-950 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 sticky top-0 z-40">
-      <ProModal 
-        isOpen={isProModalOpen} 
-        onClose={() => setIsProModalOpen(false)} 
-        featureName="AI Command Center Pro"
-      />
-
-      {/* Hamburger — only visible on mobile */}
-      <button
-        type="button"
-        onClick={onMenuClick}
-        className="lg:hidden -m-2.5 p-2.5 text-zinc-400 hover:text-zinc-100 transition-colors"
-        aria-label="Open sidebar"
-      >
-        <Menu className="h-6 w-6" />
-      </button>
-
-      {/* Divider */}
-      <div className="lg:hidden h-6 w-px bg-zinc-800" aria-hidden="true" />
-
-      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-        <div className="relative flex flex-1 items-center">
+    <header className="sticky top-0 z-30 flex h-20 w-full shrink-0 items-center border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl transition-all mb-6">
+      <div className="flex w-full items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-1 items-center gap-4">
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden -ml-1 p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+          
           <div 
             className="group relative flex h-9 w-full max-w-md items-center gap-2 rounded-lg bg-zinc-900 px-3 ring-1 ring-zinc-800 transition-all hover:ring-indigo-500/50 cursor-pointer"
             onClick={handleSearchClick}
@@ -60,7 +47,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-x-2 lg:gap-x-3">
+        <div className="flex items-center gap-x-2 lg:gap-x-4">
           <div 
             className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 mr-2 cursor-pointer hover:bg-indigo-500/20 transition-all"
             onClick={() => setIsProModalOpen(true)}
@@ -83,13 +70,12 @@ export function Header({ onMenuClick }: HeaderProps) {
               />
             </div>
             <span className="hidden lg:flex lg:items-center">
-              <span className="text-sm font-semibold leading-6 text-zinc-100 group-hover:text-indigo-300 transition-colors" aria-hidden="true">
-                Admin User
-              </span>
+              <span className="text-xs font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors">Pinky UI</span>
             </span>
           </div>
         </div>
       </div>
+      <ProModal isOpen={isProModalOpen} onClose={() => setIsProModalOpen(false)} />
     </header>
   )
 }
