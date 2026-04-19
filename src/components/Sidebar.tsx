@@ -22,27 +22,61 @@ import {
   ChevronLeft,
   ChevronRight,
   LogOut,
-  Sparkles
+  Sparkles,
+  ChevronDown
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
+// Updated Navigation with Sub-items for "UI KIT" and "AUTH" as requested
 const navigationGroups = [
   {
-    title: "Apps",
+    title: "Main",
     items: [
       { name: "Dashboard", href: "/", icon: LayoutDashboard },
       { name: "Analytics", href: "/analytics", icon: BarChart3 },
       { name: "Kanban", href: "/kanban", icon: Table2 },
-      { name: "Users", href: "/users", icon: Users },
-      { name: "Products", href: "/products", icon: Box },
     ]
   },
   {
-    title: "System",
+    title: "Management",
     items: [
-      { name: "Payments", href: "/transactions", icon: CreditCard },
-      { name: "UI Kit", href: "/components/buttons", icon: MousePointerClick },
+      { 
+        name: "Products", 
+        icon: Box,
+        subItems: [
+          { name: "All Products", href: "/products" },
+          { name: "Categories", href: "#" },
+          { name: "Inventory", href: "#" },
+        ]
+      },
+      { name: "Users", href: "/users", icon: Users },
+      { name: "Transactions", href: "/transactions", icon: CreditCard },
+    ]
+  },
+  {
+    title: "Resources",
+    items: [
+      { 
+        name: "UI Kit", 
+        icon: MousePointerClick,
+        subItems: [
+          { name: "Buttons", href: "/components/buttons" },
+          { name: "Forms", href: "/components/forms" },
+          { name: "Badges", href: "/components/badges" },
+          { name: "Tables", href: "/components/tables" },
+          { name: "Charts", href: "/components/charts" },
+        ]
+      },
+      { 
+        name: "Auth", 
+        icon: KeyRound,
+        subItems: [
+          { name: "Login", href: "/login" },
+          { name: "Register", href: "/register" },
+          { name: "Recovery", href: "/forgot-password" },
+        ]
+      },
       { name: "Settings", href: "/settings", icon: Settings },
     ]
   }
@@ -55,11 +89,20 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const [expandedMenus, setExpandedMenus] = React.useState<string[]>([])
   const pathname = usePathname()
 
-  const sidebarWidth = isCollapsed ? "w-20" : "w-64"
+  const toggleMenu = (name: string) => {
+    if (isCollapsed) setIsCollapsed(false) // Expand sidebar if a menu is clicked
+    setExpandedMenus(prev => 
+      prev.includes(name) ? prev.filter(m => m !== name) : [...prev, name]
+    )
+  }
 
-  const toggleCollapse = () => setIsCollapsed(!isCollapsed)
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed)
+    setExpandedMenus([]) // Close all submenus when collapsing
+  }
 
   return (
     <>
@@ -80,7 +123,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <motion.aside
         initial={false}
         animate={{ 
-          width: isCollapsed ? 80 : 256,
+          width: isCollapsed ? 80 : 260,
           x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
         }}
         className={cn(
@@ -89,18 +132,18 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         )}
       >
         {/* The Floating Panel */}
-        <div className="flex h-full flex-col rounded-3xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-xl shadow-2xl overflow-hidden relative group">
+        <div className="flex h-full flex-col rounded-[2rem] border border-zinc-800 bg-zinc-900/40 backdrop-blur-xl shadow-2xl overflow-hidden relative group">
           
           {/* Collapse Toggle Button (Desktop only) */}
           <button 
             onClick={toggleCollapse}
-            className="absolute -right-3 top-20 hidden lg:flex h-6 w-6 items-center justify-center rounded-full bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-lg"
+            className="absolute -right-3 top-24 hidden lg:flex h-6 w-6 items-center justify-center rounded-full bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-lg"
           >
             {isCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
           </button>
 
           {/* Header/Logo */}
-          <div className="flex items-center gap-3 px-6 py-8">
+          <div className="flex items-center gap-3 px-6 py-10">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.4)]">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
@@ -113,55 +156,86 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 Synthex
               </motion.span>
             )}
-            {/* Mobile Close Button */}
             <button onClick={onClose} className="ml-auto lg:hidden text-zinc-500 hover:text-white">
               <X className="h-5 w-5" />
             </button>
           </div>
 
           {/* Navigation */}
-          <div className="flex-1 overflow-y-auto px-3 py-2 space-y-8 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto px-3 py-2 space-y-6 scrollbar-hide">
             {navigationGroups.map((group) => (
               <div key={group.title} className="space-y-2">
                 {!isCollapsed && (
-                  <p className="px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500/80">
+                  <p className="px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500/60">
                     {group.title}
                   </p>
                 )}
                 <div className="space-y-1">
                   {group.items.map((item) => {
-                    const isActive = pathname === item.href
+                    const hasSubItems = item.subItems && item.subItems.length > 0
+                    const isExpanded = expandedMenus.includes(item.name)
+                    const isActive = pathname === item.href || (item.subItems?.some(s => s.href === pathname))
+                    
                     return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={onClose}
-                        className={cn(
-                          "group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-200 relative",
-                          isActive 
-                            ? "bg-indigo-600 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)]" 
-                            : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-100"
-                        )}
-                      >
-                        <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-500 group-hover:text-zinc-300")} />
-                        {!isCollapsed && (
-                          <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="whitespace-nowrap"
+                      <div key={item.name} className="space-y-1">
+                        {hasSubItems ? (
+                          <button
+                            onClick={() => toggleMenu(item.name)}
+                            className={cn(
+                              "w-full group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-200",
+                              isActive && !isExpanded ? "bg-indigo-600/10 text-indigo-400" : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-100"
+                            )}
                           >
-                            {item.name}
-                          </motion.span>
+                            <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-indigo-400" : "text-zinc-500 group-hover:text-zinc-300")} />
+                            {!isCollapsed && (
+                              <>
+                                <span className="flex-1 text-left">{item.name}</span>
+                                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-200", isExpanded && "rotate-180")} />
+                              </>
+                            )}
+                          </button>
+                        ) : (
+                          <Link
+                            href={item.href || "#"}
+                            onClick={onClose}
+                            className={cn(
+                              "group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-200",
+                              isActive 
+                                ? "bg-indigo-600 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)]" 
+                                : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-100"
+                            )}
+                          >
+                            <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-500 group-hover:text-zinc-300")} />
+                            {!isCollapsed && <span>{item.name}</span>}
+                          </Link>
                         )}
-                        {/* Hover Tooltip for Collapsed State */}
-                        {isCollapsed && (
-                          <div className="absolute left-full ml-4 hidden group-hover:block z-50">
-                            <div className="bg-zinc-800 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg border border-zinc-700 whitespace-nowrap shadow-xl">
-                              {item.name}
-                            </div>
-                          </div>
-                        )}
-                      </Link>
+
+                        {/* Collapsible Sub-items */}
+                        <AnimatePresence>
+                          {hasSubItems && isExpanded && !isCollapsed && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden pl-11 pr-2 space-y-1"
+                            >
+                              {item.subItems.map((sub) => (
+                                <Link
+                                  key={sub.name}
+                                  href={sub.href}
+                                  onClick={onClose}
+                                  className={cn(
+                                    "block py-2 text-xs font-medium transition-colors",
+                                    pathname === sub.href ? "text-indigo-400" : "text-zinc-500 hover:text-zinc-200"
+                                  )}
+                                >
+                                  {sub.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     )
                   })}
                 </div>
@@ -172,7 +246,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* User Profile Card */}
           <div className="mt-auto p-4">
             <div className={cn(
-              "flex items-center gap-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/50 p-2 transition-all",
+              "flex items-center gap-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/50 p-2",
               isCollapsed ? "justify-center px-0" : "px-3"
             )}>
               <img 
