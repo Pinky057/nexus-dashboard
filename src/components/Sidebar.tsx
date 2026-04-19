@@ -162,8 +162,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               )}
             </div>
 
-            {/* Navigation */}
-            <div className="flex-1 overflow-y-auto px-3 space-y-8 scrollbar-hide">
+            {/* Navigation (Fixed overflow for flyouts) */}
+            <div className={cn(
+              "flex-1 px-3 space-y-8 scrollbar-hide",
+              isCollapsed ? "overflow-visible" : "overflow-y-auto"
+            )}>
               {navigationGroups.map((group) => (
                 <div key={group.title} className="space-y-4">
                   {!isCollapsed && (
