@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Sparkles, ArrowRight, Github, Chrome } from "lucide-react"
+import { Sparkles, ArrowRight, Code, Globe } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 
 export default function LoginPage() {
@@ -85,11 +85,11 @@ export default function LoginPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <button className="flex items-center justify-center gap-2 h-11 rounded-xl border border-zinc-800 bg-zinc-950/50 text-zinc-300 hover:bg-zinc-800 transition-colors">
-                <Github className="h-4 w-4" />
+                <Code className="h-4 w-4" />
                 <span className="text-xs font-medium">Github</span>
               </button>
               <button className="flex items-center justify-center gap-2 h-11 rounded-xl border border-zinc-800 bg-zinc-950/50 text-zinc-300 hover:bg-zinc-800 transition-colors">
-                <Chrome className="h-4 w-4" />
+                <Globe className="h-4 w-4" />
                 <span className="text-xs font-medium">Google</span>
               </button>
             </div>
