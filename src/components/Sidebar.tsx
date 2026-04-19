@@ -185,13 +185,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 onClick={() => toggleMenu(item.name)}
                                 className={cn(
                                   "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300",
-                                  isCollapsed ? "justify-center" : "px-4",
+                                  isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                   isActive && !isExpanded 
-                                    ? "bg-indigo-600/10 text-indigo-400" 
-                                    : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100"
+                                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
+                                    : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
                                 )}
                               >
-                                <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-indigo-400" : "text-zinc-500 group-hover/item:text-indigo-400")} />
+                                <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive && !isExpanded ? "text-white" : "text-zinc-500 group-hover/item:text-indigo-400")} />
                                 {!isCollapsed && (
                                   <>
                                     <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
@@ -202,7 +202,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
                               {/* Flyout (Pixel-Perfect Doclines style) */}
                               {isCollapsed && (
-                                <div className="absolute left-[calc(100%+1.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
+                                <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
                                   <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-3xl p-3 w-52 shadow-[0_30px_70px_rgba(0,0,0,0.7)]">
                                     <div className="px-4 py-2.5 text-[10px] font-black tracking-widest text-zinc-500 uppercase border-b border-zinc-800/30 mb-3">
                                       {item.name}
@@ -235,9 +235,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                               href={item.href || "#"}
                               className={cn(
                                 "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 relative",
-                                isCollapsed ? "justify-center" : "px-4",
+                                isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                 isActive 
-                                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20" 
+                                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
                                   : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
                               )}
                             >
@@ -246,8 +246,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                               
                               {/* Tooltip */}
                               {isCollapsed && (
-                                <div className="absolute left-[calc(100%+1.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-2xl whitespace-nowrap shadow-2xl">
+                                <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
+                                  <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
                                     {item.name}
                                   </div>
                                 </div>
