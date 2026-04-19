@@ -19,6 +19,10 @@ export function Header({ onMenuClick }: HeaderProps) {
     setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
   }, [])
 
+  const handleSearchClick = () => {
+    window.dispatchEvent(new CustomEvent("toggle-command-palette"))
+  }
+
   return (
     <header className="flex h-16 shrink-0 items-center gap-x-4 border-b border-zinc-800 bg-zinc-950 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 sticky top-0 z-40">
       <ProModal 
@@ -44,10 +48,10 @@ export function Header({ onMenuClick }: HeaderProps) {
         <div className="relative flex flex-1 items-center">
           <div 
             className="group relative flex h-9 w-full max-w-md items-center gap-2 rounded-lg bg-zinc-900 px-3 ring-1 ring-zinc-800 transition-all hover:ring-indigo-500/50 cursor-pointer"
-            onClick={() => setIsProModalOpen(true)}
+            onClick={handleSearchClick}
           >
             <Search className="h-4 w-4 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
-            <div className="flex-1 text-sm text-zinc-500">Ask AI or search...</div>
+            <div className="flex-1 text-sm text-zinc-500">Type <span className="font-mono text-[10px] bg-zinc-800 px-1 rounded">{isMac ? '⌘' : 'Ctrl'}K</span> to search...</div>
             <div className="hidden sm:flex items-center gap-1 rounded bg-zinc-950 px-1.5 py-0.5 text-[10px] font-bold text-zinc-500 border border-zinc-800 group-hover:border-indigo-500/30 transition-colors">
               <span className="text-[12px]">{isMac ? '⌘' : 'Ctrl'}</span>
               <span>K</span>

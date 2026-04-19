@@ -1,25 +1,20 @@
-import { ProGate } from "@/components/ProGate"
-import { Users } from "lucide-react"
+import { UserManagement } from "@/components/UserManagement"
+import { Users, UserPlus } from "lucide-react"
 
 export default function UsersPage() {
   return (
     <div className="space-y-6 pb-8">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Users</h1>
-        <p className="text-sm text-zinc-400 mt-1">Manage your team, roles, and permissions.</p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <Users className="h-5 w-5 text-indigo-400" />
+            <h1 className="text-2xl font-bold tracking-tight text-zinc-100">User Management</h1>
+          </div>
+          <p className="text-sm text-zinc-400">Manage platform members, assign roles, and audit access.</p>
+        </div>
       </div>
-      <ProGate
-        title="User Management Module"
-        description="Full CRUD user management with role-based access control, bulk actions, and audit logs."
-        icon={<Users className="h-7 w-7" />}
-        features={[
-          "Add, edit & delete users",
-          "Role-based access control (RBAC)",
-          "Bulk invite via CSV",
-          "Activity & audit log per user",
-          "Account suspension & 2FA management",
-        ]}
-      />
+
+      <UserManagement />
     </div>
   )
 }

@@ -1,25 +1,20 @@
-import { ProGate } from "@/components/ProGate"
+import { ProductManagement } from "@/components/ProductManagement"
 import { Box } from "lucide-react"
 
 export default function ProductsPage() {
   return (
     <div className="space-y-6 pb-8">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Products</h1>
-        <p className="text-sm text-zinc-400 mt-1">Manage your product catalogue and inventory.</p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <Box className="h-5 w-5 text-indigo-400" />
+            <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Product Catalogue</h1>
+          </div>
+          <p className="text-sm text-zinc-400">Inventory control, pricing management, and digital asset tracking.</p>
+        </div>
       </div>
-      <ProGate
-        title="E-Commerce Product Module"
-        description="Manage your full product catalogue with categories, inventory tracking, and image uploads."
-        icon={<Box className="h-7 w-7" />}
-        features={[
-          "Product grid & list views",
-          "Add / edit product form",
-          "Category & tag management",
-          "Stock & inventory tracking",
-          "Bulk product import via CSV",
-        ]}
-      />
+
+      <ProductManagement />
     </div>
   )
 }
