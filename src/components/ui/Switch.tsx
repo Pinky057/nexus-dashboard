@@ -2,11 +2,12 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 export interface SwitchProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  checked?: boolean
   onCheckedChange?: (checked: boolean) => void
 }
 
-const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
   ({ className, checked, onCheckedChange, ...props }, ref) => {
     return (
       <button
@@ -19,6 +20,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           checked ? "bg-indigo-600" : "bg-zinc-800",
           className
         )}
+        ref={ref}
         {...props}
       >
         <span
