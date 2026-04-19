@@ -254,26 +254,40 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                             </Link>
                           )}
 
+                          {/* Expanded sub-items (INLINE MODE with Connection Line) */}
                           <AnimatePresence>
                             {hasSubItems && isExpanded && !isCollapsed && (
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className="overflow-hidden pl-12 pr-2 space-y-2 mt-1"
+                                className="overflow-hidden relative ml-7 pl-6 space-y-1 mt-1"
                               >
-                                {item.subItems.map((sub) => (
-                                  <Link
-                                    key={sub.name}
-                                    href={sub.href}
-                                    className={cn(
-                                      "block py-2 text-[13px] font-bold transition-all",
-                                      pathname === sub.href ? "text-indigo-400" : "text-zinc-500 hover:text-zinc-200"
-                                    )}
-                                  >
-                                    {sub.name}
-                                  </Link>
-                                ))}
+                                {/* Vertical Connection Line */}
+                                <div className="absolute left-0 top-0 bottom-2 w-px bg-zinc-800/60" />
+                                
+                                {item.subItems.map((sub) => {
+                                  const isSubActive = pathname === sub.href
+                                  return (
+                                    <Link
+                                      key={sub.name}
+                                      href={sub.href}
+                                      className={cn(
+                                        "block py-2.5 px-4 rounded-xl text-[13px] font-bold transition-all relative group/sub",
+                                        isSubActive 
+                                          ? "bg-indigo-600/10 text-indigo-400" 
+                                          : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/30"
+                                      )}
+                                    >
+                                      {/* Horizontal Indicator Line for Sub-items */}
+                                      <div className={cn(
+                                        "absolute -left-6 top-1/2 -translate-y-1/2 h-px w-3 transition-colors",
+                                        isSubActive ? "bg-indigo-500" : "bg-zinc-800/60 group-hover/sub:bg-zinc-700"
+                                      )} />
+                                      {sub.name}
+                                    </Link>
+                                  )
+                                })}
                               </motion.div>
                             )}
                           </AnimatePresence>
