@@ -44,6 +44,7 @@ export default function TablesPage() {
       status: "Active",
       joined: "Apr 20, 2025",
       revenue: "$0",
+      avatar: `https://ui-avatars.com/api/?name=New+User&background=6366f1&color=fff`,
     }
     setUsers([newUser, ...users])
   }
