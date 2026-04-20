@@ -21,21 +21,19 @@
   --color-zinc-950: #09090b;
 }
 
-/* ─── Light Mode Overrides (if needed) ─── */
-.light {
-  /* No more scale inversion! We use dark: classes for that. */
-}
+/* ─── Tailwind 4 Dark Mode Selector ─── */
+@variant dark (&:where(.dark, .dark *));
 
 body {
-  background-color: white;
-  color: #18181b;
+  background-color: var(--color-zinc-50);
+  color: var(--color-zinc-900);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark body {
-  background-color: #09090b;
-  color: #f4f4f5;
+  background-color: var(--color-zinc-950);
+  color: var(--color-zinc-100);
 }
 
 /* ─── Hide scrollbars globally ─── */
