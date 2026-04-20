@@ -26,7 +26,7 @@ import {
   ChevronDown
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
 
 const navigationGroups = [
   {
@@ -101,6 +101,15 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     setExpandedMenu(null)
   }
 
+  // Ultra-Smooth Spring Config
+  const sidebarTransition = {
+    type: "spring",
+    stiffness: 220,
+    damping: 32,
+    mass: 0.8,
+    restDelta: 0.001
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -121,15 +130,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           width: isCollapsed ? 90 : 280,
           x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
         }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 200, 
-          damping: 30,
-          mass: 1,
-          restDelta: 0.001
-        }}
+        transition={sidebarTransition}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex flex-col p-4 lg:static lg:translate-x-0 h-full scrollbar-hide",
+          "fixed inset-y-0 left-0 z-50 flex flex-col p-4 lg:static lg:translate-x-0 h-full scrollbar-hide will-change-[width]",
           !isOpen && "max-lg:-translate-x-full"
         )}
       >
@@ -139,7 +142,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <button 
             onClick={toggleCollapse}
             className={cn(
-              "absolute top-28 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 transition-all z-[70] shadow-2xl",
+              "absolute top-28 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-indigo-400 hover:border-indigo-500/50 z-[70] shadow-2xl",
               isCollapsed ? "-right-4" : "right-4"
             )}
           >
@@ -150,10 +153,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="flex h-full flex-col rounded-[2.5rem] border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-visible scrollbar-hide">
             
             {/* Logo Section */}
-            <div className={cn(
-              "flex items-center transition-all",
-              isCollapsed ? "justify-center py-8" : "px-8 py-10 gap-3"
-            )}>
+            <motion.div 
+              layout
+              className={cn(
+                "flex items-center",
+                isCollapsed ? "justify-center py-8" : "px-8 py-10 gap-3"
+              )}
+            >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.3)]">
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
@@ -166,175 +172,183 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   Synthex
                 </motion.span>
               )}
-            </div>
+            </motion.div>
 
             {/* Navigation */}
-            <div className={cn(
-              "flex-1 px-3 space-y-8 scrollbar-hide",
-              isCollapsed ? "overflow-visible" : "overflow-y-auto"
-            )}>
-              {navigationGroups.map((group) => (
-                <div key={group.title} className="space-y-4">
-                  {!isCollapsed && (
-                    <p className="px-5 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500/20">
-                      {group.title}
-                    </p>
-                  )}
-                  <div className="space-y-2">
-                    {group.items.map((item) => {
-                      const hasSubItems = item.subItems && item.subItems.length > 0
-                      const isExpanded = expandedMenu === item.name
-                      const isActive = pathname === item.href || (item.subItems?.some(s => s.href === pathname))
-                      
-                      return (
-                        <div key={item.name} className="relative group/item px-1">
-                          {hasSubItems ? (
-                            <div className="relative">
-                              <button
-                                onClick={() => toggleMenu(item.name)}
+            <LayoutGroup>
+              <div className={cn(
+                "flex-1 px-3 space-y-8 scrollbar-hide",
+                isCollapsed ? "overflow-visible" : "overflow-y-auto"
+              )}>
+                {navigationGroups.map((group) => (
+                  <motion.div layout key={group.title} className="space-y-4">
+                    {!isCollapsed && (
+                      <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="px-5 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500/20"
+                      >
+                        {group.title}
+                      </motion.p>
+                    )}
+                    <div className="space-y-2">
+                      {group.items.map((item) => {
+                        const hasSubItems = item.subItems && item.subItems.length > 0
+                        const isExpanded = expandedMenu === item.name
+                        const isActive = pathname === item.href || (item.subItems?.some(s => s.href === pathname))
+                        
+                        return (
+                          <motion.div layout key={item.name} className="relative group/item px-1">
+                            {hasSubItems ? (
+                              <div className="relative">
+                                <button
+                                  onClick={() => toggleMenu(item.name)}
+                                  className={cn(
+                                    "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-colors duration-200",
+                                    isCollapsed ? "justify-center px-0 h-14" : "px-4",
+                                    isActive 
+                                      ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
+                                      : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100"
+                                  )}
+                                >
+                                  <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-500 group-hover/item:text-indigo-400")} />
+                                  {!isCollapsed && (
+                                    <>
+                                      <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
+                                      <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isExpanded && "rotate-180")} />
+                                    </>
+                                  )}
+                                </button>
+
+                                {/* Flyout */}
+                                {isCollapsed && (
+                                  <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
+                                    <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-[0_30px_70px_rgba(0,0,0,0.8)]">
+                                      <div className={cn(
+                                        "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2",
+                                        isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-800/50 text-zinc-100"
+                                      )}>
+                                        <item.icon className="h-5 w-5 shrink-0" />
+                                        <span className="text-sm font-bold">{item.name}</span>
+                                      </div>
+                                      <div className="space-y-1">
+                                        {item.subItems.map((sub) => {
+                                          const isSubActive = pathname === sub.href
+                                          return (
+                                            <Link
+                                              key={sub.name}
+                                              href={sub.href}
+                                              className={cn(
+                                                "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-colors duration-200",
+                                                isSubActive 
+                                                  ? "text-indigo-400 bg-indigo-400/5" 
+                                                  : "text-zinc-500 hover:bg-zinc-800/60 hover:text-white"
+                                              )}
+                                            >
+                                              {sub.name}
+                                            </Link>
+                                          )
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            ) : (
+                              <Link
+                                href={item.href || "#"}
                                 className={cn(
-                                  "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300",
+                                  "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-colors duration-200 relative",
                                   isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                   isActive 
                                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                    : "text-zinc-400 hover:bg-zinc-800/40 hover:text-zinc-100"
+                                    : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
                                 )}
                               >
-                                <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-white" : "text-zinc-500 group-hover/item:text-indigo-400")} />
-                                {!isCollapsed && (
-                                  <>
-                                    <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
-                                    <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isExpanded && "rotate-180")} />
-                                  </>
+                                <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-500 group-hover/link:text-indigo-400")} />
+                                {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
+                                
+                                {isCollapsed && (
+                                  <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
+                                    <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
+                                      {item.name}
+                                    </div>
+                                  </div>
                                 )}
-                              </button>
-
-                              {/* Flyout (Doclines Pixel-Perfect Style) */}
-                              {isCollapsed && (
-                                <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800/50 backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-[0_30px_70px_rgba(0,0,0,0.8)]">
-                                    {/* Flyout Header */}
-                                    <div className={cn(
-                                      "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2",
-                                      isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-800/50 text-zinc-100"
-                                    )}>
-                                      <item.icon className="h-5 w-5 shrink-0" />
-                                      <span className="text-sm font-bold">{item.name}</span>
-                                    </div>
-
-                                    {/* Sub Items (Removed Dots) */}
-                                    <div className="space-y-1">
-                                      {item.subItems.map((sub) => {
-                                        const isSubActive = pathname === sub.href
-                                        return (
-                                          <Link
-                                            key={sub.name}
-                                            href={sub.href}
-                                            className={cn(
-                                              "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
-                                              isSubActive 
-                                                ? "text-indigo-400 bg-indigo-400/5" 
-                                                : "text-zinc-500 hover:bg-zinc-800/60 hover:text-white"
-                                            )}
-                                          >
-                                            {sub.name}
-                                          </Link>
-                                        )
-                                      })}
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            <Link
-                              href={item.href || "#"}
-                              className={cn(
-                                "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 relative",
-                                isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                isActive 
-                                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                  : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40"
-                              )}
-                            >
-                              <item.icon className={cn("h-5 w-5 shrink-0 transition-all", isActive ? "text-white" : "text-zinc-500 group-hover/link:text-indigo-400")} />
-                              {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
-                              
-                              {/* Tooltip */}
-                              {isCollapsed && (
-                                <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                  <div className="bg-zinc-900 border border-zinc-800/50 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
-                                    {item.name}
-                                  </div>
-                                </div>
-                              )}
-                            </Link>
-                          )}
-
-                          {/* Expanded inline sub-items (Strictly hidden when collapsed) */}
-                          <AnimatePresence>
-                            {hasSubItems && isExpanded && !isCollapsed && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                className="overflow-hidden relative ml-7 pl-6 space-y-1 mt-1"
-                              >
-                                <div className="absolute left-0 top-0 bottom-2 w-px bg-zinc-800/60" />
-                                {item.subItems.map((sub) => {
-                                  const isSubActive = pathname === sub.href
-                                  return (
-                                    <Link
-                                      key={sub.name}
-                                      href={sub.href}
-                                      className={cn(
-                                        "block py-2.5 px-4 rounded-xl text-[13px] font-bold transition-all relative group/sub",
-                                        isSubActive 
-                                          ? "bg-indigo-600/10 text-indigo-400" 
-                                          : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/30"
-                                      )}
-                                    >
-                                      <div className={cn(
-                                        "absolute -left-6 top-1/2 -translate-y-1/2 h-px w-3 transition-colors",
-                                        isSubActive ? "bg-indigo-500" : "bg-zinc-800/60 group-hover/sub:bg-zinc-700"
-                                      )} />
-                                      {sub.name}
-                                    </Link>
-                                  )
-                                })}
-                              </motion.div>
+                              </Link>
                             )}
-                          </AnimatePresence>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
+
+                            <AnimatePresence>
+                              {hasSubItems && isExpanded && !isCollapsed && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  className="overflow-hidden relative ml-7 pl-6 space-y-1 mt-1"
+                                >
+                                  <div className="absolute left-0 top-0 bottom-2 w-px bg-zinc-800/60" />
+                                  {item.subItems.map((sub) => {
+                                    const isSubActive = pathname === sub.href
+                                    return (
+                                      <Link
+                                        key={sub.name}
+                                        href={sub.href}
+                                        className={cn(
+                                          "block py-2.5 px-4 rounded-xl text-[13px] font-bold transition-colors duration-200 relative group/sub",
+                                          isSubActive 
+                                            ? "bg-indigo-600/10 text-indigo-400" 
+                                            : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/30"
+                                        )}
+                                      >
+                                        <div className={cn(
+                                          "absolute -left-6 top-1/2 -translate-y-1/2 h-px w-3 transition-colors",
+                                          isSubActive ? "bg-indigo-500" : "bg-zinc-800/60 group-hover/sub:bg-zinc-700"
+                                        )} />
+                                        {sub.name}
+                                      </Link>
+                                    )
+                                  })}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </motion.div>
+                        )
+                      })}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </LayoutGroup>
 
             {/* Profile Section */}
-            <div className={cn("mt-auto transition-all", isCollapsed ? "p-0 py-8" : "p-6")}>
+            <motion.div 
+              layout
+              className={cn("mt-auto", isCollapsed ? "p-0 py-8" : "p-6")}
+            >
               <div className={cn(
-                "flex items-center gap-3 transition-all",
+                "flex items-center gap-3",
                 isCollapsed ? "justify-center" : "px-2"
               )}>
                 <div className="relative group/avatar cursor-pointer">
                   <img 
                     src="https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky+UI&background=6366f1&color=fff" 
                     alt="Profile"
-                    className="h-10 w-10 rounded-full border-2 border-zinc-800/50 shrink-0 transition-transform group-hover/avatar:scale-110"
+                    className="h-10 w-10 rounded-full border-2 border-zinc-800/50 shrink-0 group-hover/avatar:scale-110 transition-transform"
                   />
                   <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 border-2 border-zinc-950" />
                 </div>
                 {!isCollapsed && (
-                  <div className="min-w-0 flex-1">
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="min-w-0 flex-1"
+                  >
                     <p className="text-[13px] font-black text-white truncate">Pinky UI</p>
                     <p className="text-[10px] font-bold text-zinc-600 truncate uppercase tracking-widest">Admin</p>
-                  </div>
+                  </motion.div>
                 )}
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
