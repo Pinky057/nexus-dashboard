@@ -108,7 +108,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     damping: 32,
     mass: 0.8,
     restDelta: 0.001
-  }
+  } as const
 
   return (
     <>
