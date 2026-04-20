@@ -6,7 +6,7 @@
   --color-indigo-600: #4f46e5;
 }
 
-/* ─── Dark Mode (default) — zinc color scale ─── */
+/* ─── Standard Zinc Scale ─── */
 :root {
   --color-zinc-50:  #fafafa;
   --color-zinc-100: #f4f4f5;
@@ -21,38 +21,21 @@
   --color-zinc-950: #09090b;
 }
 
-/* ─── Light Mode — invert the zinc scale so all components flip automatically ─── */
+/* ─── Light Mode Overrides (if needed) ─── */
 .light {
-  --color-zinc-50:  #09090b;
-  --color-zinc-100: #18181b;
-  --color-zinc-200: #27272a;
-  --color-zinc-300: #3f3f46;
-  --color-zinc-400: #71717a;
-  --color-zinc-500: #a1a1aa;
-  --color-zinc-600: #d4d4d8;
-  --color-zinc-700: #e4e4e7;
-  --color-zinc-800: #ececed;
-  --color-zinc-900: #f4f4f5;
-  --color-zinc-950: #ffffff;
+  /* No more scale inversion! We use dark: classes for that. */
 }
 
 body {
-  background-color: var(--color-zinc-950);
-  color: var(--color-zinc-100);
+  background-color: white;
+  color: #18181b;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* ─── Keep white text on colored backgrounds in light mode ─── */
-.light [class*="bg-indigo-"].text-zinc-100,
-.light [class*="bg-indigo-"] .text-zinc-100,
-.light [class*="bg-emerald-"].text-zinc-100,
-.light [class*="bg-rose-"].text-zinc-100,
-.light [class*="bg-amber-"].text-zinc-100,
-.light [class*="bg-blue-"].text-zinc-100,
-.light [class*="bg-teal-"].text-zinc-100,
-.light [class*="bg-purple-"].text-zinc-100 {
-  color: #ffffff !important;
+.dark body {
+  background-color: #09090b;
+  color: #f4f4f5;
 }
 
 /* ─── Hide scrollbars globally ─── */
