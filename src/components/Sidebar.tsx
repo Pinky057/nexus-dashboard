@@ -166,7 +166,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 <motion.span 
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight"
+                  className="text-lg font-black text-zinc-900 dark:text-white tracking-tight"
                 >
                   Synthex
                 </motion.span>
@@ -185,7 +185,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                       <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="px-5 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500/20"
+                        className="px-5 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-800/40 dark:text-zinc-500/30"
                       >
                         {group.title}
                       </motion.p>
@@ -207,13 +207,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                     isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                     isActive 
                                       ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                      : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-100"
+                                      : "text-zinc-800 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-100"
                                   )}
                                 >
-                                  <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-400 group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
+                                  <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-600 dark:text-zinc-400 group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
                                   {!isCollapsed && (
                                     <>
-                                      <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
+                                      <span className="flex-1 text-left text-sm font-bold">{item.name}</span>
                                       <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isExpanded && "rotate-180")} />
                                     </>
                                   )}
@@ -238,10 +238,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                               key={sub.name}
                                               href={sub.href}
                                               className={cn(
-                                                "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-colors duration-200",
+                                                "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all duration-200",
                                                 isSubActive 
                                                   ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-400/5" 
-                                                  : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 hover:text-zinc-900 dark:hover:text-white"
+                                                  : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 hover:text-zinc-900 dark:hover:text-white"
                                               )}
                                             >
                                               {sub.name}
@@ -261,10 +261,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                   isActive 
                                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-100"
+                                    : "text-zinc-800 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-100"
                                 )}
                               >
-                                <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-400 group-hover/link:text-indigo-600 dark:group-hover/link:text-indigo-400")} />
+                                <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-600 dark:text-zinc-400 group-hover/link:text-indigo-600 dark:group-hover/link:text-indigo-400")} />
                                 {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
                                 
                                 {isCollapsed && (
@@ -296,7 +296,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                           "block py-2.5 px-4 rounded-xl text-[13px] font-bold transition-colors duration-200 relative group/sub",
                                           isSubActive 
                                             ? "bg-indigo-50 dark:bg-indigo-600/10 text-indigo-600 dark:text-indigo-400" 
-                                            : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/30"
+                                            : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/30"
                                         )}
                                       >
                                         <div className={cn(
