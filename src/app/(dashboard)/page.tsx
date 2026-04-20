@@ -33,9 +33,9 @@ export default function Home() {
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-indigo-400" />
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">AI Command Center</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">AI Command Center</h1>
         </div>
-        <p className="text-sm text-zinc-400">Intelligent overview of your SaaS performance and system health.</p>
+        <p className="text-sm text-muted">Intelligent overview of your SaaS performance and system health.</p>
       </div>
       
       <AnimatePresence mode="wait">
@@ -49,8 +49,8 @@ export default function Home() {
           >
             {[...Array(6)].map((_, i) => (
               <div key={i} className={i === 2 ? "lg:col-span-2 lg:row-span-2" : ""}>
-                <div className={i === 2 ? "h-[450px]" : "h-[200px]" + " w-full animate-pulse rounded-xl bg-zinc-900/50 border border-zinc-800 flex items-center justify-center"}>
-                  <Loader2 className="h-6 w-6 animate-spin text-zinc-800" />
+                <div className={i === 2 ? "h-[450px]" : "h-[200px]" + " w-full animate-pulse rounded-xl bg-muted/20 border border-border-theme flex items-center justify-center"}>
+                  <Loader2 className="h-6 w-6 animate-spin text-muted" />
                 </div>
               </div>
             ))}
@@ -93,17 +93,17 @@ export default function Home() {
 
             <div className="md:col-span-2">
               <div 
-                className="rounded-xl border border-dashed border-zinc-800 bg-zinc-950/20 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors h-full min-h-[220px] cursor-pointer"
+                className="rounded-xl border border-dashed border-border-theme bg-muted/5 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors h-full min-h-[220px] cursor-pointer"
                 onClick={() => setIsProModalOpen(true)}
               >
-                <div className="h-12 w-12 rounded-full bg-zinc-900 flex items-center justify-center ring-1 ring-zinc-800 group-hover:ring-indigo-500/50 transition-all">
-                  <Sparkles className="h-5 w-5 text-zinc-600 group-hover:text-indigo-400" />
+                <div className="h-12 w-12 rounded-full bg-background flex items-center justify-center ring-1 ring-border-theme group-hover:ring-indigo-500/50 transition-all">
+                  <Sparkles className="h-5 w-5 text-muted group-hover:text-indigo-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-zinc-300">Unlock Pro Features</p>
-                  <p className="text-xs text-zinc-500 mt-1 max-w-[200px]">Get advanced predictive analytics and custom AI reporting.</p>
+                  <p className="text-sm font-medium text-foreground">Unlock Pro Features</p>
+                  <p className="text-xs text-muted mt-1 max-w-[200px]">Get advanced predictive analytics and custom AI reporting.</p>
                 </div>
-                <button className="mt-2 rounded-md bg-zinc-900 px-4 py-1.5 text-xs font-semibold text-zinc-100 hover:bg-zinc-800 ring-1 ring-zinc-800 transition-all">
+                <button className="mt-2 rounded-md bg-foreground px-4 py-1.5 text-xs font-semibold text-background hover:bg-muted/90 transition-all">
                   Upgrade Now
                 </button>
               </div>

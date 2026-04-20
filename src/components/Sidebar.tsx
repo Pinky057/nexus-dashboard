@@ -152,8 +152,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
           {/* Sidebar Panel */}
           <div className={cn(
-            "flex h-full flex-col rounded-[2.5rem] border transition-colors duration-300 overflow-visible scrollbar-hide",
-            "bg-white/80 dark:bg-zinc-900/40 border-zinc-200 dark:border-zinc-800/50 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+            "flex h-full flex-col rounded-none overflow-visible scrollbar-hide glass-panel transition-colors duration-300 shadow-sm"
           )}>
             
             {/* Logo Section */}
@@ -171,7 +170,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 <motion.span 
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight"
+                  className="text-lg font-bold text-foreground tracking-tight"
                 >
                   Synthex
                 </motion.span>
@@ -190,7 +189,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                       <motion.p 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="px-5 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500/20"
+                        className="px-5 text-[10px] font-bold uppercase tracking-[0.3em] text-muted"
                       >
                         {group.title}
                       </motion.p>
@@ -212,10 +211,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                     isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                     isActive 
                                       ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                      : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-100"
+                                      : "text-muted hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-foreground"
                                   )}
                                 >
-                                  <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-400 dark:text-zinc-500 group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
+                                  <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-muted group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
                                   {!isCollapsed && (
                                     <>
                                       <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
@@ -233,7 +232,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                     )}>
                                       <div className={cn(
                                         "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2",
-                                        isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100"
+                                        isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-50 dark:bg-zinc-800/50 text-foreground"
                                       )}>
                                         <item.icon className="h-5 w-5 shrink-0" />
                                         <span className="text-sm font-bold">{item.name}</span>
@@ -249,7 +248,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                                 "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
                                                 isSubActive 
                                                   ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-400/5" 
-                                                  : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 hover:text-zinc-900 dark:hover:text-white"
+                                                  : "text-muted hover:bg-zinc-100 dark:hover:bg-zinc-800/60 hover:text-foreground"
                                               )}
                                             >
                                               {sub.name}
@@ -269,15 +268,15 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                   isActive 
                                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-100"
+                                    : "text-muted hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-foreground"
                                 )}
                               >
-                                <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-zinc-400 dark:text-zinc-500 group-hover/link:text-indigo-600 dark:group-hover/link:text-indigo-400")} />
+                                <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-muted group-hover/link:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
                                 {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
                                 
                                 {isCollapsed && (
                                   <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800/50 text-zinc-900 dark:text-white text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
+                                    <div className="bg-white dark:bg-zinc-900 border border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
                                       {item.name}
                                     </div>
                                   </div>
@@ -293,7 +292,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   exit={{ height: 0, opacity: 0 }}
                                   className="overflow-hidden relative ml-7 pl-6 space-y-1 mt-1"
                                 >
-                                  <div className="absolute left-0 top-0 bottom-2 w-px bg-zinc-200 dark:bg-zinc-800/60" />
+                                  <div className="absolute left-0 top-0 bottom-2 w-px bg-border-theme" />
                                   {item.subItems.map((sub) => {
                                     const isSubActive = pathname === sub.href
                                     return (
@@ -304,12 +303,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                           "block py-2.5 px-4 rounded-xl text-[13px] font-bold transition-all relative group/sub",
                                           isSubActive 
                                             ? "bg-indigo-50 dark:bg-indigo-600/10 text-indigo-600 dark:text-indigo-400" 
-                                            : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/30"
+                                            : "text-muted hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800/30"
                                         )}
                                       >
                                         <div className={cn(
                                           "absolute -left-6 top-1/2 -translate-y-1/2 h-px w-3 transition-colors",
-                                          isSubActive ? "bg-indigo-500" : "bg-zinc-200 dark:bg-zinc-800/60 group-hover/sub:bg-zinc-300 dark:group-hover/sub:bg-zinc-700"
+                                          isSubActive ? "bg-indigo-500" : "bg-border-theme group-hover/sub:bg-muted"
                                         )} />
                                         {sub.name}
                                       </Link>
@@ -340,7 +339,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   <img 
                     src="https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky+UI&background=6366f1&color=fff" 
                     alt="Profile"
-                    className="h-10 w-10 rounded-full border-2 border-zinc-200 dark:border-zinc-800/50 shrink-0 group-hover/avatar:scale-110 transition-transform"
+                    className="h-10 w-10 rounded-full border-2 border-border-theme shrink-0 group-hover/avatar:scale-110 transition-transform"
                   />
                   <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
                 </div>
@@ -350,8 +349,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                     animate={{ opacity: 1 }}
                     className="min-w-0 flex-1"
                   >
-                    <p className="text-[13px] font-black text-zinc-900 dark:text-white truncate">Pinky UI</p>
-                    <p className="text-[10px] font-bold text-zinc-500 dark:text-zinc-600 truncate uppercase tracking-widest">Admin</p>
+                    <p className="text-[13px] font-black text-foreground truncate">Pinky UI</p>
+                    <p className="text-[10px] font-bold text-muted truncate uppercase tracking-widest">Admin</p>
                   </motion.div>
                 )}
               </div>

@@ -1,11 +1,23 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts"
 import { REVENUE_DATA } from "@/data/mock"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 export function RevenueChart() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Avoid hydration mismatch
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) return null
+
+  const isDark = theme === "dark"
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,31 +48,43 @@ export function RevenueChart() {
                     <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
                   </linearGradient>
                 </defs>
+                <CartesianGrid 
+                  strokeDasharray="3 3" 
+                  vertical={false} 
+                  stroke={isDark ? "rgba(39, 39, 42, 0.5)" : "rgba(228, 228, 231, 0.8)"} 
+                />
                 <XAxis
                   dataKey="name"
-                  stroke="#52525b"
+                  stroke={isDark ? "#71717a" : "#a1a1aa"}
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
                   dy={10}
                 />
                 <YAxis
-                  stroke="#52525b"
+                  stroke={isDark ? "#71717a" : "#a1a1aa"}
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
                   tickFormatter={(value) => `$${value}`}
                 />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#09090b", borderColor: "#27272a", borderRadius: "8px", color: "#fff", border: "1px solid #27272a" }}
-                  itemStyle={{ color: "#6366f1" }}
-                  cursor={{ stroke: '#27272a', strokeWidth: 1 }}
+                  contentStyle={{ 
+                    backgroundColor: isDark ? "#09090b" : "#ffffff", 
+                    borderColor: isDark ? "#27272a" : "#e4e4e7", 
+                    borderRadius: "12px", 
+                    color: isDark ? "#fff" : "#000", 
+                    border: "1px solid",
+                    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
+                  }}
+                  itemStyle={{ color: "#6366f1", fontWeight: "bold" }}
+                  cursor={{ stroke: isDark ? "#27272a" : "#e4e4e7", strokeWidth: 1 }}
                 />
                 <Area
                   type="monotone"
                   dataKey="total"
                   stroke="#6366f1"
-                  strokeWidth={2}
+                  strokeWidth={3}
                   fillOpacity={1}
                   fill="url(#colorTotal)"
                   animationDuration={1500}
