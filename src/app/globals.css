@@ -1,33 +1,79 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-indigo-400: #818cf8;
   --color-indigo-500: #6366f1;
   --color-indigo-600: #4f46e5;
   
-  /* Custom Dark Variant for Class-based theme switching */
-  @variant dark (&:where(.dark, .dark *));
+  /* Semantic Theme Mapping */
+  --color-background: var(--bg-app);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-border-theme: var(--border-primary);
+  --color-card: var(--bg-card);
+}
+
+/* Custom Dark Variant for Class-based theme switching */
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Dark Mode (Default) - Doclines Inspired Premium Zinc */
+  --bg-app: #09090b; 
+  --bg-sidebar: rgba(24, 24, 27, 0.4); 
+  --bg-card: rgba(18, 18, 20, 0.6); 
+  --border-primary: rgba(39, 39, 42, 0.5); 
+  --text-primary: #f4f4f5; 
+  --text-secondary: #a1a1aa; 
+  --text-muted: #52525b; 
+}
+
+.light {
+  /* Premium Light Mode - Studio White */
+  --bg-app: #f9f9fb; 
+  --bg-sidebar: rgba(255, 255, 255, 0.8); 
+  --bg-card: #ffffff; 
+  --border-primary: #e4e4e7; 
+  --text-primary: #09090b; 
+  --text-secondary: #71717a; 
+  --text-muted: #a1a1aa; 
 }
 
 body {
-  background-color: var(--color-zinc-50);
-  color: var(--color-zinc-900);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dark body {
-  background-color: var(--color-zinc-950);
-  color: var(--color-zinc-100);
-}
-
-/* ─── Hide scrollbars globally ─── */
+/* ─── Global Scrollbar Hide ─── */
 * {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
 }
 *::-webkit-scrollbar {
   display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+}
+
+/* ─── Component Shortcuts ─── */
+.glass-panel {
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-primary);
+  backdrop-filter: blur(24px);
+}
+
+.card-premium {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  /* Stronger Premium Shadow for Cards */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+.dark .card-premium {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.card-premium:hover {
+  border-color: var(--color-indigo-500);
 }
