@@ -53,8 +53,8 @@ export default function TablesPage() {
     <div className="space-y-8 pb-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Tables</h1>
-          <p className="text-sm text-zinc-400 mt-1">Data table components with functional CRUD logic.</p>
+          <h1 className="text-2xl font-black tracking-tight text-foreground">Tables</h1>
+          <p className="text-sm text-muted mt-1 font-medium italic">Premium data components with functional CRUD logic.</p>
         </div>
       </div>
 
@@ -63,41 +63,41 @@ export default function TablesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800 px-6 py-4 gap-4 bg-zinc-950/20">
+        <Card className="overflow-hidden bg-card border-border-theme shadow-xl shadow-black/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border-theme px-6 py-5 gap-4 bg-muted/5">
             <div>
-              <CardTitle className="text-lg">User Management Table</CardTitle>
-              <CardDescription>{users.length} users in the database.</CardDescription>
+              <CardTitle className="text-lg font-black tracking-tight text-foreground">User Management Table</CardTitle>
+              <CardDescription className="font-bold text-muted">{users.length} active users in the system.</CardDescription>
             </div>
             <div className="flex items-center gap-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" />
                 <Input
-                  placeholder="Search..."
+                  placeholder="Search database..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-9 h-10 w-48 bg-zinc-950 border-zinc-800"
+                  className="pl-9 h-11 w-56 bg-background border-border-theme font-medium text-sm"
                 />
               </div>
-              <Button size="sm" onClick={handleAddUser} className="gap-1.5 h-10 px-4 font-bold shadow-indigo-500/10">
-                <Plus className="h-4 w-4" /> Add User
+              <Button size="sm" onClick={handleAddUser} className="gap-2 h-11 px-5 font-black shadow-lg shadow-primary/10">
+                <Plus className="h-4.5 w-4.5" /> Add New
               </Button>
             </div>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm border-collapse">
-              <thead className="bg-zinc-950/80 text-[10px] uppercase text-zinc-500 border-b border-zinc-800 font-bold tracking-widest">
+              <thead className="bg-muted/30 text-[10px] uppercase text-muted border-b border-border-theme font-black tracking-widest">
                 <tr>
-                  <th className="px-6 py-4">User Details</th>
-                  <th className="px-6 py-4">Role</th>
-                  <th className="px-6 py-4">Status</th>
-                  <th className="px-6 py-4">Joined</th>
-                  <th className="px-6 py-4">Revenue</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
+                  <th className="px-6 py-5">User Details</th>
+                  <th className="px-6 py-5">Role</th>
+                  <th className="px-6 py-5">Status</th>
+                  <th className="px-6 py-5">Joined</th>
+                  <th className="px-6 py-5">Revenue</th>
+                  <th className="px-6 py-5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/50">
+              <tbody className="divide-y divide-border-theme/40">
                 <AnimatePresence initial={false}>
                   {filteredUsers.map((user) => (
                     <motion.tr 
@@ -106,65 +106,64 @@ export default function TablesPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, x: -20 }}
-                      className="hover:bg-zinc-800/30 transition-colors group"
+                      className="hover:bg-primary/[0.02] transition-all group"
                     >
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600/20 text-indigo-400 text-xs font-bold ring-1 ring-indigo-500/20">
+                      <td className="px-6 py-5">
+                        <div className="flex items-center gap-4">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary text-xs font-black ring-1 ring-primary/20 shadow-sm">
                             {user.name.charAt(0)}
                           </div>
-                          <div>
+                          <div className="min-w-0">
                             {editingId === user.id ? (
                               <div className="flex items-center gap-2">
                                 <input 
-                                  className="bg-black border border-indigo-500 text-white px-2 py-0.5 text-xs rounded"
+                                  className="bg-background border-2 border-primary/50 text-foreground px-3 py-1.5 text-xs rounded-lg font-bold outline-none ring-4 ring-primary/5"
                                   value={editName}
                                   onChange={(e) => setEditName(e.target.value)}
                                   autoFocus
                                 />
-                                <button onClick={handleEditSave} className="text-emerald-500"><Check className="h-4 w-4" /></button>
-                                <button onClick={() => setEditingId(null)} className="text-zinc-500"><X className="h-4 w-4" /></button>
+                                <button onClick={handleEditSave} className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 border border-emerald-500/20"><Check className="h-4 w-4" /></button>
+                                <button onClick={() => setEditingId(null)} className="p-1.5 rounded-lg bg-muted/20 text-muted"><X className="h-4 w-4" /></button>
                               </div>
                             ) : (
-                              <p className="font-bold text-zinc-200">{user.name}</p>
+                              <p className="font-black text-foreground group-hover:text-primary transition-colors truncate">{user.name}</p>
                             )}
-                            <p className="text-xs text-zinc-500">{user.email}</p>
+                            <p className="text-[11px] text-muted font-medium truncate mt-0.5">{user.email}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
-                        <Badge variant="secondary" className="font-bold text-[10px] uppercase tracking-tighter">
+                      <td className="px-6 py-5">
+                        <Badge variant="outline" className="font-black text-[10px] uppercase tracking-widest border-border-theme bg-muted/5">
                           {user.role}
                         </Badge>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-5">
                         <Badge
                           variant={user.status === "Active" ? "success" : user.status === "Pending" ? "warning" : "secondary"}
-                          className="gap-1.5 text-[10px] font-bold"
+                          className="gap-2 text-[10px] font-black uppercase tracking-tighter"
                         >
                           <span className={cn(
-                            "h-1.5 w-1.5 rounded-full",
-                            user.status === "Active" ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" : user.status === "Pending" ? "bg-amber-400 animate-pulse" : "bg-zinc-400"
+                            "h-2 w-2 rounded-full",
+                            user.status === "Active" ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" : user.status === "Pending" ? "bg-amber-400 animate-pulse" : "bg-muted"
                           )} />
                           {user.status}
                         </Badge>
                       </td>
-                      <td className="px-6 py-4 text-zinc-400 text-xs">{user.joined}</td>
-                      <td className="px-6 py-4 font-bold text-indigo-400">{user.revenue}</td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          {/* VISIBLE BUTTONS WITH LABELS FOR UI KIT */}
+                      <td className="px-6 py-5 text-muted text-xs font-bold uppercase tracking-tighter">{user.joined}</td>
+                      <td className="px-6 py-5 font-black text-primary text-base">{user.revenue}</td>
+                      <td className="px-6 py-5 text-right">
+                        <div className="flex items-center justify-end gap-2.5">
                           <button 
                             onClick={() => handleEditStart(user)}
-                            className="bg-zinc-800 hover:bg-zinc-700 text-white px-2.5 py-1.5 rounded-md border border-zinc-700 text-[10px] font-black uppercase flex items-center gap-1.5 transition-all"
+                            className="bg-muted/10 hover:bg-primary/10 text-muted hover:text-primary px-3 py-2 rounded-xl border border-border-theme hover:border-primary/20 text-[10px] font-black uppercase flex items-center gap-2 transition-all"
                           >
-                            <Edit2 className="h-3 w-3" /> Edit
+                            <Edit2 className="h-3.5 w-3.5" /> Edit
                           </button>
                           <button 
                             onClick={() => handleDelete(user.id)}
-                            className="bg-rose-600/10 hover:bg-rose-600 text-rose-500 hover:text-white px-2.5 py-1.5 rounded-md border border-rose-500/20 hover:border-rose-500 text-[10px] font-black uppercase flex items-center gap-1.5 transition-all"
+                            className="bg-rose-500/5 hover:bg-rose-500 text-rose-500 hover:text-white px-3 py-2 rounded-xl border border-rose-500/10 hover:border-rose-500 text-[10px] font-black uppercase flex items-center gap-2 transition-all shadow-sm hover:shadow-rose-500/20"
                           >
-                            <Trash2 className="h-3 w-3" /> Del
+                            <Trash2 className="h-3.5 w-3.5" /> Del
                           </button>
                         </div>
                       </td>
@@ -182,30 +181,30 @@ export default function TablesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <Card className="bg-zinc-900/50 border-zinc-800">
-          <CardHeader>
-            <CardTitle className="text-lg text-zinc-100">Simple Read-only Table</CardTitle>
-            <CardDescription>For displaying static data and reports without complex interactions.</CardDescription>
+        <Card className="bg-card border-border-theme shadow-xl shadow-black/5 overflow-hidden">
+          <CardHeader className="bg-muted/5 border-b border-border-theme px-6 py-5">
+            <CardTitle className="text-lg font-black tracking-tight text-foreground">Simple Read-only Table</CardTitle>
+            <CardDescription className="font-bold text-muted">For displaying static data and reports without complex interactions.</CardDescription>
           </CardHeader>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-zinc-950/50 text-[10px] uppercase text-zinc-500 font-bold tracking-widest border-b border-zinc-800">
+              <thead className="bg-muted/30 text-[10px] uppercase text-muted font-black tracking-widest border-b border-border-theme">
                 <tr>
-                  <th className="px-6 py-4">Month</th>
-                  <th className="px-6 py-4">Revenue</th>
-                  <th className="px-6 py-4">Orders</th>
-                  <th className="px-6 py-4">Growth</th>
+                  <th className="px-6 py-5">Month</th>
+                  <th className="px-6 py-5">Revenue</th>
+                  <th className="px-6 py-5">Orders</th>
+                  <th className="px-6 py-5">Growth</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/50">
+              <tbody className="divide-y divide-border-theme/40">
                 {SIMPLE_REPORTS_DATA.map((row) => (
-                  <tr key={row.month} className="hover:bg-zinc-800/20 transition-colors">
-                    <td className="px-6 py-4 font-bold text-zinc-200">{row.month}</td>
-                    <td className="px-6 py-4 text-zinc-300 font-medium">{row.revenue}</td>
-                    <td className="px-6 py-4 text-zinc-300 font-medium">{row.orders}</td>
-                    <td className={`px-6 py-4 font-bold ${row.positive ? "text-emerald-400" : "text-rose-400"}`}>
-                      <span className="flex items-center gap-1">
-                        {row.positive ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+                  <tr key={row.month} className="hover:bg-primary/[0.01] transition-all">
+                    <td className="px-6 py-5 font-black text-foreground tracking-tight">{row.month}</td>
+                    <td className="px-6 py-5 text-muted font-black text-sm">{row.revenue}</td>
+                    <td className="px-6 py-5 text-muted font-bold">{row.orders}</td>
+                    <td className={`px-6 py-5 font-black text-sm ${row.positive ? "text-emerald-500" : "text-rose-500"}`}>
+                      <span className="flex items-center gap-1.5">
+                        {row.positive ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                         {row.growth}
                       </span>
                     </td>
