@@ -7,49 +7,91 @@
   --color-card: var(--bg-card);
   --color-border-theme: var(--border-theme);
   
-  /* 2. Brand & Primary Logic */
-  --color-primary: var(--brand-color);
-  --color-primary-soft: var(--brand-color-soft);
+  /* 2. Brand Shade System - THEMEFOREST LEVEL */
+  --color-primary-50: var(--brand-50);
+  --color-primary-100: var(--brand-100);
+  --color-primary-200: var(--brand-200);
+  --color-primary-300: var(--brand-300);
+  --color-primary-400: var(--brand-400);
+  --color-primary-500: var(--brand-500);
+  --color-primary-600: var(--brand-600);
+  --color-primary-700: var(--brand-700);
+  --color-primary-800: var(--brand-800);
+  --color-primary-900: var(--brand-900);
   
   /* 3. Typography Hierarchy */
   --color-foreground: var(--text-primary);
   --color-muted: var(--text-secondary);
 }
 
-/* Custom Theme Variants for Tailwind v4 */
+/* Custom Theme Variants */
 @variant dark (&:where(.dark, .dark *));
 @variant ocean (&:where(.ocean, .ocean *));
 
 :root {
-  /* Studio Light - Restored original professional feel */
-  --bg-app: #f8fafc;
+  /* Studio Light - "Airy & Expensive" */
+  --bg-app: #fcfcfd;
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
-  --border-theme: #e2e8f0;
-  --brand-color: #6366f1;
-  --brand-color-soft: rgba(99, 102, 241, 0.08);
+  
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #a1a1aa;
+  
+  --border-theme: rgba(0, 0, 0, 0.06);
+  
+  /* Brand System 50-900 (Indigo Base) */
+  --brand-50: #eef2ff;
+  --brand-100: #e0e7ff;
+  --brand-200: #c7d2fe;
+  --brand-300: #a5b4fc;
+  --brand-400: #818cf8;
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+  --brand-800: #3730a3;
+  --brand-900: #312e81;
+
+  --brand-gradient: linear-gradient(135deg, var(--brand-500) 0%, var(--brand-700) 100%);
+  --brand-glow: rgba(99, 102, 241, 0.15);
   
   --font-primary: 'Inter', sans-serif;
   --font-display: 'Outfit', sans-serif;
   
-  --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.04);
+  /* Layered Shadows - Dribbble Style */
+  --shadow-premium: 0 1px 2px rgba(0,0,0,0.02), 
+                    0 4px 12px rgba(0,0,0,0.03), 
+                    0 12px 24px rgba(0,0,0,0.02);
 }
 
 .dark {
   --bg-app: #09090b;
   --bg-sidebar: #09090b;
-  --bg-card: #18181b;
+  --bg-card: #121214;
+  
   --text-primary: #fafafa;
   --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --border-theme: #27272a;
-  --brand-color: #6366f1;
-  --brand-color-soft: rgba(99, 102, 241, 0.15);
+  --text-muted: #52525b;
   
-  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  --border-theme: rgba(255, 255, 255, 0.06);
+  
+  /* Brand System (Indigo Base - Dark Optimized) */
+  --brand-50: rgba(99, 102, 241, 0.05);
+  --brand-100: rgba(99, 102, 241, 0.1);
+  --brand-200: rgba(99, 102, 241, 0.2);
+  --brand-300: rgba(99, 102, 241, 0.3);
+  --brand-400: rgba(99, 102, 241, 0.4);
+  --brand-500: #6366f1;
+  --brand-600: #818cf8;
+  --brand-700: #a5b4fc;
+  --brand-800: #c7d2fe;
+  --brand-900: #e0e7ff;
+
+  --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a5b4fc 100%);
+  --brand-glow: rgba(99, 102, 241, 0.3);
+  
+  --shadow-premium: 0 0 0 1px rgba(255,255,255,0.02),
+                    0 10px 30px -10px rgba(0,0,0,0.5);
 }
 
 .ocean {

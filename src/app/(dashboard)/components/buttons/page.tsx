@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Download, Trash2, Plus, ArrowRight, Loader2, Check, X, ChevronDown } from "lucide-react"
+import { Download, Trash2, Plus, Loader2, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card"
 

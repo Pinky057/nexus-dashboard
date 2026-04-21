@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check, X, Clock, AlertTriangle, Info, Zap, Star, Shield, Bell, Lock, Wifi, Flame } from "lucide-react"
+import { Check, X, Clock, AlertTriangle, Info, Zap, Bell, Lock, Wifi, Flame } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card"
 import { Badge } from "@/components/ui/Badge"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/Alert"

@@ -201,34 +201,34 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   <button
                                     onClick={() => toggleMenu(item.name)}
                                     className={cn(
-                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-200 px-4",
+                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 px-4 relative z-10",
                                       isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                      "text-muted hover:bg-indigo-50/50 hover:text-indigo-600",
-                                      isActive && "text-foreground"
+                                      isActive ? "text-primary-600 dark:text-primary-400" : "text-muted hover:text-foreground"
                                     )}
                                   >
-                                    <item.icon className={cn("h-5 w-5 shrink-0 transition-colors", isActive ? "text-primary" : "text-muted group-hover/item:text-primary")} />
+                                    {isActive && (
+                                      <motion.div 
+                                        layoutId="active-pill"
+                                        className="absolute inset-0 bg-primary-500/10 dark:bg-primary-500/15 rounded-2xl -z-10"
+                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                      />
+                                    )}
+                                    <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-300", isActive ? "text-primary-500" : "text-muted group-hover/item:text-primary-500 group-hover/item:scale-110")} />
                                     {!isCollapsed && (
                                       <>
-                                        <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
-                                        <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isExpanded && "rotate-180")} />
+                                        <span className="flex-1 text-left text-sm font-black tracking-tight">{item.name}</span>
+                                        <ChevronDown className={cn("h-3 w-3 transition-transform duration-500", isExpanded && "rotate-180")} />
                                       </>
                                     )}
                                   </button>
 
                                   {/* Flyout */}
                                   {isCollapsed && (
-                                    <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
-                                      <div className={cn(
-                                        "border backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-2xl",
-                                        "bg-card border-border-theme"
-                                      )}>
-                                        <div className={cn(
-                                          "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2 transition-all",
-                                          "bg-indigo-50/50 text-indigo-600"
-                                        )}>
+                                    <div className="absolute left-[calc(100%+1rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/item:translate-x-0">
+                                      <div className="bg-card border border-border-theme rounded-[2.5rem] p-3 w-60 shadow-premium backdrop-blur-3xl">
+                                        <div className="flex items-center gap-3 px-5 py-4 rounded-3xl mb-3 bg-primary-50/50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400">
                                            <item.icon className="h-5 w-5 shrink-0" />
-                                           <span className="text-sm font-bold">{item.name}</span>
+                                           <span className="text-sm font-black tracking-tight">{item.name}</span>
                                          </div>
                                         <div className="space-y-1">
                                           {item.subItems.map((sub) => {
@@ -238,10 +238,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                                 key={sub.name}
                                                 href={sub.href}
                                                 className={cn(
-                                                  "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
+                                                  "flex items-center px-5 py-3.5 rounded-2xl text-[13px] font-black tracking-tight transition-all",
                                                   isSubActive 
-                                                    ? "text-primary bg-primary-soft" 
-                                                    : "text-muted hover:bg-indigo-50/50 hover:text-indigo-600"
+                                                    ? "text-primary-600 bg-primary-50/50 dark:text-primary-400 dark:bg-primary-500/10" 
+                                                    : "text-muted hover:bg-muted/5 hover:text-foreground"
                                                 )}
                                               >
                                                 {sub.name}
@@ -257,18 +257,24 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 <Link
                                   href={item.href || "#"}
                                     className={cn(
-                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-200 relative px-4",
+                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 relative px-4 z-10",
                                       isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                      "text-muted hover:bg-indigo-50/50 hover:text-indigo-600",
-                                      isActive && "text-foreground"
+                                      isActive ? "text-primary-600 dark:text-primary-400" : "text-muted hover:text-foreground"
                                     )}
                                 >
-                                  <item.icon className={cn("h-5 w-5 shrink-0 transition-colors", isActive ? "text-primary" : "text-muted group-hover/link:text-primary")} />
-                                  {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
+                                  {isActive && (
+                                    <motion.div 
+                                      layoutId="active-pill"
+                                      className="absolute inset-0 bg-primary-500/10 dark:bg-primary-500/15 rounded-2xl -z-10 shadow-[0_0_20px_-5px_var(--brand-glow)]"
+                                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    />
+                                  )}
+                                  <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-300", isActive ? "text-primary-500" : "text-muted group-hover/link:text-primary-500 group-hover/link:scale-110")} />
+                                  {!isCollapsed && <span className="text-sm font-black tracking-tight">{item.name}</span>}
                                   
                                   {isCollapsed && (
-                                    <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                      <div className="bg-card border border-border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
+                                    <div className="absolute left-[calc(100%+1rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/link:translate-x-0">
+                                      <div className="bg-card border border-border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl whitespace-nowrap shadow-premium backdrop-blur-md">
                                         {item.name}
                                       </div>
                                     </div>
