@@ -47,17 +47,20 @@ export function ChurnChart() {
                 content={({ active, payload, label }) => {
                   if (active && payload && payload.length) {
                     return (
-                      <div className="bg-card/40 backdrop-blur-3xl border border-border-theme p-6 rounded-[2rem] shadow-hero animate-in fade-in zoom-in duration-300 ring-1 ring-white/10">
-                        <p className="text-[9px] font-black uppercase tracking-[0.2em] text-muted mb-3">{label}</p>
-                        <div className="flex items-center gap-4">
-                          <div className="h-3 w-3 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.8)]" />
-                          <p className="text-2xl font-black text-foreground tracking-tighter">
-                            {payload[0].value}%
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2 mt-2">
-                           <div className="h-1 w-1 rounded-full bg-rose-500" />
-                           <p className="text-[10px] font-black text-rose-500 uppercase tracking-widest">High retention risk</p>
+                      <div className="bg-zinc-950/90 backdrop-blur-3xl border border-white/10 p-6 rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in duration-300 ring-1 ring-white/10 overflow-hidden relative">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-rose-500" />
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted/60 mb-4">{label}</p>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-4">
+                            <div className="h-3 w-3 rounded-full bg-rose-500 shadow-[0_0_15px_#f43f5e]" />
+                            <p className="text-3xl font-black text-white tracking-tighter">
+                              {payload[0].value}%
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 w-fit">
+                             <div className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                             <p className="text-[10px] font-black text-rose-500 uppercase tracking-widest uppercase tracking-widest">High retention risk</p>
+                          </div>
                         </div>
                       </div>
                     )
@@ -69,17 +72,17 @@ export function ChurnChart() {
                 type="monotone" 
                 dataKey="rate" 
                 stroke="#f43f5e" 
-                strokeWidth={5}
+                strokeWidth={4}
                 fillOpacity={1} 
                 fill="url(#colorChurn)" 
-                filter="drop-shadow(0 0 8px rgba(244, 63, 94, 0.4))"
+                filter="drop-shadow(0 0 12px rgba(244, 63, 94, 0.4))"
                 animationDuration={2500}
                 activeDot={{ 
-                  r: 8, 
-                  fill: "#f43f5e", 
-                  stroke: "var(--bg-card)", 
-                  strokeWidth: 4,
-                  className: "shadow-[0_0_15px_rgba(244,63,94,0.8)]" 
+                  r: 6, 
+                  fill: "#fff", 
+                  stroke: "#f43f5e", 
+                  strokeWidth: 3,
+                  className: "shadow-[0_0_20px_#f43f5e]" 
                 }}
               />
             </AreaChart>

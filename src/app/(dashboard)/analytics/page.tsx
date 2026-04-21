@@ -29,39 +29,41 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-10 pb-12">
       <ProModal 
         isOpen={isProModalOpen} 
         onClose={() => setIsProModalOpen(false)} 
         featureName={selectedFeature}
       />
 
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Premium Pill Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-4">
         <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">Advanced Analytics</h1>
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-2xl bg-primary-500/10 flex items-center justify-center border border-primary-500/20">
+              <BarChart3 className="h-5 w-5 text-primary-500" />
+            </div>
+            <h1 className="text-3xl font-black tracking-tighter text-foreground uppercase tracking-wider">Advanced Analytics</h1>
           </div>
-          <p className="text-sm text-muted">Granular breakdown of user behavior and revenue retention.</p>
+          <p className="text-[11px] font-black text-muted uppercase tracking-[0.2em] ml-[52px]">Granular breakdown of user behavior and revenue retention</p>
         </div>
-        <div className="flex items-center gap-2">
+        
+        <div className="flex items-center gap-3">
           <Button 
             variant="outline" 
-            size="sm" 
-            className="h-9 gap-2 border-border-theme"
+            className="h-[52px] px-6 rounded-full border-border-theme bg-background/50 backdrop-blur-md hover:border-primary-500/30 gap-3 transition-all"
             onClick={() => handleProClick("Custom Date Ranges")}
           >
             <Calendar className="h-4 w-4" />
-            Last 30 Days
+            <span className="font-black uppercase tracking-widest text-[10px]">Last 30 Days</span>
           </Button>
           <Button 
             variant="primary" 
-            size="sm" 
-            className="h-9 gap-2"
+            className="h-[52px] px-8 rounded-full shadow-hero gap-3 transition-all"
             onClick={() => handleProClick("Report Exports")}
           >
-            <Download className="h-4 w-4" />
-            Download Report
+            <Download className="h-5 w-5" />
+            <span className="font-black uppercase tracking-widest text-[10px]">Download Report</span>
           </Button>
         </div>
       </div>
@@ -73,12 +75,14 @@ export default function AnalyticsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {[...Array(6)].map((_, i) => (
               <div key={i} className={i === 0 ? "lg:col-span-2" : ""}>
-                <div className="h-48 w-full animate-pulse rounded-xl bg-muted/20 border border-border-theme flex items-center justify-center">
-                  <Loader2 className="h-6 w-6 animate-spin text-muted" />
+                <div className="h-56 w-full animate-pulse rounded-[2.5rem] border-2 border-border-theme/30 bg-transparent flex items-center justify-center backdrop-blur-sm">
+                  <div className="h-10 w-10 rounded-2xl bg-muted/5 border border-border-theme/20 flex items-center justify-center">
+                    <Loader2 className="h-5 w-5 animate-spin text-muted/30" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -88,7 +92,7 @@ export default function AnalyticsPage() {
             key="content"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {/* Row 1: Key Performance Indicators */}
             {ANALYTIC_STATS.map((stat, i) => (
@@ -96,25 +100,27 @@ export default function AnalyticsPage() {
             ))}
 
             <div className="lg:col-span-1">
-              <div 
-                className="h-full rounded-2xl border border-primary/20 bg-primary/5 p-6 flex flex-col justify-between group hover:border-primary/40 transition-all cursor-pointer shadow-sm shadow-primary/5"
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="h-full rounded-[2.5rem] border-2 border-primary-500/20 bg-primary-500/5 p-8 flex flex-col justify-between group hover:border-primary-500/40 transition-all cursor-pointer shadow-flat hover:shadow-hero relative overflow-hidden"
                 onClick={() => handleProClick("Predictive Forecasting")}
               >
-                <div className="flex items-center justify-between">
-                  <div className="p-2 rounded-lg bg-primary/10">
-                    <TrendingUp className="h-5 w-5 text-primary" />
+                <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-primary-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex items-center justify-between relative z-10">
+                  <div className="h-12 w-12 rounded-2xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center shadow-[0_0_15px_var(--brand-glow)]">
+                    <TrendingUp className="h-6 w-6 text-primary-500" />
                   </div>
-                  <Sparkles className="h-4 w-4 text-primary/30" />
+                  <Sparkles className="h-5 w-5 text-primary-500/40 group-hover:animate-pulse" />
                 </div>
-                <div>
-                  <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Predictive AI</p>
-                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">LTV Forecast</h3>
-                  <p className="text-xs text-muted mt-1 leading-relaxed">Projected lifetime value to increase by 14% based on current cohort trends.</p>
+                <div className="relative z-10">
+                  <p className="text-[10px] font-black text-primary-500 uppercase tracking-[0.3em] mb-2">Predictive AI Engine</p>
+                  <h3 className="text-xl font-black text-foreground group-hover:text-primary-500 transition-colors tracking-tight uppercase">LTV Forecast</h3>
+                  <p className="text-[11px] font-bold text-muted mt-3 leading-relaxed uppercase tracking-wide">Projected lifetime value to increase by 14% based on current cohort trends.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Row 2: Deep Dive Charts */}
+            {/* Row 2: Deep Dive Charts - Primary Card */}
             <div className="md:col-span-2 lg:col-span-3">
               <RevenueChart />
             </div>
@@ -129,27 +135,31 @@ export default function AnalyticsPage() {
             </div>
 
             <div className="md:col-span-2 lg:col-span-2">
-              <div className="h-full rounded-2xl border border-border-theme bg-card p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-primary/50 transition-all min-h-[300px] shadow-sm">
-                <div className="h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center border border-border-theme group-hover:border-primary/30 transition-all relative">
-                  <BarChart3 className="h-8 w-8 text-muted group-hover:text-primary" />
-                  <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary flex items-center justify-center border-2 border-card shadow-lg shadow-primary/20">
-                    <Sparkles className="h-2.5 w-2.5 text-white" />
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.01 }}
+                className="h-full rounded-[2.5rem] border-2 border-border-theme bg-background/5 p-10 flex flex-col items-center justify-center text-center gap-6 group hover:border-primary-500/40 transition-all min-h-[350px] shadow-flat hover:shadow-hero backdrop-blur-xl relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="h-20 w-20 rounded-[2.5rem] bg-background border border-border-theme flex items-center justify-center group-hover:border-primary-500/50 group-hover:shadow-[0_0_40px_var(--brand-glow)] transition-all relative z-10 shadow-sm">
+                  <BarChart3 className="h-10 w-10 text-muted group-hover:text-primary-500" />
+                  <div className="absolute -top-1 -right-1 h-6 w-6 rounded-full bg-primary-500 flex items-center justify-center border-2 border-background shadow-lg">
+                    <Sparkles className="h-3 w-3 text-white" />
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-foreground">Custom Funnels</h3>
-                  <p className="text-sm text-muted mt-2 max-w-[320px] leading-relaxed">
+                <div className="relative z-10 space-y-3">
+                  <h3 className="text-xl font-black text-foreground uppercase tracking-tight">Custom Funnels</h3>
+                  <p className="text-[10px] font-black text-muted uppercase tracking-[0.25em] leading-relaxed max-w-[280px]">
                     Create custom event funnels to track conversion drops at every stage of your user journey.
                   </p>
                 </div>
                 <Button 
                   variant="outline" 
-                  className="mt-4 border-border-theme hover:bg-primary/5 hover:text-primary"
+                  className="relative z-10 h-12 px-10 rounded-full border-border-theme hover:border-primary-500/50 hover:bg-primary-500/5 hover:text-primary-500 font-black uppercase tracking-widest text-[10px] transition-all"
                   onClick={() => handleProClick("Custom Funnel Builder")}
                 >
                   Build Custom Funnel
                 </Button>
-              </div>
+              </motion.div>
             </div>
 
           </motion.div>

@@ -38,8 +38,8 @@ const navigationGroups = [
         icon: Box,
         subItems: [
           { name: "All Products", href: "/products" },
-          { name: "Categories", href: "#" },
-          { name: "Inventory", href: "#" },
+          { name: "Categories", href: "/products/categories" },
+          { name: "Inventory", href: "/products/inventory" },
         ]
       },
       { name: "Users", href: "/users", icon: Users },
@@ -55,6 +55,7 @@ const navigationGroups = [
         subItems: [
           { name: "Buttons", href: "/components/buttons" },
           { name: "Forms", href: "/components/forms" },
+          { name: "Avatars", href: "/components/avatars" },
           { name: "Badges", href: "/components/badges" },
           { name: "Tables", href: "/components/tables" },
           { name: "Charts", href: "/components/charts" },

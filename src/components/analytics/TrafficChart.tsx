@@ -36,7 +36,7 @@ export function TrafficChart() {
                   <Cell 
                     key={`cell-${index}`} 
                     fill={entry.color} 
-                    className="hover:opacity-80 transition-opacity duration-300 cursor-pointer"
+                    className="hover:opacity-90 transition-all duration-300 cursor-pointer outline-none"
                   />
                 ))}
               </Pie>
@@ -44,9 +44,10 @@ export function TrafficChart() {
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
-                      <div className="bg-card/40 backdrop-blur-3xl border border-border-theme p-4 rounded-3xl shadow-hero ring-1 ring-white/10">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-muted mb-1">{payload[0].name}</p>
-                        <p className="text-xl font-black text-foreground tracking-tighter">{payload[0].value}%</p>
+                      <div className="bg-zinc-950/90 backdrop-blur-3xl border border-white/10 p-5 rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] ring-1 ring-white/10 overflow-hidden relative animate-in fade-in zoom-in duration-300">
+                        <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: payload[0].payload.color }} />
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted/60 mb-2">{payload[0].name}</p>
+                        <p className="text-3xl font-black text-white tracking-tighter">{payload[0].value}%</p>
                       </div>
                     )
                   }
