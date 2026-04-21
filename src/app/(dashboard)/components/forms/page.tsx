@@ -19,7 +19,7 @@ export default function FormsPage() {
     <div className="space-y-8 pb-8">
       <div>
         <h1 className="text-2xl font-black tracking-tight text-foreground">Forms</h1>
-        <p className="text-sm text-zinc-400 mt-1">Pre-built form layouts using our standardized UI library.</p>
+        <p className="text-sm text-muted mt-1 uppercase tracking-widest font-black opacity-60">Pre-built form layouts using our standardized UI library.</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
@@ -75,18 +75,18 @@ export default function FormsPage() {
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-600 text-zinc-100 text-xl font-bold shrink-0 shadow-lg shadow-indigo-500/20">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary-600 text-white text-xl font-bold shrink-0 shadow-lg shadow-primary-500/20">
                   P
                 </div>
                 <div>
                   <Button variant="secondary" size="sm">Change Photo</Button>
-                  <p className="text-xs text-zinc-500 mt-1.5">JPG or PNG. Max 2MB.</p>
+                  <p className="text-xs text-muted mt-1.5 font-bold uppercase tracking-widest opacity-60">JPG or PNG. Max 2MB.</p>
                 </div>
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="display-name">Display Name</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" />
                   <Input id="display-name" defaultValue="Admin User" className="pl-9" />
                 </div>
               </div>

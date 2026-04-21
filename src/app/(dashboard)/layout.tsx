@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Sidebar } from "@/components/Sidebar"
 import { Header } from "@/components/Header"
 import { AiAssistant } from "@/components/AiAssistant"
+import { CommandPalette } from "@/components/CommandPalette"
 
 export default function DashboardLayout({
   children,
@@ -20,6 +21,7 @@ export default function DashboardLayout({
         <main className="flex-1 overflow-y-auto px-8 pt-8 pb-10 scrollbar-hide relative">
           {children}
           <AiAssistant />
+          <CommandPalette />
         </main>
       </div>
     </div>

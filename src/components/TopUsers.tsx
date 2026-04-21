@@ -3,6 +3,7 @@
 import { TOP_USERS } from "@/data/mock"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card"
+import { Avatar } from "@/components/ui/Avatar"
 
 export function TopUsers() {
   return (
@@ -23,9 +24,13 @@ export function TopUsers() {
             {TOP_USERS.map((user, index) => (
               <li key={index} className="flex items-center justify-between group">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-background border border-border-theme text-sm font-black text-indigo-500 group-hover:border-indigo-500/50 transition-all shadow-sm">
-                    {user.name.charAt(0)}
-                  </div>
+                  <Avatar 
+                    alt={user.name} 
+                    shape="squircle" 
+                    size="md" 
+                    status="online"
+                    className="group-hover:shadow-[0_0_15px_var(--brand-glow)] transition-all"
+                  />
                   <div className="space-y-0.5">
                     <p className="text-sm font-bold text-foreground group-hover:text-indigo-500 transition-colors">{user.name}</p>
                     <p className="text-[10px] text-muted flex items-center gap-1.5 uppercase tracking-widest font-black">

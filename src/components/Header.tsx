@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle"
 import { NotificationBell } from "./NotificationBell"
 import { ThemeCustomizer } from "./ThemeCustomizer"
 import { ProModal } from "./ui/ProModal"
+import { Avatar } from "./ui/Avatar"
 
 interface HeaderProps {
   onMenuClick: () => void
@@ -19,6 +20,10 @@ export function Header({ onMenuClick }: HeaderProps) {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
+
+    const handleOpenPro = () => setIsProModalOpen(true)
+    window.addEventListener('open-pro-modal', handleOpenPro)
+    return () => window.removeEventListener('open-pro-modal', handleOpenPro)
   }, [])
 
   const handleSearchClick = () => {
@@ -70,19 +75,27 @@ export function Header({ onMenuClick }: HeaderProps) {
 
           <div className="hidden lg:block lg:h-10 lg:w-px lg:bg-border-theme" aria-hidden="true" />
 
-          <div className="flex items-center gap-x-4 group cursor-pointer pl-1">
-            <div className="h-11 w-11 rounded-2xl border-2 border-border-theme flex items-center justify-center overflow-hidden transition-all group-hover:border-primary-500/50 group-hover:shadow-[0_0_15px_var(--brand-glow)]">
-              <img
-                src="https://ui-avatars.com/api/?name=Pinky+Admin&background=6366f1&color=fff"
-                alt="User Avatar"
-                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
+          <motion.div 
+            whileHover={{ y: -2 }}
+            className="flex items-center gap-x-4 group cursor-pointer pl-1 relative"
+            onClick={() => setIsProModalOpen(true)}
+          >
+            <Avatar 
+              src="https://ui-avatars.com/api/?name=Free+User&background=3f3f46&color=fff"
+              alt="Free User"
+              shape="squircle"
+              size="lg"
+              status="away"
+              className="group-hover:shadow-[0_0_15px_var(--brand-glow)] transition-all duration-500"
+            />
             <div className="hidden lg:flex flex-col">
-              <span className="text-sm font-black text-foreground group-hover:text-primary-500 transition-colors tracking-tighter">Pinky Admin</span>
-              <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Pro Account</span>
+              <span className="text-sm font-black text-foreground group-hover:text-primary-500 transition-colors tracking-tighter">Guest User</span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[9px] font-black text-muted uppercase tracking-widest px-1.5 py-0.5 rounded-md bg-muted/10 border border-border-theme group-hover:border-primary-500/30 group-hover:text-primary-500 transition-all">Free Tier</span>
+                <Sparkles className="h-2.5 w-2.5 text-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <ProModal isOpen={isProModalOpen} onClose={() => setIsProModalOpen(false)} />

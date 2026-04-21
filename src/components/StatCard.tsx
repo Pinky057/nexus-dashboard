@@ -54,14 +54,22 @@ export function StatCard({ title, value, trend, isPositive, icon: Icon, insight,
           </div>
         </div>
 
-        {insight && (
-          <div className="mt-8 flex items-start gap-3 rounded-2xl bg-primary-500/5 p-4 border border-primary-500/10 transition-all duration-500 group-hover:bg-primary-500/10 group-hover:border-primary-500/20">
-            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-primary-500" />
-            <p className="text-[11px] leading-relaxed text-primary-600 dark:text-primary-400 font-bold italic">
-              {insight}
-            </p>
-          </div>
-        )}
+        {/* Pro AI Insight Nudge */}
+        <div className="mt-6 pt-5 border-t border-border-theme/50 flex items-center gap-3">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              window.dispatchEvent(new CustomEvent('open-pro-modal', { detail: { feature: title + ' AI' } }));
+            }}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-500/5 hover:bg-primary-500/10 border border-primary-500/10 transition-all group/insight whitespace-nowrap"
+          >
+            <Sparkles className="h-3 w-3 text-primary-500 group-hover/insight:animate-pulse" />
+            <span className="text-[9px] font-black text-primary-500 uppercase tracking-widest">AI Insight</span>
+          </button>
+          <p className="text-[10px] text-muted/60 font-medium truncate italic">
+            {insight || "Analyze trends with AI"}
+          </p>
+        </div>
       </Card>
     </motion.div>
   )

@@ -1,21 +1,25 @@
 import * as React from "react"
+import { motion, HTMLMotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "hero" | "flat" }
+  HTMLMotionProps<"div"> & { variant?: "default" | "hero" | "flat" | "glass" }
 >(({ className, variant = "default", ...props }, ref) => {
   const variantStyles = {
-    default: "shadow-premium",
-    hero: "shadow-hero ring-1 ring-primary-500/10",
-    flat: "shadow-flat border border-border-theme",
+    default: "bg-background/50 backdrop-blur-md border border-border-theme shadow-premium",
+    hero: "bg-gradient-to-br from-primary-500/10 to-transparent border-2 border-primary-500/30 shadow-hero ring-1 ring-primary-500/20",
+    flat: "bg-background/20 backdrop-blur-sm border border-border-theme shadow-flat",
+    glass: "bg-background/5 backdrop-blur-xl border-2 border-border-theme shadow-premium",
   }
 
   return (
-    <div
+    <motion.div
       ref={ref}
+      whileHover={{ y: -5, scale: 1.005 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "card-premium",
+        "rounded-[2.5rem] overflow-hidden transition-colors duration-500",
         variantStyles[variant],
         className
       )}

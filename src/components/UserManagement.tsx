@@ -10,6 +10,7 @@ import {
   Check
 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { Avatar } from "@/components/ui/Avatar"
 import { USERS_TABLE_DATA as INITIAL_USERS, type User } from "@/data/mock"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -99,10 +100,13 @@ export function UserManagement() {
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="relative">
-                        <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full border border-border-theme" />
-                        <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-500 border-2 border-card" />
-                      </div>
+                      <Avatar 
+                        src={user.avatar} 
+                        alt={user.name} 
+                        shape="squircle" 
+                        size="md" 
+                        status="online" 
+                      />
                       <div>
                         {editingId === user.id ? (
                           <div className="flex items-center gap-2">

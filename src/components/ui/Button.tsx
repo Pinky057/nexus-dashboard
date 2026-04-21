@@ -4,27 +4,29 @@ import { cn } from "@/lib/utils"
 
 export interface ButtonProps
   extends HTMLMotionProps<"button"> {
-  variant?: "primary" | "secondary" | "danger" | "success" | "outline" | "ghost" | "link"
-  size?: "sm" | "md" | "lg" | "icon"
+  variant?: "primary" | "secondary" | "danger" | "success" | "outline" | "ghost" | "link" | "elite"
+  size?: "sm" | "md" | "lg" | "xl" | "icon"
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", ...props }, ref) => {
     const variants = {
-      primary: "bg-primary-600 text-white hover:bg-primary-500 shadow-xl shadow-primary-500/10",
+      primary: "bg-primary-500 text-white hover:bg-primary-400 shadow-[0_10px_20px_-10px_rgba(99,102,241,0.5)] border-t border-white/20",
+      elite: "bg-background/50 backdrop-blur-md border-2 border-primary-500/30 text-primary-500 hover:border-primary-500/60 hover:shadow-hero shadow-[0_0_15px_rgba(99,102,241,0.1)]",
       secondary: "bg-muted/10 text-foreground hover:bg-muted/20 border border-border-theme",
-      danger: "bg-rose-600 text-white hover:bg-rose-500 shadow-lg shadow-rose-500/10",
-      success: "bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/10",
-      outline: "border border-border-theme bg-transparent text-foreground hover:bg-muted/5",
+      danger: "bg-rose-600 text-white hover:bg-rose-500 shadow-[0_10px_20px_-10px_rgba(244,63,94,0.5)] border-t border-white/20",
+      success: "bg-emerald-600 text-white hover:bg-emerald-500 shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] border-t border-white/20",
+      outline: "border-2 border-border-theme bg-transparent text-foreground hover:border-primary-500/30 hover:bg-primary-500/5",
       ghost: "bg-transparent text-muted hover:bg-muted/5 hover:text-foreground",
       link: "bg-transparent text-primary-500 hover:underline px-0 py-0",
     }
 
     const sizes = {
-      sm: "h-9 px-4 text-xs font-bold",
-      md: "h-11 px-5 py-2 text-sm font-black",
-      lg: "h-13 px-8 text-base font-black",
-      icon: "h-11 w-11",
+      sm: "h-9 px-4 text-[10px] font-black tracking-widest",
+      md: "h-12 px-6 text-[11px] font-black tracking-[0.15em]",
+      lg: "h-14 px-8 text-xs font-black tracking-[0.2em]",
+      xl: "h-16 px-10 text-sm font-black tracking-[0.25em]",
+      icon: "h-12 w-12",
     }
 
     return (

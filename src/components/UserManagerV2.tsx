@@ -12,6 +12,7 @@ import {
 import { USERS_TABLE_DATA as INITIAL_USERS, type User } from "@/data/mock"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/Button"
+import { Avatar } from "@/components/ui/Avatar"
 
 export function UserManagerV2() {
   const [users, setUsers] = React.useState(INITIAL_USERS)
@@ -89,10 +90,13 @@ export function UserManagerV2() {
               className="bg-card border border-border-theme p-5 rounded-2xl hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:bg-primary/[0.02] transition-all flex flex-col group relative"
             >
               <div className="flex items-center gap-4 mb-5">
-                <div className="relative">
-                  <img src={user.avatar} alt={user.name} className="h-12 w-12 rounded-xl border border-border-theme shadow-sm object-cover" />
-                  <div className="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full bg-emerald-500 border-2 border-card shadow-sm" />
-                </div>
+                <Avatar 
+                  src={user.avatar} 
+                  alt={user.name} 
+                  shape="squircle" 
+                  size="lg" 
+                  status="online" 
+                />
                 <div className="min-w-0 flex-1">
                   {editingId === user.id ? (
                     <div className="flex items-center gap-1">

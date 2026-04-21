@@ -35,10 +35,10 @@
   --bg-card: #ffffff;
   
   --text-primary: #09090b;
-  --text-secondary: #52525b;
-  --text-muted: #a1a1aa;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
   
-  --border-theme: rgba(0, 0, 0, 0.06);
+  --border-theme: rgba(0, 0, 0, 0.16);
   
   /* Brand System 50-900 (Indigo Base) */
   --brand-50: #f5f7ff;
@@ -74,10 +74,10 @@
   --bg-card: #121214;
   
   --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted: #52525b;
+  --text-secondary: #d4d4d8;
+  --text-muted: #71717a;
   
-  --border-theme: rgba(255, 255, 255, 0.06);
+  --border-theme: rgba(255, 255, 255, 0.22);
   
   /* Brand System (Indigo Base - Dark Optimized) */
   --brand-50: rgba(99, 102, 241, 0.05);

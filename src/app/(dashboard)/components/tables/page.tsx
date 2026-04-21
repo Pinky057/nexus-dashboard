@@ -4,10 +4,11 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronUp, ChevronDown, Plus, Search, Edit2, Trash2, Check, X } from "lucide-react"
 import { USERS_TABLE_DATA as INITIAL_DATA, SIMPLE_REPORTS_DATA, type User } from "@/data/mock"
-import { Card, CardTitle, CardDescription, CardHeader } from "@/components/ui/Card"
+import { Card, CardTitle, CardDescription } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import { Input } from "@/components/ui/Input"
+import { Avatar } from "@/components/ui/Avatar"
 import { cn } from "@/lib/utils"
 
 export default function TablesPage() {
@@ -63,8 +64,8 @@ export default function TablesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        <Card className="overflow-hidden bg-card border-border-theme shadow-xl shadow-black/5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border-theme px-6 py-5 gap-4 bg-muted/5">
+        <Card variant="glass" className="overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border-theme/30 px-8 py-6 gap-4">
             <div>
               <CardTitle className="text-lg font-black tracking-tight text-foreground">User Management Table</CardTitle>
               <CardDescription className="font-bold text-muted">{users.length} active users in the system.</CardDescription>
@@ -87,7 +88,7 @@ export default function TablesPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm border-collapse">
-              <thead className="bg-muted/30 text-[10px] uppercase text-muted border-b border-border-theme font-black tracking-widest">
+              <thead className="text-[10px] uppercase text-muted border-b border-border-theme/30 font-black tracking-widest">
                 <tr>
                   <th className="px-6 py-5">User Details</th>
                   <th className="px-6 py-5">Role</th>
@@ -110,9 +111,13 @@ export default function TablesPage() {
                     >
                       <td className="px-6 py-5">
                         <div className="flex items-center gap-4">
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary text-xs font-black ring-1 ring-primary/20 shadow-sm">
-                            {user.name.charAt(0)}
-                          </div>
+                          <Avatar 
+                            src={user.avatar} 
+                            alt={user.name} 
+                            shape="squircle" 
+                            size="md" 
+                            status="online" 
+                          />
                           <div className="min-w-0">
                             {editingId === user.id ? (
                               <div className="flex items-center gap-2">
@@ -133,7 +138,7 @@ export default function TablesPage() {
                         </div>
                       </td>
                       <td className="px-6 py-5">
-                        <Badge variant="outline" className="font-black text-[10px] uppercase tracking-widest border-border-theme bg-muted/5">
+                        <Badge variant="outline" className="font-black text-[10px] uppercase tracking-widest border-border-theme">
                           {user.role}
                         </Badge>
                       </td>
@@ -181,14 +186,14 @@ export default function TablesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <Card className="bg-card border-border-theme shadow-xl shadow-black/5 overflow-hidden">
-          <CardHeader className="bg-muted/5 border-b border-border-theme px-6 py-5">
+        <Card variant="glass" className="overflow-hidden">
+          <div className="border-b border-border-theme/30 px-8 py-6">
             <CardTitle className="text-lg font-black tracking-tight text-foreground">Simple Read-only Table</CardTitle>
             <CardDescription className="font-bold text-muted">For displaying static data and reports without complex interactions.</CardDescription>
-          </CardHeader>
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-muted/30 text-[10px] uppercase text-muted font-black tracking-widest border-b border-border-theme">
+              <thead className="text-[10px] uppercase text-muted font-black tracking-widest border-b border-border-theme/30">
                 <tr>
                   <th className="px-6 py-5">Month</th>
                   <th className="px-6 py-5">Revenue</th>

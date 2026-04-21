@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts"
-import { Flame, TrendingUp } from "lucide-react"
+import { Flame, TrendingUp, Sparkles } from "lucide-react"
 import { REVENUE_DATA } from "@/data/mock"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card"
 import { useEffect, useState } from "react"
@@ -25,14 +25,23 @@ export function RevenueChart() {
       transition={{ duration: 0.5, delay: 0.3 }}
       className="h-full"
     >
-      <Card variant="hero" className="h-full flex flex-col group overflow-hidden border-border-theme hover:border-primary-400/30 transition-all duration-500 shadow-hero bg-card/50 backdrop-blur-sm">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <Card variant="glass" className="h-full flex flex-col group overflow-hidden shadow-hero">
+        <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-2">
           <div className="space-y-1">
-            <CardTitle className="text-xl font-black tracking-tighter text-foreground uppercase tracking-wider">Revenue Analytics</CardTitle>
-            <CardDescription className="text-[10px] font-bold text-muted uppercase tracking-widest">Monthly Recurring Revenue growth curve</CardDescription>
+            <CardTitle className="text-xl font-black tracking-tighter text-foreground uppercase tracking-wider">Revenue Stream</CardTitle>
+            <CardDescription className="text-[10px] font-black text-muted uppercase tracking-widest">Real-time performance & AI projections</CardDescription>
           </div>
-          <div className="h-12 w-12 rounded-[1.25rem] bg-primary-50 flex items-center justify-center text-primary-600 dark:bg-primary-500/10 dark:text-primary-400 border border-primary-500/10 group-hover:border-primary-500/50 group-hover:shadow-[0_0_20px_var(--brand-glow)] transition-all duration-500">
-            <Flame className="h-6 w-6" />
+          <div className="flex items-center gap-3">
+             <button 
+               onClick={() => window.dispatchEvent(new CustomEvent('open-pro-modal', { detail: { feature: 'AI Forecasting' } }))}
+               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500/10 border border-primary-500/20 hover:bg-primary-500/20 transition-all group/nudge"
+             >
+               <Sparkles className="h-3.5 w-3.5 text-primary-500 group-hover/nudge:animate-pulse" />
+               <span className="text-[9px] font-black text-primary-500 uppercase tracking-[0.2em]">Unlock AI Insights</span>
+             </button>
+             <div className="h-12 w-12 rounded-2xl bg-primary-500/10 flex items-center justify-center text-primary-500 border border-primary-500/10 group-hover:border-primary-500/50 group-hover:shadow-[0_0_20px_var(--brand-glow)] transition-all duration-500">
+               <Flame className="h-6 w-6" />
+             </div>
           </div>
         </CardHeader>
         <CardContent className="flex-1 min-h-[350px] pt-8">
@@ -44,13 +53,13 @@ export function RevenueChart() {
               >
                 <defs>
                   <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.2} />
-                    <stop offset="50%" stopColor="#22d3ee" stopOpacity={0.1} />
-                    <stop offset="95%" stopColor="#22d3ee" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
+                    <stop offset="40%" stopColor="#a855f7" stopOpacity={0.1} />
+                    <stop offset="95%" stopColor="#a855f7" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#6366f1" />
-                    <stop offset="100%" stopColor="#22d3ee" />
+                    <stop offset="100%" stopColor="#a855f7" />
                   </linearGradient>
                 </defs>
                 <CartesianGrid 
@@ -84,8 +93,8 @@ export function RevenueChart() {
                   content={({ active, payload, label }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="bg-zinc-950/90 backdrop-blur-3xl border border-white/10 p-6 rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in duration-300 ring-1 ring-white/10 overflow-hidden relative">
-                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-cyan-400" />
+                        <div className="bg-zinc-950/90 backdrop-blur-3xl border border-white/10 p-6 rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in duration-300 ring-1 ring-white/10 overflow-hidden relative">
+                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
                           <p className="text-[10px] font-black uppercase tracking-[0.3em] text-muted/60 mb-4">{label}</p>
                           <div className="flex flex-col gap-1">
                             <div className="flex items-center gap-3">
@@ -113,13 +122,13 @@ export function RevenueChart() {
                   fillOpacity={1}
                   fill="url(#colorTotal)"
                   animationDuration={2500}
-                  filter="drop-shadow(0 0 12px rgba(99, 102, 241, 0.5))"
+                  filter="drop-shadow(0 0 12px rgba(99, 102, 241, 0.4))"
                   activeDot={{ 
-                    r: 6, 
+                    r: 8, 
                     fill: "#fff", 
-                    stroke: "#6366f1", 
-                    strokeWidth: 3,
-                    className: "shadow-[0_0_20px_#6366f1]" 
+                    stroke: "#a855f7", 
+                    strokeWidth: 4,
+                    className: "shadow-[0_0_20px_#a855f7]" 
                   }}
                 />
               </AreaChart>

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { 
   Search, 
   Plus, 
@@ -12,6 +12,9 @@ import {
   ChevronRight
 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
+import { Card } from "@/components/ui/Card"
+import { Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const CATEGORIES = [
@@ -63,41 +66,49 @@ export default function CategoriesPage() {
         </div>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-          <div className="relative flex-1 w-full sm:w-64">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted group-focus-within:text-primary-500 transition-colors" />
-            <input 
-              className="w-full bg-background/50 border border-border-theme rounded-full pl-12 pr-6 py-3.5 text-sm font-bold text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all shadow-flat focus:shadow-hero backdrop-blur-md uppercase tracking-wider"
-              placeholder="Search categories..."
+          <div className="relative flex-1 w-full sm:w-80 group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted group-focus-within:text-primary-500 transition-colors z-10" />
+            <Input 
+              className="pl-12 pr-6 h-12"
+              placeholder="SEARCH CATEGORIES..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <Button 
-            variant="primary" 
-            className="h-[52px] px-8 rounded-full shadow-hero gap-3 transition-all"
-            onClick={() => {
-              const newId = `CAT-00${categories.length + 1}`
-              setCategories([{ id: newId, name: "New Category", items: 0, growth: "0%", color: "bg-zinc-500" }, ...categories])
-            }}
-          >
-            <Plus className="h-5 w-5" />
-            <span className="font-black uppercase tracking-widest text-[10px]">Add Category</span>
-          </Button>
+          <div className="flex items-center gap-3">
+             <Button 
+               variant="outline" 
+               className="h-12 px-6 gap-3 group/nudge"
+               onClick={() => window.dispatchEvent(new CustomEvent('open-pro-modal', { detail: { feature: 'AI Taxonomy' } }))}
+             >
+               <Sparkles className="h-4 w-4 text-primary-500 group-hover/nudge:animate-pulse" />
+               <span className="hidden sm:inline">AI Taxonomy</span>
+             </Button>
+             <Button 
+               variant="primary" 
+               className="h-12 px-6 gap-2"
+               onClick={() => {
+                 const newId = `CAT-00${categories.length + 1}`
+                 setCategories([{ id: newId, name: "New Category", items: 0, growth: "0%", color: "bg-primary-500/20" }, ...categories])
+               }}
+             >
+               <Plus className="h-4 w-4" />
+               <span>Add Category</span>
+             </Button>
+          </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence mode="popLayout">
           {filteredCategories.map((cat, i) => (
-            <motion.div
+            <Card
               key={cat.id}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              variant="glass"
               transition={{ delay: i * 0.05 }}
-              whileHover={editingId ? {} : { y: -5, scale: 1.02 }}
-              className="group bg-background/5 backdrop-blur-xl border-2 border-border-theme rounded-[2.5rem] p-8 shadow-flat hover:shadow-hero hover:border-primary-500/40 transition-all cursor-pointer relative overflow-hidden"
+              className="p-8 group relative overflow-hidden flex flex-col h-full"
+              whileHover={editingId ? {} : { y: -5 }}
+              onClick={() => !editingId && console.log('View collection')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
@@ -126,8 +137,8 @@ export default function CategoriesPage() {
                 
                 {editingId === cat.id ? (
                   <div className="flex flex-col gap-3">
-                    <input 
-                      className="bg-background/50 border-2 border-primary-500 rounded-2xl px-4 py-2 text-lg font-black text-foreground uppercase tracking-tight outline-none shadow-hero"
+                    <Input 
+                      className="h-12 text-lg"
                       value={editName}
                       onChange={(e) => setEditName(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleEditSave()}
@@ -158,7 +169,7 @@ export default function CategoriesPage() {
                 <span className="text-[10px] font-black uppercase tracking-widest">View Collection</span>
                 <ChevronRight className="h-3 w-3" />
               </div>
-            </motion.div>
+            </Card>
           ))}
         </AnimatePresence>
       </div>

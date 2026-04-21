@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
+import { Avatar } from "./ui/Avatar"
 
 const navigationGroups = [
   {
@@ -202,37 +203,44 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   <button
                                     onClick={() => toggleMenu(item.name)}
                                     className={cn(
-                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 px-4 relative z-10 overflow-hidden",
+                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-500 px-4 relative z-10 overflow-hidden",
                                       isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                      isActive ? "text-primary-600 dark:text-primary-400" : "text-muted hover:text-foreground"
+                                      isActive ? "text-primary-500" : "text-muted hover:text-foreground"
                                     )}
                                   >
                                     {isActive && (
                                       <>
                                         <motion.div 
                                           layoutId="active-accent"
-                                          className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 bg-primary-500 rounded-full shadow-[0_0_15px_var(--brand-glow)] z-20"
+                                          className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 bg-primary-500 rounded-full shadow-[0_0_15px_var(--brand-glow)] z-20"
                                           transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                         />
                                         <motion.div 
                                           layoutId="active-pill"
-                                          className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-primary-500/5 to-transparent rounded-2xl -z-10"
+                                          className="absolute inset-0 bg-primary-500/10 rounded-2xl -z-10"
                                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                                         />
                                       </>
                                     )}
-                                    <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-500", isActive ? "text-primary-500 drop-shadow-[0_0_10px_var(--brand-glow)] scale-110" : "text-muted group-hover/item:text-primary-500 group-hover/item:scale-115 group-hover/item:rotate-3")} />
+                                    <item.icon className={cn(
+                                      "h-5 w-5 shrink-0 transition-all duration-500", 
+                                      isActive ? "text-primary-500 drop-shadow-[0_0_10px_var(--brand-glow)] scale-110" : "text-muted group-hover/item:text-primary-500 group-hover/item:scale-115 group-hover/item:rotate-3"
+                                    )} />
                                     {!isCollapsed && (
                                       <>
-                                        <span className="flex-1 text-left text-sm font-black tracking-tight">{item.name}</span>
+                                        <span className="flex-1 text-left text-sm font-black tracking-tight uppercase tracking-widest text-[11px]">{item.name}</span>
                                         <ChevronDown className={cn("h-3 w-3 transition-transform duration-500", isExpanded && "rotate-180")} />
                                       </>
                                     )}
                                   </button>
+                                  {/* Rest of flyout remains same... */}
 
                                   {/* Flyout */}
                                   {isCollapsed && (
-                                    <div className="absolute left-[calc(100%+1rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/item:translate-x-0">
+                                    <div className={cn(
+                                      "absolute left-[calc(100%+1rem)] invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/item:translate-x-0",
+                                      group.title === "Resources" ? "bottom-0" : "top-0"
+                                    )}>
                                       <div className="bg-card/95 border border-border-theme rounded-[2.5rem] p-3 w-60 shadow-hero backdrop-blur-3xl">
                                         <div className="flex items-center gap-3 px-5 py-4 rounded-3xl mb-3 bg-gradient-to-br from-primary-500/15 to-transparent text-primary-600 dark:text-primary-400">
                                            <item.icon className="h-5 w-5 shrink-0" />
@@ -265,30 +273,33 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 <Link
                                   href={item.href || "#"}
                                     className={cn(
-                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 relative px-4 z-10 overflow-hidden",
+                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-500 relative px-4 z-10 overflow-hidden",
                                       isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                      isActive ? "text-primary-600 dark:text-primary-400" : "text-muted hover:text-foreground"
+                                      isActive ? "text-primary-500" : "text-muted hover:text-foreground"
                                     )}
                                 >
                                   {isActive && (
                                     <>
                                       <motion.div 
                                         layoutId="active-accent"
-                                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 bg-primary-500 rounded-full shadow-[0_0_15px_var(--brand-glow)] z-20"
+                                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 bg-primary-500 rounded-full shadow-[0_0_15px_var(--brand-glow)] z-20"
                                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                       />
                                       <motion.div 
                                         layoutId="active-pill"
-                                        className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-primary-500/5 to-transparent rounded-2xl -z-10 shadow-[0_0_25px_-5px_var(--brand-glow)]"
+                                        className="absolute inset-0 bg-primary-500/10 rounded-2xl -z-10 shadow-[0_0_25px_-5px_var(--brand-glow)]"
                                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                                       />
                                     </>
                                   )}
-                                  <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-500", isActive ? "text-primary-500 drop-shadow-[0_0_10px_var(--brand-glow)] scale-110" : "text-muted group-hover/link:text-primary-500 group-hover/link:scale-115 group-hover/link:rotate-3")} />
-                                  {!isCollapsed && <span className="text-sm font-black tracking-tight">{item.name}</span>}
+                                  <item.icon className={cn(
+                                    "h-5 w-5 shrink-0 transition-all duration-500", 
+                                    isActive ? "text-primary-500 drop-shadow-[0_0_10px_var(--brand-glow)] scale-110" : "text-muted group-hover/link:text-primary-500 group-hover/link:scale-115 group-hover/link:rotate-3"
+                                  )} />
+                                  {!isCollapsed && <span className="text-[11px] font-black tracking-widest uppercase">{item.name}</span>}
                                   
                                   {isCollapsed && (
-                                    <div className="absolute left-[calc(100%+1rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/link:translate-x-0">
+                                    <div className="absolute left-[calc(100%+1rem)] top-1/2 -translate-y-1/2 invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/link:translate-x-0">
                                       <div className="bg-card/95 border border-border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl whitespace-nowrap shadow-hero backdrop-blur-md">
                                         {item.name}
                                       </div>
@@ -348,14 +359,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 "flex items-center gap-3",
                 isCollapsed ? "justify-center" : "px-2"
               )}>
-                <div className="relative group/avatar cursor-pointer">
-                  <img 
-                    src="https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky+UI&background=6366f1&color=fff" 
-                    alt="Profile"
-                    className="h-10 w-10 rounded-full border-2 border-primary/20 shrink-0 group-hover/avatar:border-primary transition-all"
-                  />
-                  <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
-                </div>
+                <Avatar 
+                  src="https://ui-avatars.com/api/?name=Synthex+Admin&background=6366f1&color=fff" 
+                  alt="Profile"
+                  shape="squircle"
+                  size="md"
+                  status="online"
+                  className="group-hover/avatar:shadow-[0_0_15px_var(--brand-glow)] transition-all"
+                />
                 {!isCollapsed && (
                   <motion.div 
                     initial={{ opacity: 0 }}

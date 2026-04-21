@@ -13,7 +13,6 @@ import {
 } from "lucide-react"
 import { KANBAN_COLUMNS, KANBAN_TASKS } from "@/data/mock"
 import { Button } from "@/components/ui/Button"
-import { Badge } from "@/components/ui/Badge"
 import { ProModal } from "@/components/ui/ProModal"
 import { cn } from "@/lib/utils"
 

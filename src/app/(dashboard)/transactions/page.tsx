@@ -12,6 +12,9 @@ import {
 } from "lucide-react"
 import { TRANSACTIONS } from "@/data/mock"
 import { Button } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
+import { Avatar } from "@/components/ui/Avatar"
+import { Card } from "@/components/ui/Card"
 import { cn } from "@/lib/utils"
 
 export default function TransactionsPage() {
@@ -37,31 +40,27 @@ export default function TransactionsPage() {
         </div>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-          <div className="relative flex-1 w-full sm:w-64">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted group-focus-within:text-primary-500 transition-colors" />
-            <input 
-              className="w-full bg-background/50 border border-border-theme rounded-full pl-12 pr-6 py-3.5 text-sm font-bold text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all shadow-flat focus:shadow-hero backdrop-blur-md uppercase tracking-wider"
-              placeholder="Search history..."
+          <div className="relative flex-1 w-full sm:w-80 group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted group-focus-within:text-primary-500 transition-colors z-10" />
+            <Input 
+              className="pl-12 pr-6 h-12"
+              placeholder="SEARCH TRANSACTION ID OR CUSTOMER..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           <Button 
             variant="outline" 
-            className="h-[52px] px-6 rounded-full border-border-theme bg-background/50 backdrop-blur-md hover:border-primary-500/30 gap-3 transition-all"
+            className="h-12 px-6 gap-3 group/filter"
           >
-            <Filter className="h-4 w-4" />
-            <span className="font-black uppercase tracking-widest text-[10px]">Filter</span>
+            <Filter className="h-4 w-4 group-hover/filter:rotate-180 transition-transform" />
+            <span>Filter</span>
           </Button>
         </div>
       </div>
 
       {/* Transactions Table Container */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-background/5 backdrop-blur-xl border-2 border-border-theme rounded-[2.5rem] overflow-hidden shadow-flat"
-      >
+      <Card variant="glass" className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead className="bg-muted/5 border-b border-border-theme">
@@ -94,9 +93,18 @@ export default function TransactionsPage() {
                       </div>
                     </td>
                     <td className="px-8 py-5">
-                      <div className="flex flex-col">
-                        <span className="text-sm font-black text-foreground uppercase tracking-tight">{tx.user}</span>
-                        <span className="text-[10px] font-bold text-muted uppercase tracking-wider">{tx.email}</span>
+                      <div className="flex items-center gap-3">
+                        <Avatar 
+                          src={`https://ui-avatars.com/api/?name=${tx.user}&background=6366f1&color=fff`}
+                          alt={tx.user}
+                          shape="squircle"
+                          size="sm"
+                          status="online"
+                        />
+                        <div className="flex flex-col">
+                          <span className="text-sm font-black text-foreground uppercase tracking-tight">{tx.user}</span>
+                          <span className="text-[10px] font-bold text-muted uppercase tracking-wider">{tx.email}</span>
+                        </div>
                       </div>
                     </td>
                     <td className="px-8 py-5">
@@ -137,7 +145,7 @@ export default function TransactionsPage() {
             </tbody>
           </table>
         </div>
-      </motion.div>
+      </Card>
     </div>
   )
 }

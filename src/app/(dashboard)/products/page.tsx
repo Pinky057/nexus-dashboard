@@ -10,7 +10,7 @@ export default function ProductsPage() {
             <Box className="h-5 w-5 text-indigo-400" />
             <h1 className="text-2xl font-black tracking-tight text-foreground">Product Catalogue</h1>
           </div>
-          <p className="text-sm text-zinc-400">Inventory control, pricing management, and digital asset tracking.</p>
+          <p className="text-sm text-muted uppercase tracking-widest font-black opacity-60">Inventory control, pricing management, and digital asset tracking.</p>
         </div>
       </div>
 

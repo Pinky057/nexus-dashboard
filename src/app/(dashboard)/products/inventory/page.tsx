@@ -7,12 +7,14 @@ import {
   Plus,
   Box, 
   AlertTriangle, 
-  History,
   RotateCcw,
   Edit2,
   Trash2
 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
+import { Card } from "@/components/ui/Card"
+import { Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const INVENTORY = [
@@ -80,33 +82,37 @@ export default function InventoryPage() {
         </div>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-          <div className="relative flex-1 w-full sm:w-64">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted group-focus-within:text-primary-500 transition-colors" />
-            <input 
-              className="w-full bg-background/50 border border-border-theme rounded-full pl-12 pr-6 py-3.5 text-sm font-bold text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all shadow-flat focus:shadow-hero backdrop-blur-md uppercase tracking-wider"
-              placeholder="Search SKU or Name..."
+          <div className="relative flex-1 w-full sm:w-80 group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted group-focus-within:text-primary-500 transition-colors z-10" />
+            <Input 
+              className="pl-12 pr-6 h-12"
+              placeholder="SEARCH SKU OR NAME..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <Button 
-            variant="outline" 
-            className="h-[52px] px-6 rounded-full border-border-theme bg-background/50 backdrop-blur-md hover:border-primary-500/30 gap-3 transition-all"
-            onClick={() => {
-              setInventory(INVENTORY) // Simple reset for demo
-            }}
-          >
-            <History className="h-4 w-4" />
-            <span className="font-black uppercase tracking-widest text-[10px]">Reset Mock</span>
-          </Button>
+          <div className="flex items-center gap-3">
+             <Button 
+               variant="outline" 
+               className="h-12 px-6 gap-3 group/nudge"
+               onClick={() => window.dispatchEvent(new CustomEvent('open-pro-modal', { detail: { feature: 'Smart Forecasting' } }))}
+             >
+               <Sparkles className="h-4 w-4 text-primary-500 group-hover/nudge:animate-pulse" />
+               <span className="hidden sm:inline">AI Forecast</span>
+             </Button>
+             <Button 
+               variant="outline" 
+               className="h-12 w-12 p-0"
+               onClick={() => setInventory(INVENTORY)}
+             >
+               <RotateCcw className="h-4 w-4" />
+             </Button>
+          </div>
         </div>
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-background/5 backdrop-blur-xl border-2 border-border-theme rounded-[2.5rem] overflow-hidden shadow-flat"
-      >
+      {/* Inventory Table Container */}
+      <Card variant="glass" className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead className="bg-muted/5 border-b border-border-theme">
@@ -215,7 +221,7 @@ export default function InventoryPage() {
             </tbody>
           </table>
         </div>
-      </motion.div>
+      </Card>
     </div>
   )
 }
