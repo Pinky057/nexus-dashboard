@@ -27,7 +27,7 @@ export default function ChartsPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Charts</h1>
+        <h1 className="text-2xl font-black tracking-tight text-foreground">Charts</h1>
         <p className="text-sm text-zinc-400 mt-1">Recharts data visualization components integrated with our UI Card system.</p>
       </div>
 

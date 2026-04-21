@@ -8,7 +8,7 @@ export default function ProductsPage() {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
             <Box className="h-5 w-5 text-indigo-400" />
-            <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Product Catalogue</h1>
+            <h1 className="text-2xl font-black tracking-tight text-foreground">Product Catalogue</h1>
           </div>
           <p className="text-sm text-zinc-400">Inventory control, pricing management, and digital asset tracking.</p>
         </div>

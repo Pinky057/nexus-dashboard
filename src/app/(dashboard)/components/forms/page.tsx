@@ -18,7 +18,7 @@ export default function FormsPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Forms</h1>
+        <h1 className="text-2xl font-black tracking-tight text-foreground">Forms</h1>
         <p className="text-sm text-zinc-400 mt-1">Pre-built form layouts using our standardized UI library.</p>
       </div>
 

@@ -5,7 +5,7 @@ export default function TransactionsPage() {
   return (
     <div className="space-y-6 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Transactions</h1>
+        <h1 className="text-2xl font-black tracking-tight text-foreground">Transactions</h1>
         <p className="text-sm text-zinc-400 mt-1">Full payment history, invoices, and refund management.</p>
       </div>
       <ProGate

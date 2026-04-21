@@ -18,7 +18,7 @@ export default function NotFound() {
         </p>
         <div className="mt-4 h-px w-48 mx-auto bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
 
-        <h1 className="mt-6 text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl">
+        <h1 className="mt-6 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
           Page not found
         </h1>
         <p className="mt-4 max-w-sm text-base text-zinc-400">

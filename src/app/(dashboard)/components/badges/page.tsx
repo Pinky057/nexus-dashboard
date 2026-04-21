@@ -10,7 +10,7 @@ export default function BadgesPage() {
   return (
     <div className="space-y-8 pb-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Badges & Indicators</h1>
+        <h1 className="text-2xl font-black tracking-tight text-foreground">Badges & Indicators</h1>
         <p className="text-sm text-zinc-400 mt-1">A full collection of status indicators, labels, and tags using standardized components.</p>
       </div>
 
