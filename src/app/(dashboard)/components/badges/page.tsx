@@ -87,19 +87,19 @@ export default function BadgesPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 ring-1 ring-zinc-700">
                   <Bell className="h-5 w-5" />
                 </div>
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-zinc-100 ring-2 ring-zinc-950">3</span>
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-zinc-100">3</span>
               </div>
               <div className="relative">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 ring-1 ring-zinc-700">
                   <Lock className="h-5 w-5" />
                 </div>
-                <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-amber-400 ring-2 ring-zinc-950" />
+                <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-amber-400" />
               </div>
               <div className="relative">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 ring-1 ring-zinc-700">
                   <Wifi className="h-5 w-5" />
                 </div>
-                <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-zinc-950 animate-pulse" />
+                <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-emerald-400 animate-pulse" />
               </div>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-3 w-3">
