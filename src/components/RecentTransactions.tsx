@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { TRANSACTIONS } from "@/data/mock"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card"
 import { Badge } from "@/components/ui/Badge"
-import { cn } from "@/lib/utils"
 
 export function RecentTransactions() {
   return (

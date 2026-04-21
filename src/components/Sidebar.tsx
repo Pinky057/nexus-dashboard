@@ -10,20 +10,13 @@ import {
   BarChart3, 
   CreditCard, 
   Box, 
-  LogIn, 
-  MousePointerClick, 
-  FileText, 
-  Tags, 
-  Table2, 
-  LineChart, 
-  UserPlus, 
-  KeyRound, 
-  X, 
   ChevronLeft,
   ChevronRight,
-  LogOut,
   Sparkles,
-  ChevronDown
+  ChevronDown,
+  Table2,
+  MousePointerClick,
+  KeyRound
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
@@ -202,87 +195,87 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                         
                         return (
                           <motion.div layout key={item.name} className="relative group/item px-1">
-                            {hasSubItems ? (
-                              <div className="relative">
-                                <button
-                                  onClick={() => toggleMenu(item.name)}
-                                  className={cn(
-                                    "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-200",
-                                    isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                    isActive 
-                                      ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                      : "text-muted hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-foreground"
-                                  )}
-                                >
-                                  <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-muted group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
-                                  {!isCollapsed && (
-                                    <>
-                                      <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
-                                      <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isExpanded && "rotate-180")} />
-                                    </>
-                                  )}
-                                </button>
+                            <div className="relative">
+                              {hasSubItems ? (
+                                <div className="relative">
+                                  <button
+                                    onClick={() => toggleMenu(item.name)}
+                                    className={cn(
+                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-200 px-4",
+                                      isCollapsed ? "justify-center px-0 h-14" : "px-4",
+                                      "text-muted hover:bg-indigo-50/50 hover:text-indigo-600",
+                                      isActive && "text-foreground"
+                                    )}
+                                  >
+                                    <item.icon className={cn("h-5 w-5 shrink-0 transition-colors", isActive ? "text-primary" : "text-muted group-hover/item:text-primary")} />
+                                    {!isCollapsed && (
+                                      <>
+                                        <span className="flex-1 text-left text-sm font-semibold">{item.name}</span>
+                                        <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isExpanded && "rotate-180")} />
+                                      </>
+                                    )}
+                                  </button>
 
-                                {/* Flyout */}
-                                {isCollapsed && (
-                                  <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
-                                    <div className={cn(
-                                      "border backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-2xl",
-                                      "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800/50"
-                                    )}>
+                                  {/* Flyout */}
+                                  {isCollapsed && (
+                                    <div className="absolute left-[calc(100%+0.5rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/item:translate-x-0">
                                       <div className={cn(
-                                        "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2",
-                                        isActive ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" : "bg-zinc-50 dark:bg-zinc-800/50 text-foreground"
+                                        "border backdrop-blur-3xl rounded-[2rem] p-2 w-56 shadow-2xl",
+                                        "bg-card border-border-theme"
                                       )}>
-                                        <item.icon className="h-5 w-5 shrink-0" />
-                                        <span className="text-sm font-bold">{item.name}</span>
-                                      </div>
-                                      <div className="space-y-1">
-                                        {item.subItems.map((sub) => {
-                                          const isSubActive = pathname === sub.href
-                                          return (
-                                            <Link
-                                              key={sub.name}
-                                              href={sub.href}
-                                              className={cn(
-                                                "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
-                                                isSubActive 
-                                                  ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-400/5" 
-                                                  : "text-muted hover:bg-zinc-100 dark:hover:bg-zinc-800/60 hover:text-foreground"
-                                              )}
-                                            >
-                                              {sub.name}
-                                            </Link>
-                                          )
-                                        })}
+                                        <div className={cn(
+                                          "flex items-center gap-3 px-4 py-3.5 rounded-2xl mb-2 transition-all",
+                                          "bg-indigo-50/50 text-indigo-600"
+                                        )}>
+                                           <item.icon className="h-5 w-5 shrink-0" />
+                                           <span className="text-sm font-bold">{item.name}</span>
+                                         </div>
+                                        <div className="space-y-1">
+                                          {item.subItems.map((sub) => {
+                                            const isSubActive = pathname === sub.href
+                                            return (
+                                              <Link
+                                                key={sub.name}
+                                                href={sub.href}
+                                                className={cn(
+                                                  "flex items-center px-4 py-3 rounded-xl text-[13px] font-bold transition-all",
+                                                  isSubActive 
+                                                    ? "text-primary bg-primary-soft" 
+                                                    : "text-muted hover:bg-indigo-50/50 hover:text-indigo-600"
+                                                )}
+                                              >
+                                                {sub.name}
+                                              </Link>
+                                            )
+                                          })}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                )}
-                              </div>
-                            ) : (
-                              <Link
-                                href={item.href || "#"}
-                                className={cn(
-                                  "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-200 relative",
-                                  isCollapsed ? "justify-center px-0 h-14" : "px-4",
-                                  isActive 
-                                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/30" 
-                                    : "text-muted hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-foreground"
-                                )}
-                              >
-                                <item.icon className={cn("h-5 w-5 shrink-0", isActive ? "text-white" : "text-muted group-hover/link:text-indigo-600 dark:group-hover/item:text-indigo-400")} />
-                                {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
-                                
-                                {isCollapsed && (
-                                  <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
-                                    <div className="bg-white dark:bg-zinc-900 border border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
-                                      {item.name}
+                                  )}
+                                </div>
+                              ) : (
+                                <Link
+                                  href={item.href || "#"}
+                                    className={cn(
+                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-200 relative px-4",
+                                      isCollapsed ? "justify-center px-0 h-14" : "px-4",
+                                      "text-muted hover:bg-indigo-50/50 hover:text-indigo-600",
+                                      isActive && "text-foreground"
+                                    )}
+                                >
+                                  <item.icon className={cn("h-5 w-5 shrink-0 transition-colors", isActive ? "text-primary" : "text-muted group-hover/link:text-primary")} />
+                                  {!isCollapsed && <span className="text-sm font-bold">{item.name}</span>}
+                                  
+                                  {isCollapsed && (
+                                    <div className="absolute left-[calc(100%+0.5rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-300 z-[100] translate-x-2 group-hover/link:translate-x-0">
+                                      <div className="bg-card border border-border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-xl whitespace-nowrap shadow-2xl">
+                                        {item.name}
+                                      </div>
                                     </div>
-                                  </div>
-                                )}
-                              </Link>
-                            )}
+                                  )}
+                                </Link>
+                              )}
+                            </div>
 
                             <AnimatePresence>
                               {hasSubItems && isExpanded && !isCollapsed && (
@@ -301,14 +294,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                         href={sub.href}
                                         className={cn(
                                           "block py-2.5 px-4 rounded-xl text-[13px] font-bold transition-all relative group/sub",
-                                          isSubActive 
-                                            ? "bg-indigo-50 dark:bg-indigo-600/10 text-indigo-600 dark:text-indigo-400" 
-                                            : "text-muted hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800/30"
+                                          "text-muted hover:text-indigo-600 hover:bg-indigo-50/50",
+                                          isSubActive && "text-foreground"
                                         )}
                                       >
                                         <div className={cn(
                                           "absolute -left-6 top-1/2 -translate-y-1/2 h-px w-3 transition-colors",
-                                          isSubActive ? "bg-indigo-500" : "bg-border-theme group-hover/sub:bg-muted"
+                                          isSubActive ? "bg-primary" : "bg-border-theme group-hover/sub:bg-indigo-400"
                                         )} />
                                         {sub.name}
                                       </Link>
@@ -339,7 +331,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   <img 
                     src="https://ui-avatars.com/api/?name=Ummey+Habiba+Pinky+UI&background=6366f1&color=fff" 
                     alt="Profile"
-                    className="h-10 w-10 rounded-full border-2 border-border-theme shrink-0 group-hover/avatar:scale-110 transition-transform"
+                    className="h-10 w-10 rounded-full border-2 border-primary/20 shrink-0 group-hover/avatar:border-primary transition-all"
                   />
                   <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
                 </div>

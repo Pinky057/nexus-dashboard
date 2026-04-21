@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { Sparkles, Send, Zap, Target, MessageSquare } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card"
 import { Input } from "@/components/ui/Input"
-import { cn } from "@/lib/utils"
 
 export function AiAssistantCard() {
   return (

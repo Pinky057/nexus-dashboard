@@ -2,20 +2,16 @@
 
 import * as React from "react"
 import { 
-  Plus, 
   Search, 
   Trash2, 
   Edit2, 
-  Shield, 
   Check,
-  X,
   UserPlus,
   Mail
 } from "lucide-react"
 import { USERS_TABLE_DATA as INITIAL_USERS, type User } from "@/data/mock"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/Button"
-import { cn } from "@/lib/utils"
 
 export function UserManagerV2() {
   const [users, setUsers] = React.useState(INITIAL_USERS)

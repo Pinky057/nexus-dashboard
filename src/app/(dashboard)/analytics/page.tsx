@@ -39,16 +39,16 @@ export default function AnalyticsPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-indigo-400" />
-            <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Advanced Analytics</h1>
+            <BarChart3 className="h-5 w-5 text-primary" />
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">Advanced Analytics</h1>
           </div>
-          <p className="text-sm text-zinc-400">Granular breakdown of user behavior and revenue retention.</p>
+          <p className="text-sm text-muted">Granular breakdown of user behavior and revenue retention.</p>
         </div>
         <div className="flex items-center gap-2">
           <Button 
             variant="outline" 
             size="sm" 
-            className="h-9 gap-2 border-zinc-800"
+            className="h-9 gap-2 border-border-theme"
             onClick={() => handleProClick("Custom Date Ranges")}
           >
             <Calendar className="h-4 w-4" />
@@ -77,8 +77,8 @@ export default function AnalyticsPage() {
           >
             {[...Array(6)].map((_, i) => (
               <div key={i} className={i === 0 ? "lg:col-span-2" : ""}>
-                <div className="h-48 w-full animate-pulse rounded-xl bg-zinc-900/50 border border-zinc-800 flex items-center justify-center">
-                  <Loader2 className="h-6 w-6 animate-spin text-zinc-800" />
+                <div className="h-48 w-full animate-pulse rounded-xl bg-muted/20 border border-border-theme flex items-center justify-center">
+                  <Loader2 className="h-6 w-6 animate-spin text-muted" />
                 </div>
               </div>
             ))}
@@ -97,19 +97,19 @@ export default function AnalyticsPage() {
 
             <div className="lg:col-span-1">
               <div 
-                className="h-full rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-6 flex flex-col justify-between group hover:border-indigo-500/40 transition-all cursor-pointer"
+                className="h-full rounded-2xl border border-primary/20 bg-primary/5 p-6 flex flex-col justify-between group hover:border-primary/40 transition-all cursor-pointer shadow-sm shadow-primary/5"
                 onClick={() => handleProClick("Predictive Forecasting")}
               >
                 <div className="flex items-center justify-between">
-                  <div className="p-2 rounded-lg bg-indigo-500/10">
-                    <TrendingUp className="h-5 w-5 text-indigo-400" />
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <TrendingUp className="h-5 w-5 text-primary" />
                   </div>
-                  <Sparkles className="h-4 w-4 text-indigo-500/40" />
+                  <Sparkles className="h-4 w-4 text-primary/30" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-1">Predictive</p>
-                  <h3 className="text-lg font-bold text-zinc-100 group-hover:text-indigo-300 transition-colors">LTV Forecast</h3>
-                  <p className="text-xs text-zinc-500 mt-1">Projected lifetime value to increase by 14% based on current cohort trends.</p>
+                  <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Predictive AI</p>
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">LTV Forecast</h3>
+                  <p className="text-xs text-muted mt-1 leading-relaxed">Projected lifetime value to increase by 14% based on current cohort trends.</p>
                 </div>
               </div>
             </div>
@@ -129,22 +129,22 @@ export default function AnalyticsPage() {
             </div>
 
             <div className="md:col-span-2 lg:col-span-2">
-              <div className="h-full rounded-xl border border-zinc-800 bg-zinc-950/50 p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-indigo-500/50 transition-colors min-h-[300px]">
-                <div className="h-16 w-16 rounded-full bg-zinc-900 flex items-center justify-center ring-1 ring-zinc-800 group-hover:ring-indigo-500/50 transition-all relative">
-                  <BarChart3 className="h-8 w-8 text-zinc-700 group-hover:text-indigo-400" />
-                  <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-indigo-600 flex items-center justify-center border-2 border-zinc-950">
+              <div className="h-full rounded-2xl border border-border-theme bg-card p-8 flex flex-col items-center justify-center text-center gap-4 group hover:border-primary/50 transition-all min-h-[300px] shadow-sm">
+                <div className="h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center border border-border-theme group-hover:border-primary/30 transition-all relative">
+                  <BarChart3 className="h-8 w-8 text-muted group-hover:text-primary" />
+                  <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary flex items-center justify-center border-2 border-card shadow-lg shadow-primary/20">
                     <Sparkles className="h-2.5 w-2.5 text-white" />
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-zinc-200">Custom Funnels</h3>
-                  <p className="text-sm text-zinc-500 mt-2 max-w-[320px]">
+                  <h3 className="text-lg font-bold text-foreground">Custom Funnels</h3>
+                  <p className="text-sm text-muted mt-2 max-w-[320px] leading-relaxed">
                     Create custom event funnels to track conversion drops at every stage of your user journey.
                   </p>
                 </div>
                 <Button 
-                  variant="secondary" 
-                  className="mt-4 ring-1 ring-zinc-700"
+                  variant="outline" 
+                  className="mt-4 border-border-theme hover:bg-primary/5 hover:text-primary"
                   onClick={() => handleProClick("Custom Funnel Builder")}
                 >
                   Build Custom Funnel

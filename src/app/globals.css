@@ -1,48 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-indigo-400: #818cf8;
-  --color-indigo-500: #6366f1;
-  --color-indigo-600: #4f46e5;
-  
-  /* Semantic Theme Mapping */
+  /* 1. Dynamic Environment Colors */
   --color-background: var(--bg-app);
+  --color-card: var(--bg-card);
+  --color-border-theme: var(--border-theme);
+  
+  /* 2. Brand & Primary Logic */
+  --color-primary: var(--brand-color);
+  --color-primary-soft: var(--brand-color-soft);
+  
+  /* 3. Typography Hierarchy */
   --color-foreground: var(--text-primary);
   --color-muted: var(--text-secondary);
-  --color-border-theme: var(--border-primary);
-  --color-card: var(--bg-card);
 }
 
-/* Custom Dark Variant for Class-based theme switching */
+/* Custom Theme Variants for Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
+@variant ocean (&:where(.ocean, .ocean *));
 
 :root {
-  /* Dark Mode (Default) - Doclines Inspired Premium Zinc */
-  --bg-app: #09090b; 
-  --bg-sidebar: rgba(24, 24, 27, 0.4); 
-  --bg-card: rgba(18, 18, 20, 0.6); 
-  --border-primary: rgba(39, 39, 42, 0.5); 
-  --text-primary: #f4f4f5; 
-  --text-secondary: #a1a1aa; 
-  --text-muted: #52525b; 
+  /* Studio Light - Restored original professional feel */
+  --bg-app: #f8fafc;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-theme: #e2e8f0;
+  --brand-color: #6366f1;
+  --brand-color-soft: rgba(99, 102, 241, 0.08);
+  
+  --font-primary: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  
+  --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-.light {
-  /* Premium Light Mode - Studio White */
-  --bg-app: #f9f9fb; 
-  --bg-sidebar: rgba(255, 255, 255, 0.8); 
-  --bg-card: #ffffff; 
-  --border-primary: #e4e4e7; 
-  --text-primary: #09090b; 
-  --text-secondary: #71717a; 
-  --text-muted: #a1a1aa; 
+.dark {
+  --bg-app: #09090b;
+  --bg-sidebar: #09090b;
+  --bg-card: #18181b;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-theme: #27272a;
+  --brand-color: #6366f1;
+  --brand-color-soft: rgba(99, 102, 241, 0.15);
+  
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.ocean {
+  --bg-app: #021212;
+  --bg-sidebar: #041d1d;
+  --bg-card: #041d1d;
+  --text-primary: #e1fdf4;
+  --text-secondary: #64b4b4;
+  --text-muted: #2d6b5f;
+  --border-theme: #083333;
+  --brand-color: #06b6d4;
+  --brand-color-soft: rgba(6, 182, 212, 0.15);
+  
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
 body {
   background-color: var(--bg-app);
   color: var(--text-primary);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-primary);
+  /* Swift & Snappy Transition */
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.label-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: var(--text-secondary);
+}
+
+/* Ensure all cards and panels transition at the same speed */
+.glass-panel, .card-premium, input, button, table, thead, th, td {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ─── Global Scrollbar Hide ─── */
@@ -54,26 +107,28 @@ body {
   display: none !important;
 }
 
-/* ─── Component Shortcuts ─── */
+/* ─── Premium UI Components ─── */
+
 .glass-panel {
   background: var(--bg-sidebar);
-  border: 1px solid var(--border-primary);
+  border-right: 1px solid var(--border-theme);
   backdrop-filter: blur(24px);
 }
 
 .card-premium {
   background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: 1.5rem;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  /* Stronger Premium Shadow for Cards */
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-}
-
-.dark .card-premium {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-theme);
+  border-radius: 1.25rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-premium);
 }
 
 .card-premium:hover {
-  border-color: var(--color-indigo-500);
+  border-color: var(--brand-color);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px var(--brand-color-soft);
+}
+
+.primary-glow {
+  box-shadow: 0 0 20px -5px var(--brand-color-soft);
 }

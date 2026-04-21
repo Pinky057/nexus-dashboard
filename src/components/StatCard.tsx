@@ -22,17 +22,17 @@ export function StatCard({ title, value, trend, isPositive, icon: Icon, insight,
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
     >
-      <Card className="group relative overflow-hidden p-6 hover:-translate-y-1 transition-all duration-300">
-        {/* Decorative background glow */}
-        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-indigo-500/5 blur-2xl transition-all duration-500 group-hover:bg-indigo-500/10 group-hover:blur-3xl" />
+      <Card className="group relative overflow-hidden p-6 card-premium">
+        {/* Decorative dynamic background glow */}
+        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-primary/5 blur-2xl transition-all duration-500 group-hover:bg-primary/10 group-hover:blur-3xl" />
         
         <div className="relative flex items-center justify-between">
           <div className="space-y-1">
             <p className="text-xs font-bold uppercase tracking-wider text-muted">{title}</p>
             <p className="text-3xl font-bold tracking-tight text-foreground">{value}</p>
           </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-background border border-border-theme transition-all duration-300 group-hover:border-indigo-500/50 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-            <Icon className="h-6 w-6 text-indigo-500" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-background border border-border-theme transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-[0_0_15px_var(--color-primary-soft)]">
+            <Icon className="h-6 w-6 text-primary" />
           </div>
         </div>
 
@@ -51,9 +51,9 @@ export function StatCard({ title, value, trend, isPositive, icon: Icon, insight,
         </div>
 
         {insight && (
-          <div className="mt-6 flex items-start gap-2 rounded-xl bg-indigo-500/5 p-3 border border-indigo-500/10 transition-all duration-300 group-hover:bg-indigo-500/10">
-            <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-indigo-500" />
-            <p className="text-[11px] leading-relaxed text-indigo-600 dark:text-indigo-300/90 font-bold italic">
+          <div className="mt-6 flex items-start gap-2 rounded-xl bg-primary/5 p-3 border border-primary/10 transition-all duration-300 group-hover:bg-primary/10">
+            <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+            <p className="text-[11px] leading-relaxed text-primary dark:text-primary/90 font-bold italic">
               {insight}
             </p>
           </div>

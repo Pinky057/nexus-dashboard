@@ -3,8 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Sparkles, CheckCircle2, ShieldCheck } from "lucide-react"
-import { Button } from "@/components/ui/Button"
-import { cn } from "@/lib/utils"
+import { Button } from "./Button"
 
 interface ProModalProps {
   isOpen: boolean

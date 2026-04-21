@@ -4,7 +4,7 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { 
   Search, 
-  FileText, 
+  FileText,
   Users, 
   Settings, 
   BarChart3, 
@@ -14,7 +14,6 @@ import {
   Zap,
   ArrowRight,
   Command as CommandIcon,
-  X,
   Sparkles
 } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -33,8 +32,8 @@ const PAGES = [
 interface CommandItem {
   name: string
   href?: string
-  action?: ((toast: any) => void) | (() => void)
-  icon: any
+  action?: ((toast: ToastFunction) => void) | (() => void)
+  icon: React.ElementType
   category: string
 }
 

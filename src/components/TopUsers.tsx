@@ -1,9 +1,8 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { TOP_USERS } from "@/data/mock"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card"
-import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card"
 
 export function TopUsers() {
   return (

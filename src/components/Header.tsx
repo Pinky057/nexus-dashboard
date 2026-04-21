@@ -4,8 +4,8 @@ import { useState, useEffect } from "react"
 import { Search, Menu, Sparkles } from "lucide-react"
 import { ThemeToggle } from "./ThemeToggle"
 import { NotificationBell } from "./NotificationBell"
+import { ThemeCustomizer } from "./ThemeCustomizer"
 import { ProModal } from "./ui/ProModal"
-import { cn } from "@/lib/utils"
 
 interface HeaderProps {
   onMenuClick: () => void
@@ -61,6 +61,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           </div>
           
           <div className="flex items-center gap-2">
+            <ThemeCustomizer />
             <ThemeToggle />
             <NotificationBell />
           </div>
