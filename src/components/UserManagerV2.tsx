@@ -54,21 +54,25 @@ export function UserManagerV2() {
 
   return (
     <div className="space-y-4">
-      {/* Search & Actions */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-muted/40 p-5 rounded-2xl border border-border-theme backdrop-blur-sm shadow-sm">
-        <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" />
+      {/* Premium Search & Actions Pill */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8">
+        <div className="relative w-full max-w-lg">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted group-focus-within:text-primary-500 transition-colors" />
           <input 
             type="text"
-            className="w-full bg-background border border-border-theme rounded-xl pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
-            placeholder="Search users..."
+            className="w-full bg-background/50 border border-border-theme rounded-full pl-12 pr-6 py-3.5 text-sm font-bold text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all shadow-flat focus:shadow-hero backdrop-blur-md uppercase tracking-wider"
+            placeholder="Search team members..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button onClick={addUser} className="w-full sm:w-auto gap-2 h-11 px-6 shadow-lg shadow-primary/10">
-          <UserPlus className="h-4.5 w-4.5" />
-          Add New Member
+        <Button 
+          variant="primary" 
+          onClick={addUser} 
+          className="w-full md:w-auto gap-3 h-[52px] px-8 rounded-full shadow-hero"
+        >
+          <UserPlus className="h-5 w-5" />
+          <span className="font-black uppercase tracking-widest text-[11px]">Add New Member</span>
         </Button>
       </div>
 
@@ -122,16 +126,16 @@ export function UserManagerV2() {
                   ) : (
                     <button 
                       onClick={() => startEdit(user)}
-                      className="text-muted hover:text-primary hover:bg-primary/5 p-2 rounded-xl transition-all border border-transparent hover:border-primary/10"
+                      className="text-muted/60 hover:text-primary-500 p-2.5 rounded-xl transition-all border border-transparent hover:border-primary-500/40 bg-transparent"
                     >
-                      <Edit2 className="h-4 w-4" />
+                      <Edit2 className="h-4.5 w-4.5" />
                     </button>
                   )}
                   <button 
                     onClick={() => handleDelete(user.id)}
-                    className="text-muted hover:text-rose-600 hover:bg-rose-50 p-2 rounded-xl transition-all border border-transparent hover:border-rose-100"
+                    className="text-muted/60 hover:text-rose-500 p-2.5 rounded-xl transition-all border border-transparent hover:border-rose-500/40 bg-transparent"
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="h-4.5 w-4.5" />
                   </button>
                 </div>
               </div>

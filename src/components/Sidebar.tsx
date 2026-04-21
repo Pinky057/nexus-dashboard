@@ -156,7 +156,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 isCollapsed ? "justify-center py-8" : "px-8 py-10 gap-3"
               )}
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-600 shadow-[0_0_20px_var(--brand-glow)]">
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
               {!isCollapsed && (
@@ -201,19 +201,26 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   <button
                                     onClick={() => toggleMenu(item.name)}
                                     className={cn(
-                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 px-4 relative z-10",
+                                      "w-full flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 px-4 relative z-10 overflow-hidden",
                                       isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                       isActive ? "text-primary-600 dark:text-primary-400" : "text-muted hover:text-foreground"
                                     )}
                                   >
                                     {isActive && (
-                                      <motion.div 
-                                        layoutId="active-pill"
-                                        className="absolute inset-0 bg-primary-500/10 dark:bg-primary-500/15 rounded-2xl -z-10"
-                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                      />
+                                      <>
+                                        <motion.div 
+                                          layoutId="active-accent"
+                                          className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 bg-primary-500 rounded-full shadow-[0_0_15px_var(--brand-glow)] z-20"
+                                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        />
+                                        <motion.div 
+                                          layoutId="active-pill"
+                                          className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-primary-500/5 to-transparent rounded-2xl -z-10"
+                                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                        />
+                                      </>
                                     )}
-                                    <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-300", isActive ? "text-primary-500" : "text-muted group-hover/item:text-primary-500 group-hover/item:scale-110")} />
+                                    <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-500", isActive ? "text-primary-500 drop-shadow-[0_0_10px_var(--brand-glow)] scale-110" : "text-muted group-hover/item:text-primary-500 group-hover/item:scale-115 group-hover/item:rotate-3")} />
                                     {!isCollapsed && (
                                       <>
                                         <span className="flex-1 text-left text-sm font-black tracking-tight">{item.name}</span>
@@ -225,8 +232,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                   {/* Flyout */}
                                   {isCollapsed && (
                                     <div className="absolute left-[calc(100%+1rem)] top-0 invisible opacity-0 group-hover/item:visible group-hover/item:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/item:translate-x-0">
-                                      <div className="bg-card border border-border-theme rounded-[2.5rem] p-3 w-60 shadow-premium backdrop-blur-3xl">
-                                        <div className="flex items-center gap-3 px-5 py-4 rounded-3xl mb-3 bg-primary-50/50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400">
+                                      <div className="bg-card/95 border border-border-theme rounded-[2.5rem] p-3 w-60 shadow-hero backdrop-blur-3xl">
+                                        <div className="flex items-center gap-3 px-5 py-4 rounded-3xl mb-3 bg-gradient-to-br from-primary-500/15 to-transparent text-primary-600 dark:text-primary-400">
                                            <item.icon className="h-5 w-5 shrink-0" />
                                            <span className="text-sm font-black tracking-tight">{item.name}</span>
                                          </div>
@@ -240,7 +247,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                                 className={cn(
                                                   "flex items-center px-5 py-3.5 rounded-2xl text-[13px] font-black tracking-tight transition-all",
                                                   isSubActive 
-                                                    ? "text-primary-600 bg-primary-50/50 dark:text-primary-400 dark:bg-primary-500/10" 
+                                                    ? "text-primary-600 bg-primary-500/10 dark:text-primary-400" 
                                                     : "text-muted hover:bg-muted/5 hover:text-foreground"
                                                 )}
                                               >
@@ -257,24 +264,31 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 <Link
                                   href={item.href || "#"}
                                     className={cn(
-                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 relative px-4 z-10",
+                                      "group/link flex items-center gap-3 rounded-2xl py-3.5 transition-all duration-300 relative px-4 z-10 overflow-hidden",
                                       isCollapsed ? "justify-center px-0 h-14" : "px-4",
                                       isActive ? "text-primary-600 dark:text-primary-400" : "text-muted hover:text-foreground"
                                     )}
                                 >
                                   {isActive && (
-                                    <motion.div 
-                                      layoutId="active-pill"
-                                      className="absolute inset-0 bg-primary-500/10 dark:bg-primary-500/15 rounded-2xl -z-10 shadow-[0_0_20px_-5px_var(--brand-glow)]"
-                                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                    />
+                                    <>
+                                      <motion.div 
+                                        layoutId="active-accent"
+                                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 bg-primary-500 rounded-full shadow-[0_0_15px_var(--brand-glow)] z-20"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                      />
+                                      <motion.div 
+                                        layoutId="active-pill"
+                                        className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-primary-500/5 to-transparent rounded-2xl -z-10 shadow-[0_0_25px_-5px_var(--brand-glow)]"
+                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                      />
+                                    </>
                                   )}
-                                  <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-300", isActive ? "text-primary-500" : "text-muted group-hover/link:text-primary-500 group-hover/link:scale-110")} />
+                                  <item.icon className={cn("h-5 w-5 shrink-0 transition-all duration-500", isActive ? "text-primary-500 drop-shadow-[0_0_10px_var(--brand-glow)] scale-110" : "text-muted group-hover/link:text-primary-500 group-hover/link:scale-115 group-hover/link:rotate-3")} />
                                   {!isCollapsed && <span className="text-sm font-black tracking-tight">{item.name}</span>}
                                   
                                   {isCollapsed && (
                                     <div className="absolute left-[calc(100%+1rem)] invisible opacity-0 group-hover/link:visible group-hover/link:opacity-100 transition-all duration-500 z-[100] translate-x-3 group-hover/link:translate-x-0">
-                                      <div className="bg-card border border-border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl whitespace-nowrap shadow-premium backdrop-blur-md">
+                                      <div className="bg-card/95 border border-border-theme text-foreground text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl whitespace-nowrap shadow-hero backdrop-blur-md">
                                         {item.name}
                                       </div>
                                     </div>

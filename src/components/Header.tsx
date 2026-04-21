@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Search, Menu, Sparkles } from "lucide-react"
+import { motion } from "framer-motion"
 import { ThemeToggle } from "./ThemeToggle"
 import { NotificationBell } from "./NotificationBell"
 import { ThemeCustomizer } from "./ThemeCustomizer"
@@ -37,14 +38,14 @@ export function Header({ onMenuClick }: HeaderProps) {
           
           {/* Professional Pill Search */}
           <div 
-            className="group relative flex h-11 w-full max-w-md items-center gap-3 rounded-full bg-background border border-border-theme px-5 transition-all hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/5 cursor-pointer"
+            className="group relative flex h-12 w-full max-w-md items-center gap-3 rounded-full bg-background/50 border border-border-theme px-6 transition-all hover:border-primary-500/50 hover:shadow-hero cursor-pointer backdrop-blur-md"
             onClick={handleSearchClick}
           >
-            <Search className="h-4 w-4 text-muted group-hover:text-indigo-500 transition-colors" />
-            <div className="flex-1 text-sm text-muted font-medium">
+            <Search className="h-4 w-4 text-muted group-hover:text-primary-500 transition-colors" />
+            <div className="flex-1 text-sm text-muted font-bold uppercase tracking-wider">
               Search <span className="hidden sm:inline">everything</span>...
             </div>
-            <div className="hidden sm:flex items-center gap-1.5 rounded-lg bg-muted/10 px-2 py-1 text-[10px] font-black text-muted border border-border-theme group-hover:border-indigo-500/30 transition-colors">
+            <div className="hidden sm:flex items-center gap-1.5 rounded-xl bg-muted/10 px-3 py-1.5 text-[10px] font-black text-muted border border-border-theme group-hover:border-primary-500/30 transition-colors">
               <span>{isMac ? '⌘' : 'Ctrl'}</span>
               <span>K</span>
             </div>
@@ -52,13 +53,14 @@ export function Header({ onMenuClick }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-x-2 lg:gap-x-5">
-          <div 
-            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 cursor-pointer hover:bg-indigo-500/20 transition-all group/ai"
+          <motion.div 
+            whileHover={{ y: -2 }}
+            className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-500/10 border border-primary-500/20 cursor-pointer hover:bg-primary-500/20 transition-all group/ai shadow-hero ring-1 ring-primary-500/30"
             onClick={() => setIsProModalOpen(true)}
           >
-            <Sparkles className="h-3.5 w-3.5 text-indigo-500 group-hover/ai:animate-pulse" />
-            <span className="text-[11px] font-black text-indigo-500 uppercase tracking-widest">AI Hub</span>
-          </div>
+            <Sparkles className="h-4 w-4 text-primary-500 group-hover/ai:animate-pulse" />
+            <span className="text-[11px] font-black text-primary-500 uppercase tracking-[0.2em]">AI Hub</span>
+          </motion.div>
           
           <div className="flex items-center gap-2">
             <ThemeCustomizer />
@@ -66,19 +68,19 @@ export function Header({ onMenuClick }: HeaderProps) {
             <NotificationBell />
           </div>
 
-          <div className="hidden lg:block lg:h-8 lg:w-px lg:bg-border-theme" aria-hidden="true" />
+          <div className="hidden lg:block lg:h-10 lg:w-px lg:bg-border-theme" aria-hidden="true" />
 
-          <div className="flex items-center gap-x-3 group cursor-pointer pl-1">
-            <div className="h-9 w-9 rounded-full border-2 border-border-theme flex items-center justify-center overflow-hidden transition-all group-hover:border-indigo-500/50 shadow-sm">
+          <div className="flex items-center gap-x-4 group cursor-pointer pl-1">
+            <div className="h-11 w-11 rounded-2xl border-2 border-border-theme flex items-center justify-center overflow-hidden transition-all group-hover:border-primary-500/50 group-hover:shadow-[0_0_15px_var(--brand-glow)]">
               <img
                 src="https://ui-avatars.com/api/?name=Pinky+Admin&background=6366f1&color=fff"
                 alt="User Avatar"
-                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
+                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
             </div>
             <div className="hidden lg:flex flex-col">
-              <span className="text-xs font-black text-foreground group-hover:text-indigo-500 transition-colors">Pinky Admin</span>
-              <span className="text-[10px] font-bold text-muted uppercase tracking-tighter">Pro Account</span>
+              <span className="text-sm font-black text-foreground group-hover:text-primary-500 transition-colors tracking-tighter">Pinky Admin</span>
+              <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Pro Account</span>
             </div>
           </div>
         </div>

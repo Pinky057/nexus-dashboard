@@ -152,18 +152,18 @@ export default function TablesPage() {
                       <td className="px-6 py-5 text-muted text-xs font-bold uppercase tracking-tighter">{user.joined}</td>
                       <td className="px-6 py-5 font-black text-primary text-base">{user.revenue}</td>
                       <td className="px-6 py-5 text-right">
-                        <div className="flex items-center justify-end gap-2.5">
+                        <div className="flex items-center justify-end gap-2">
                           <button 
                             onClick={() => handleEditStart(user)}
-                            className="bg-muted/10 hover:bg-primary/10 text-muted hover:text-primary px-3 py-2 rounded-xl border border-border-theme hover:border-primary/20 text-[10px] font-black uppercase flex items-center gap-2 transition-all"
+                            className="p-2.5 rounded-xl bg-transparent text-muted/60 hover:text-primary-500 transition-all border border-transparent hover:border-primary-500/40"
                           >
-                            <Edit2 className="h-3.5 w-3.5" /> Edit
+                            <Edit2 className="h-4 w-4" />
                           </button>
                           <button 
                             onClick={() => handleDelete(user.id)}
-                            className="bg-rose-500/5 hover:bg-rose-500 text-rose-500 hover:text-white px-3 py-2 rounded-xl border border-rose-500/10 hover:border-rose-500 text-[10px] font-black uppercase flex items-center gap-2 transition-all shadow-sm hover:shadow-rose-500/20"
+                            className="p-2.5 rounded-xl bg-transparent text-muted/60 hover:text-rose-500 transition-all border border-transparent hover:border-rose-500/40"
                           >
-                            <Trash2 className="h-3.5 w-3.5" /> Del
+                            <Trash2 className="h-4 w-4" />
                           </button>
                         </div>
                       </td>

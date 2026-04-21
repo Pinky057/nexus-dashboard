@@ -34,116 +34,122 @@ export default function KanbanPage() {
         featureName={selectedFeature}
       />
 
-      {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Premium Pill Header */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-4">
         <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <Layout className="h-5 w-5 text-primary" />
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">AI Task Board</h1>
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-2xl bg-primary-500/10 flex items-center justify-center border border-primary-500/20">
+              <Layout className="h-5 w-5 text-primary-500" />
+            </div>
+            <h1 className="text-3xl font-black tracking-tighter text-foreground uppercase tracking-wider">AI Task Board</h1>
           </div>
-          <p className="text-sm text-muted">Intelligent project management with AI-suggested risk levels.</p>
+          <p className="text-[11px] font-black text-muted uppercase tracking-[0.2em] ml-[52px]">Project management with AI risk engine</p>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="relative mr-2">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted" />
+        
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+          <div className="relative flex-1 w-full sm:w-64">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted group-focus-within:text-primary-500 transition-colors" />
             <input 
               type="text" 
-              placeholder="Search tasks..." 
-              className="h-9 w-48 rounded-md bg-background border border-border-theme pl-9 pr-3 text-xs text-foreground outline-none focus:ring-1 focus:ring-primary/50"
+              placeholder="SEARCH TASKS..." 
+              className="h-[52px] w-full rounded-full bg-background/50 border border-border-theme pl-11 pr-4 text-[10px] font-black text-foreground outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all shadow-flat uppercase tracking-widest backdrop-blur-md"
             />
           </div>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="h-9 gap-2 border-border-theme"
-            onClick={() => handleProClick("Advanced Filters")}
-          >
-            <Filter className="h-4 w-4" />
-            Filter
-          </Button>
-          <Button 
-            variant="primary" 
-            size="sm" 
-            className="h-9 gap-2"
-            onClick={() => handleProClick("Create Task Module")}
-          >
-            <Plus className="h-4 w-4" />
-            New Task
-          </Button>
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <Button 
+              variant="outline" 
+              className="h-[52px] px-6 rounded-full border-border-theme bg-background/50 backdrop-blur-md hover:border-primary-500/30 gap-2 flex-1 sm:flex-none"
+              onClick={() => handleProClick("Advanced Filters")}
+            >
+              <Filter className="h-4 w-4" />
+              <span className="font-black uppercase tracking-widest text-[10px]">Filter</span>
+            </Button>
+            <Button 
+              variant="primary" 
+              className="h-[52px] px-8 rounded-full shadow-hero gap-2 flex-1 sm:flex-none"
+              onClick={() => handleProClick("Create Task Module")}
+            >
+              <Plus className="h-5 w-5" />
+              <span className="font-black uppercase tracking-widest text-[10px]">New Task</span>
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Kanban Board */}
-      <div className="flex-1 overflow-x-auto pb-4">
-        <div className="inline-flex gap-6 h-full min-w-full">
+      <div className="flex-1 overflow-x-auto pb-6 -mx-4 px-4 custom-scrollbar">
+        <div className="inline-flex gap-8 h-full min-w-full">
           {KANBAN_COLUMNS.map((column) => (
-            <div key={column.id} className="w-80 shrink-0 flex flex-col gap-4">
+            <div key={column.id} className="w-[340px] shrink-0 flex flex-col gap-6">
               {/* Column Header */}
-              <div className="flex items-center justify-between px-1">
-                <div className="flex items-center gap-2">
-                  <div className={cn("h-2 w-2 rounded-full shadow-sm", column.color)} />
-                  <h3 className="text-sm font-bold text-foreground uppercase tracking-wider">{column.title}</h3>
-                  <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-border-theme text-muted bg-background/50">
-                    {KANBAN_TASKS.filter(t => t.status === column.id).length}
-                  </Badge>
+              <div className="flex items-center justify-between px-4">
+                <div className="flex items-center gap-3">
+                  <div className={cn("h-3 w-3 rounded-full shadow-[0_0_10px_currentColor]", column.color.replace('bg-', 'text-'))} />
+                  <h3 className="text-[11px] font-black text-foreground uppercase tracking-[0.2em]">{column.title}</h3>
+                  <div className="h-5 min-w-[20px] rounded-full bg-muted/10 border border-border-theme flex items-center justify-center px-1.5">
+                    <span className="text-[9px] font-black text-muted">
+                      {KANBAN_TASKS.filter(t => t.status === column.id).length}
+                    </span>
+                  </div>
                 </div>
-                <button className="text-muted hover:text-foreground">
+                <button className="h-8 w-8 rounded-xl flex items-center justify-center text-muted hover:text-foreground hover:bg-muted/10 transition-all border border-transparent hover:border-border-theme">
                   <MoreVertical className="h-4 w-4" />
                 </button>
               </div>
 
-              {/* Tasks Container */}
+              {/* Tasks Container - Expanding & Defined */}
               <div 
-                className="flex-1 rounded-2xl bg-muted/20 border border-border-theme p-2 space-y-3 cursor-pointer min-h-[500px]"
+                className="h-fit rounded-[2.5rem] bg-background/30 border-2 border-border-theme p-5 space-y-5 cursor-pointer shadow-flat backdrop-blur-sm group/column hover:bg-background/40 hover:border-primary-500/20 transition-all duration-500 ring-1 ring-white/5"
                 onClick={() => handleProClick("Drag & Drop Management")}
               >
                 {KANBAN_TASKS.filter(t => t.status === column.id).map((task) => (
                   <motion.div
                     key={task.id}
-                    whileHover={{ y: -2 }}
-                    className="rounded-xl border border-border-theme bg-card p-4 shadow-sm hover:border-primary/30 transition-all group"
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    className="rounded-[2.25rem] border border-border-theme/60 bg-card p-6 shadow-premium hover:shadow-hero hover:border-primary-500/30 transition-all group relative overflow-hidden ring-1 ring-white/10"
                   >
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <Badge 
-                        variant="outline" 
-                        className={cn(
-                          "text-[10px] py-0 px-1.5 uppercase tracking-tighter",
-                          task.priority === "High" ? "text-rose-500 border-rose-500/20 bg-rose-500/5" :
-                          task.priority === "Medium" ? "text-amber-500 border-amber-500/20 bg-amber-500/5" :
-                          "text-muted border-border-theme"
-                        )}
-                      >
-                        {task.priority}
-                      </Badge>
-                      <span className="text-[10px] font-mono text-muted group-hover:text-primary">{task.id}</span>
+                    <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Sparkles className="h-4 w-4 text-primary-500/50" />
+                    </div>
+                    
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <div className={cn(
+                        "text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border",
+                        task.priority === "High" ? "text-rose-500 border-rose-500/20 bg-rose-500/5" :
+                        task.priority === "Medium" ? "text-amber-500 border-amber-500/20 bg-amber-500/5" :
+                        "text-zinc-500 border-border-theme bg-muted/5"
+                      )}>
+                        {task.priority} Priority
+                      </div>
+                      <span className="text-[10px] font-black text-muted/40 uppercase tracking-widest group-hover:text-primary-500 transition-colors">{task.id}</span>
                     </div>
 
-                    <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+                    <h4 className="text-base font-black text-foreground group-hover:text-primary-500 transition-colors mb-2 tracking-tighter">
                       {task.title}
                     </h4>
-                    <p className="text-xs text-muted line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] font-bold text-muted/80 line-clamp-2 leading-relaxed uppercase tracking-wide">
                       {task.description}
                     </p>
 
-                    <div className="mt-4 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-[10px] text-muted">
-                        <Clock className="h-3 w-3" />
+                    <div className="mt-6 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-[9px] font-black text-muted uppercase tracking-widest">
+                        <Clock className="h-3.5 w-3.5 text-primary-500" />
                         <span>3 days ago</span>
                       </div>
-                      <div className="flex -space-x-2">
+                      <div className="flex -space-x-3">
                         {[1, 2].map(i => (
-                          <div key={i} className="h-6 w-6 rounded-full border-2 border-card bg-muted flex items-center justify-center text-[10px] font-bold text-muted">
-                            {i === 1 ? 'A' : 'M'}
+                          <div key={i} className="h-8 w-8 rounded-xl border-2 border-card bg-muted/20 flex items-center justify-center text-[10px] font-black text-foreground shadow-sm ring-1 ring-white/10">
+                            {i === 1 ? 'PA' : 'MR'}
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* AI Insight Badge */}
-                    <div className="mt-4 pt-3 border-t border-border-theme">
-                      <div className="flex items-start gap-2 rounded-lg bg-primary/5 p-2 ring-1 ring-primary/10">
-                        <Sparkles className="h-3 w-3 text-primary shrink-0 mt-0.5" />
-                        <p className="text-[10px] leading-tight text-primary font-medium italic">
+                    <div className="mt-6 pt-4 border-t border-border-theme/40">
+                      <div className="flex items-start gap-3 rounded-2xl bg-primary-500/[0.03] p-4 border border-primary-500/10 group-hover:bg-primary-500/[0.05] transition-all">
+                        <Sparkles className="h-4 w-4 text-primary-500 shrink-0 mt-0.5 animate-pulse" />
+                        <p className="text-[11px] leading-relaxed text-primary-500 font-bold uppercase tracking-wider">
                           {task.aiInsight}
                         </p>
                       </div>
@@ -151,9 +157,12 @@ export default function KanbanPage() {
                   </motion.div>
                 ))}
 
-                {/* Empty State / Add Placeholder */}
-                <button className="w-full py-4 border border-dashed border-border-theme rounded-xl text-muted hover:text-foreground hover:bg-background/50 transition-all text-xs font-semibold">
-                  + Add Item
+                {/* Premium Add Placeholder */}
+                <button className="w-full py-10 border-2 border-dashed border-border-theme rounded-[2rem] text-[10px] font-black uppercase tracking-[0.3em] text-muted/60 hover:text-primary-500 hover:border-primary-500/40 hover:bg-background/60 hover:shadow-premium transition-all duration-500 group/add">
+                  <div className="flex flex-col items-center gap-2">
+                    <Plus className="h-5 w-5 opacity-40 group-hover/add:opacity-100 group-hover/add:scale-110 transition-all" />
+                    <span>Add New Task</span>
+                  </div>
                 </button>
               </div>
             </div>

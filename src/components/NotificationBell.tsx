@@ -29,57 +29,59 @@ export function NotificationBell() {
 
   return (
     <div className="relative" ref={ref}>
-      {/* Bell button */}
-      <button
+      {/* Premium Bell Trigger */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         id="notification-bell"
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="relative -m-2.5 p-2.5 text-muted hover:text-foreground transition-all duration-200"
+        className="relative h-11 w-11 flex items-center justify-center rounded-2xl bg-muted/5 border border-border-theme hover:border-primary-500/50 hover:bg-primary-500/5 transition-all group shadow-flat hover:shadow-[0_0_15px_var(--brand-glow)]"
         aria-label="Notifications"
       >
-        <Bell className="h-5 w-5" />
+        <Bell className="h-5 w-5 text-zinc-400 group-hover:text-primary-500 transition-colors" />
         {unreadCount > 0 && (
-          <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-black text-white ring-2 ring-background shadow-sm">
+          <span className="absolute -top-1 -right-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-rose-500 px-1 text-[9px] font-black text-white ring-2 ring-background shadow-[0_0_10px_rgba(244,63,94,0.5)] z-10">
             {unreadCount}
           </span>
         )}
-      </button>
+      </motion.button>
 
-      {/* Dropdown panel */}
+      {/* Dropdown panel - High Opacity for Legibility */}
       <AnimatePresence>
         {open && (
           <motion.div
             key="notif-panel"
-            initial={{ opacity: 0, y: -8, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.97 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-3 w-80 sm:w-96 rounded-2xl border border-border-theme bg-card shadow-2xl shadow-black/10 z-50 overflow-hidden"
+            initial={{ opacity: 0, y: 15, scale: 0.95, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: 15, scale: 0.95, filter: "blur(10px)" }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
+            className="absolute right-0 top-full mt-4 w-96 rounded-[2.5rem] border border-border-theme bg-card/98 backdrop-blur-2xl shadow-hero z-50 overflow-hidden ring-1 ring-white/10"
           >
-            {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-border-theme bg-muted/5">
-              <div className="flex items-center gap-2">
-                <h3 className="text-sm font-black text-foreground tracking-tight">Notifications</h3>
+            {/* Premium Header */}
+            <div className="flex items-center justify-between px-8 py-6 border-b border-border-theme bg-muted/5">
+              <div className="flex items-center gap-3">
+                <h3 className="text-sm font-black text-foreground uppercase tracking-widest">Notifications</h3>
                 {unreadCount > 0 && (
-                  <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[10px] font-black text-white">
+                  <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary-500 px-2 text-[10px] font-black text-white shadow-[0_0_10px_rgba(99,102,241,0.5)] animate-pulse">
                     {unreadCount}
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-4">
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllRead}
-                    className="text-[11px] text-primary hover:underline font-bold transition-all"
+                    className="text-[10px] text-primary-500 hover:text-primary-400 font-black uppercase tracking-widest transition-all"
                   >
-                    Mark all read
+                    Clear All
                   </button>
                 )}
                 <button
                   onClick={() => setOpen(false)}
-                  className="p-1.5 rounded-lg text-muted hover:text-foreground hover:bg-muted/10 transition-all"
+                  className="p-2 rounded-xl text-muted hover:text-foreground hover:bg-muted/10 transition-all border border-border-theme"
                 >
-                  <X className="h-3.5 w-3.5" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
             </div>

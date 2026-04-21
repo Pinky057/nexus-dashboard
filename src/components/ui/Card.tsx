@@ -3,17 +3,26 @@ import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "card-premium",
-      className
-    )}
-    {...props}
-  />
-))
+  React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "hero" | "flat" }
+>(({ className, variant = "default", ...props }, ref) => {
+  const variantStyles = {
+    default: "shadow-premium",
+    hero: "shadow-hero ring-1 ring-primary-500/10",
+    flat: "shadow-flat border border-border-theme",
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "card-premium",
+        variantStyles[variant],
+        className
+      )}
+      {...props}
+    />
+  )
+})
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<

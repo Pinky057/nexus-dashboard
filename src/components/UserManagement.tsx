@@ -56,20 +56,24 @@ export function UserManagement() {
 
   return (
     <div className="space-y-4">
-      {/* Search & Add */}
-      <div className="flex items-center justify-between gap-4 bg-card border border-border-theme p-4 rounded-xl shadow-sm">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" />
+      {/* Premium Pill Header */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6">
+        <div className="relative flex-1 w-full max-w-lg">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted group-focus-within:text-primary-500 transition-colors" />
           <input 
-            className="w-full bg-background border border-border-theme rounded-lg pl-10 pr-4 py-2 text-foreground placeholder:text-muted outline-none focus:ring-1 focus:ring-primary/30 transition-all"
-            placeholder="Search users..."
+            className="w-full bg-background/50 border border-border-theme rounded-full pl-12 pr-6 py-3.5 text-sm font-bold text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/50 transition-all shadow-flat focus:shadow-hero backdrop-blur-md uppercase tracking-wider"
+            placeholder="Search team members..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button onClick={handleAddMockUser} className="gap-2">
-          <Plus className="h-4 w-4" />
-          Add User
+        <Button 
+          variant="primary" 
+          onClick={handleAddMockUser} 
+          className="gap-3 h-[52px] px-8 rounded-full shadow-hero"
+        >
+          <Plus className="h-5 w-5" />
+          <span className="font-black uppercase tracking-widest text-[11px]">Add New User</span>
         </Button>
       </div>
 
@@ -131,15 +135,15 @@ export function UserManagement() {
                     <div className="flex items-center justify-end gap-2">
                       <button 
                         onClick={() => handleEditStart(user)}
-                        className="p-2 rounded-lg bg-muted/50 text-muted hover:bg-primary/10 hover:text-primary transition-all border border-border-theme"
+                        className="p-2.5 rounded-xl bg-transparent text-muted/60 hover:text-primary-500 transition-all border border-transparent hover:border-primary-500/40"
                       >
-                        <Edit2 className="h-3.5 w-3.5" />
+                        <Edit2 className="h-4 w-4" />
                       </button>
                       <button 
                         onClick={() => handleDelete(user.id)}
-                        className="p-2 rounded-lg bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white transition-all border border-rose-500/20"
+                        className="p-2.5 rounded-xl bg-transparent text-muted/60 hover:text-rose-500 transition-all border border-transparent hover:border-rose-500/40"
                       >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
                   </td>

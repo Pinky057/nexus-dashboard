@@ -13,23 +13,23 @@ export function AiAssistantCard() {
       transition={{ duration: 0.5, delay: 0.6 }}
       className="h-full"
     >
-      <Card className="h-full flex flex-col overflow-hidden bg-gradient-to-br from-background to-muted/5 border-border-theme">
-        <CardHeader className="border-b border-border-theme bg-muted/5">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-              <Sparkles className="h-4 w-4 text-indigo-500" />
+      <Card className="h-full flex flex-col overflow-hidden bg-background/5 backdrop-blur-3xl border-2 border-border-theme rounded-[2.5rem] shadow-premium">
+        <CardHeader className="border-b border-border-theme bg-transparent px-8 py-7">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-500/10 border border-primary-500/20 shadow-[0_0_15px_var(--brand-glow)]">
+              <Sparkles className="h-5 w-5 text-primary-500" />
             </div>
             <div>
-              <CardTitle className="text-sm font-bold">AI Agent Command</CardTitle>
-              <CardDescription className="text-[10px] font-medium">Natural language analytics & actions</CardDescription>
+              <CardTitle className="text-sm font-black uppercase tracking-widest text-foreground">AI Agent Command</CardTitle>
+              <CardDescription className="text-[10px] font-black uppercase tracking-[0.15em] text-muted/60">Natural language analytics & actions</CardDescription>
             </div>
           </div>
         </CardHeader>
         
-        <CardContent className="flex-1 flex flex-col gap-4 p-4">
-          <div className="flex-1 space-y-4">
-            <p className="text-[10px] font-black text-muted uppercase tracking-[0.2em]">Suggested Prompts</p>
-            <div className="grid grid-cols-1 gap-2.5">
+        <CardContent className="flex-1 flex flex-col gap-6 p-8">
+          <div className="flex-1 space-y-5">
+            <p className="text-[10px] font-black text-muted uppercase tracking-[0.3em]">Suggested Prompts</p>
+            <div className="grid grid-cols-1 gap-3">
               {[
                 { icon: Zap, text: "Analyze MRR churn risk" },
                 { icon: Target, text: "Generate weekly growth report" },
@@ -37,9 +37,9 @@ export function AiAssistantCard() {
               ].map((prompt, i) => (
                 <button 
                   key={i}
-                  className="flex items-center gap-3 rounded-xl border border-border-theme bg-background p-3 text-left text-[11px] font-bold text-foreground hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-all group shadow-sm"
+                  className="flex items-center gap-4 rounded-2xl border border-border-theme bg-transparent px-5 py-4 text-left text-[11px] font-black text-foreground uppercase tracking-wider hover:border-primary-500/50 hover:bg-primary-500/5 hover:shadow-premium transition-all group"
                 >
-                  <prompt.icon className="h-3.5 w-3.5 text-muted group-hover:text-indigo-500" />
+                  <prompt.icon className="h-4 w-4 text-muted/40 group-hover:text-primary-500 transition-colors" />
                   {prompt.text}
                 </button>
               ))}
