@@ -4,7 +4,13 @@ A premium, open-source admin dashboard template built with **Next.js 14**, **Tai
 
 [Live demo ](https://nexus-dashboard-phi-five.vercel.app/)
 
-![Dashboard Preview](./public/preview.png)
+## 🎨 Premium Themes
+
+The Nexus Dashboard comes with multiple high-fidelity themes designed for different SaaS aesthetics:
+
+| **Elite 9.5 (Indigo)** | **Classic (Teal)** | **Studio (White)** |
+|:---:|:---:|:---:|
+| ![Elite Dark](./public/screenshots/elite-dark.png) | ![Classic Dark](./public/screenshots/classic-dark.png) | ![Studio Light](./public/screenshots/studio-light.png) |
 
 ## ✨ Features
 
