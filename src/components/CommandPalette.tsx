@@ -42,20 +42,20 @@ export function CommandPalette() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-zinc-950/60 backdrop-blur-md z-[100]"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100]"
           />
           <div className="fixed inset-0 z-[101] flex items-start justify-center pt-[15vh] pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              className="w-full max-w-xl bg-zinc-900/90 border border-white/10 rounded-[2.5rem] shadow-[0_0_80px_rgba(0,0,0,0.5)] overflow-hidden pointer-events-auto ring-1 ring-white/10 mx-4"
+              className="w-full max-w-xl bg-background/80 backdrop-blur-xl border border-border-theme rounded-[2.5rem] shadow-hero overflow-hidden pointer-events-auto ring-1 ring-border-theme/50 mx-4"
             >
-              <div className="relative border-b border-white/5">
-                <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" />
+              <div className="relative border-b border-border-theme/50">
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-muted group-focus-within:text-primary-500 transition-colors" />
                 <input
                   autoFocus
-                  className="w-full bg-transparent pl-16 pr-16 py-6 text-lg font-black text-white placeholder:text-muted/40 outline-none uppercase tracking-widest"
+                  className="w-full bg-transparent pl-16 pr-16 py-6 text-lg font-black text-foreground placeholder:text-muted/30 outline-none uppercase tracking-widest caret-primary-500"
                   placeholder="SEARCH EVERYTHING..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}

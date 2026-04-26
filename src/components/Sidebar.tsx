@@ -122,12 +122,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <motion.aside
         initial={false}
         animate={{ 
-          width: isCollapsed ? 90 : 280,
-          x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -300 : 0)
+          width: isCollapsed ? 100 : 300,
+          x: isOpen ? 0 : (typeof window !== 'undefined' && window.innerWidth < 1024 ? -350 : 0)
         }}
         transition={sidebarTransition}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex flex-col p-4 lg:static lg:translate-x-0 h-full scrollbar-hide will-change-[width]",
+          "fixed inset-y-0 left-0 z-50 flex flex-col p-6 lg:static lg:translate-x-0 h-full scrollbar-hide will-change-[width]",
           !isOpen && "max-lg:-translate-x-full"
         )}
       >
@@ -137,9 +137,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <button 
             onClick={toggleCollapse}
             className={cn(
-              "absolute top-28 hidden lg:flex h-8 w-8 items-center justify-center rounded-xl transition-all z-[70] shadow-xl",
-              "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400",
-              isCollapsed ? "-right-4" : "right-4"
+              "absolute top-28 hidden lg:flex h-9 w-9 items-center justify-center rounded-2xl transition-all z-[70] shadow-hero bg-background border border-border-theme text-muted hover:text-primary-500",
+              isCollapsed ? "-right-4.5" : "right-4.5"
             )}
           >
             {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
@@ -147,7 +146,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
           {/* Sidebar Panel */}
           <div className={cn(
-            "flex h-full flex-col rounded-none overflow-visible scrollbar-hide glass-panel transition-colors duration-300 shadow-sm"
+            "flex h-full flex-col rounded-[3rem] overflow-visible scrollbar-hide bg-background/60 backdrop-blur-3xl border border-border-theme transition-all duration-500 shadow-hero group/sidebar hover:border-primary-500/30"
           )}>
             
             {/* Logo Section */}

@@ -35,7 +35,7 @@ export function Avatar({
   alt,
   fallback,
   size = "md",
-  shape = "circle",
+  shape = "squircle",
   status,
   isGlow = false,
   className,
